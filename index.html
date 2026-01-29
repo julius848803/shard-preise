@@ -4,251 +4,229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPSUCHT Shards Kurse</title>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 :root {
-  --bg: #0b0f14;
-  --card: #111822;
-  --muted: #8b93a7;
-  --text: #ffffff;
-  --accent: #2dd4bf;
-  --green: #22c55e;
-  --red: #ef4444;
+  --bg:#0b0f14; --card:#111822; --text:#fff; --muted:#8b93a7; --accent:#2dd4bf;
 }
 
-* { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
+*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+body{margin:0;background:radial-gradient(circle at top,#101826,#070b11);color:var(--text)}
 
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #101826, #070b11);
-  color: var(--text);
+header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;font-size:20px;font-weight:700;
 }
 
-.container {
-  max-width: 720px;
-  margin: auto;
-  padding: 16px;
+.menu-btn{
+  font-size:26px;cursor:pointer;user-select:none
 }
 
-h1 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+.container{max-width:720px;margin:auto;padding:16px}
+
+.card{
+  background:linear-gradient(180deg,#121a25,#0c121a);
+  border-radius:18px;padding:16px;margin-bottom:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5)
 }
 
-.card {
-  background: linear-gradient(180deg, #121a25, #0c121a);
-  border-radius: 18px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+/* ===== Drawer Menü ===== */
+
+.drawer{
+  position:fixed;top:0;left:-260px;width:260px;height:100%;
+  background:#0c121a;padding:20px;transition:.3s;
+  box-shadow:10px 0 40px rgba(0,0,0,.6);z-index:1000
 }
 
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.drawer.open{left:0}
+
+.drawer h2{margin-top:0}
+.drawer a{
+  display:block;color:white;text-decoration:none;
+  padding:12px 0;border-bottom:1px solid #1f2937;
+  font-size:18px
 }
 
-.price {
-  font-size: 32px;
-  font-weight: 700;
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;transition:.3s;z-index:999
+}
+.overlay.show{opacity:1;pointer-events:auto}
+
+/* ===== Seiten ===== */
+
+.page{display:none}
+.page.active{display:block}
+
+.price{font-size:32px;font-weight:700}
+.muted{color:var(--muted);font-size:14px}
+
+.selector{display:flex;gap:10px;margin-bottom:12px}
+.selector button{
+  flex:1;background:#0f1622;border:1px solid #1f2937;
+  color:white;padding:10px;border-radius:10px;font-size:16px
+}
+.selector button.active{border-color:var(--accent)}
+
+input{
+  width:100%;padding:14px;border-radius:12px;
+  border:1px solid #1f2937;background:#0b1220;color:white;font-size:18px
 }
 
-.muted { color: var(--muted); font-size: 14px; }
-
-.selector {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.selector button {
-  flex: 1;
-  background: #0f1622;
-  border: 1px solid #1f2937;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-.selector button.active {
-  background: #1f2937;
-  border-color: var(--accent);
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #1f2937;
-  background: #0b1220;
-  color: white;
-  font-size: 18px;
-}
-
-canvas {
-  width: 100% !important;
-  height: 260px !important;
-}
+canvas{width:100%!important;height:260px!important}
 </style>
 </head>
 
 <body>
+
+<div class="drawer" id="drawer">
+  <h2>Menü</h2>
+  <a href="#" onclick="showPage('home')">📊 Kurse</a>
+  <a href="#" onclick="showPage('stats')">📈 Statistik</a>
+  <a href="#" onclick="showPage('placeholder')">🧩 Platzhalter-Seite</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<header>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  💎 OPSUCHT Shards Kurse
+</header>
+
 <div class="container">
 
-<h1>💎 OPSUCHT Shards Kurse</h1>
+<!-- ================= HAUPTSEITE ================= -->
 
-<div class="card">
-  <div class="grid2">
-    <div>
-      <div class="muted">Diamond Block</div>
-      <div class="price" id="diaShard">–</div>
-      <div class="muted">Shards</div>
+<div id="home" class="page active">
+
+  <div class="card">
+    <div class="muted">Aktuelle Kurse</div>
+    <div class="price" id="diaShard">–</div>
+    <div class="muted">Diamond Block (Shards)</div>
+    <br>
+    <div class="price" id="netShard">–</div>
+    <div class="muted">Netherite Ingot (Shards)</div>
+  </div>
+
+  <div class="card">
+    <h3>Preis-Rechner</h3>
+    <div class="selector">
+      <button id="diaBtn" class="active">Diamond Block</button>
+      <button id="netBtn">Netherite Ingot</button>
     </div>
-    <div>
-      <div class="muted">Netherite Ingot</div>
-      <div class="price" id="netShard">–</div>
-      <div class="muted">Shards</div>
+
+    <input id="amount" type="number" value="1">
+
+    <div style="margin-top:12px">
+      <div class="muted" id="resultText">–</div>
+      <div class="price" id="resultPrice">–</div>
     </div>
+  </div>
+
+  <div class="card">
+    <h3>Preisverlauf</h3>
+    <canvas id="chart"></canvas>
   </div>
 </div>
 
-<div class="card">
-  <h3>Preis-Rechner</h3>
+<!-- ================= STATISTIK ================= -->
 
-  <div class="selector">
-    <button id="diaBtn" class="active">Diamond Block</button>
-    <button id="netBtn">Netherite Ingot</button>
-  </div>
-
-  <input id="amount" type="number" value="1" min="0" step="1">
-
-  <div style="margin-top:14px">
-    <div class="muted" id="resultText">–</div>
-    <div class="price" id="resultPrice">–</div>
+<div id="stats" class="page">
+  <div class="card">
+    <h2>Statistik</h2>
+    <p class="muted">Hier kommt später:</p>
+    <ul class="muted">
+      <li>Zeitraum-Auswahl</li>
+      <li>Min / Max</li>
+      <li>Prozent</li>
+      <li>Trend-Analyse</li>
+    </ul>
   </div>
 </div>
 
-<div class="card">
-  <h3>Preisverlauf</h3>
-  <canvas id="chart"></canvas>
+<!-- ================= PLATZHALTER ================= -->
+
+<div id="placeholder" class="page">
+  <div class="card">
+    <h2>Platzhalter-Seite</h2>
+    <p class="muted">
+      Diese Seite ist nur ein Dummy.<br>
+      Hier kannst du später z.B. News, Infos oder ein Stream-Overlay einbauen.
+    </p>
+  </div>
 </div>
 
 </div>
 
 <script>
-const SHARD_API = "https://api.opsucht.net/merchant/rates";
-const DIA_USD = "https://api.opsucht.net/market/price/diamond_block";
-const NET_USD = "https://api.opsucht.net/market/price/netherite_ingot";
-const HISTORY = "history.json";
+const SHARD_API="https://api.opsucht.net/merchant/rates";
+const DIA_USD="https://api.opsucht.net/market/price/diamond_block";
+const NET_USD="https://api.opsucht.net/market/price/netherite_ingot";
+const HISTORY="history.json";
 
-let mode = "diamond_block";
-let diaShard = 0;
-let netShard = 0;
-let diaUsd = 0;
-let netUsd = 0;
+let mode="diamond_block",diaShard=0,netShard=0,diaUsd=0,netUsd=0,chart;
 
-async function loadRates() {
-  const shard = await fetch(SHARD_API).then(r=>r.json());
-  diaShard = shard.find(i=>i.source==="diamond_block").exchangeRate;
-  netShard = shard.find(i=>i.source==="netherite_ingot").exchangeRate;
-
-  document.getElementById("diaShard").textContent = diaShard.toFixed(2);
-  document.getElementById("netShard").textContent = netShard.toFixed(2);
-
-  const dia = await fetch(DIA_USD).then(r=>r.json());
-  const net = await fetch(NET_USD).then(r=>r.json());
-  diaUsd = dia.price;
-  netUsd = net.price;
-
-  updateCalc();
-  loadChart();
+function toggleMenu(){
+  drawer.classList.toggle("open");
+  overlay.classList.toggle("show");
 }
 
-function updateCalc() {
-  const amount = Number(document.getElementById("amount").value || 0);
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  toggleMenu();
+}
 
-  if (mode === "diamond_block") {
-    document.getElementById("resultText").textContent =
-      `${amount} Diamond Block = ${(amount*diaShard).toFixed(2)} OPSHards`;
-    document.getElementById("resultPrice").textContent =
-      `≈ ${(amount*diaUsd).toFixed(2)} $`;
-  } else {
-    document.getElementById("resultText").textContent =
-      `${amount} Netherite Ingot = ${(amount*netShard).toFixed(2)} OPSHards`;
-    document.getElementById("resultPrice").textContent =
-      `≈ ${(amount*netUsd).toFixed(2)} $`;
+async function loadRates(){
+  const shard=await fetch(SHARD_API).then(r=>r.json());
+  diaShard=shard.find(i=>i.source==="diamond_block").exchangeRate;
+  netShard=shard.find(i=>i.source==="netherite_ingot").exchangeRate;
+
+  diaShardEl.textContent=diaShard.toFixed(2);
+  netShardEl.textContent=netShard.toFixed(2);
+
+  diaUsd=(await fetch(DIA_USD).then(r=>r.json())).price;
+  netUsd=(await fetch(NET_USD).then(r=>r.json())).price;
+
+  updateCalc();loadChart();
+}
+
+function updateCalc(){
+  const a=Number(amount.value||0);
+  if(mode==="diamond_block"){
+    resultText.textContent=`${a} Diamond Block = ${(a*diaShard).toFixed(2)} OPSHards`;
+    resultPrice.textContent=`≈ ${(a*diaUsd).toFixed(2)} $`;
+  }else{
+    resultText.textContent=`${a} Netherite Ingot = ${(a*netShard).toFixed(2)} OPSHards`;
+    resultPrice.textContent=`≈ ${(a*netUsd).toFixed(2)} $`;
   }
 }
 
-let chart;
-async function loadChart() {
-  const raw = await fetch(HISTORY).then(r=>r.json());
-
-  const rows = [];
-  raw.forEach(h=>{
-    h.data.forEach(d=>{
-      rows.push({
-        time: new Date(h.time).toLocaleDateString(),
-        source: d.source,
-        value: d.exchangeRate
-      });
-    });
-  });
-
-  const filtered = rows.filter(r=>r.source===mode);
-
-  const labels = filtered.map(r=>r.time);
-  const data = filtered.map(r=>r.value);
-
-  if (chart) chart.destroy();
-
-  chart = new Chart(document.getElementById("chart"), {
-    type: "line",
-    data: {
-      labels,
-      datasets: [{
-        data,
-        borderColor: "#2dd4bf",
-        backgroundColor: "rgba(45,212,191,0.15)",
-        fill: true,
-        tension: 0.35,
-        pointRadius: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false }},
-      scales: {
-        x: { ticks: { color: "#8b93a7" }},
-        y: { ticks: { color: "#8b93a7" }}
-      }
-    }
+async function loadChart(){
+  const raw=await fetch(HISTORY).then(r=>r.json());
+  const rows=[];
+  raw.forEach(h=>h.data.forEach(d=>rows.push({
+    time:new Date(h.time).toLocaleDateString(),
+    source:d.source,value:d.exchangeRate
+  })));
+  const f=rows.filter(r=>r.source===mode);
+  if(chart)chart.destroy();
+  chart=new Chart(chartEl,{type:"line",
+    data:{labels:f.map(r=>r.time),datasets:[{data:f.map(r=>r.value),borderColor:"#2dd4bf",backgroundColor:"rgba(45,212,191,.15)",fill:true,tension:.35,pointRadius:2}]},
+    options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#8b93a7"}},y:{ticks:{color:"#8b93a7"}}}}
   });
 }
 
-document.getElementById("diaBtn").onclick = () => {
-  mode = "diamond_block";
-  diaBtn.classList.add("active");
-  netBtn.classList.remove("active");
-  updateCalc();
-  loadChart();
-};
+diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");updateCalc();loadChart()}
+netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");updateCalc();loadChart()}
+amount.oninput=updateCalc;
 
-document.getElementById("netBtn").onclick = () => {
-  mode = "netherite_ingot";
-  netBtn.classList.add("active");
-  diaBtn.classList.remove("active");
-  updateCalc();
-  loadChart();
-};
-
-document.getElementById("amount").oninput = updateCalc;
+const diaShardEl=document.getElementById("diaShard");
+const netShardEl=document.getElementById("netShard");
+const resultText=document.getElementById("resultText");
+const resultPrice=document.getElementById("resultPrice");
+const chartEl=document.getElementById("chart");
 
 loadRates();
 </script>
