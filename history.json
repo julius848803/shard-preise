@@ -5,12 +5,12 @@
       {
         "source": "diamond_block",
         "target": "opshards",
-        "exchangeRate": 11.3
+        "exchangeRate": 10.19
       },
       {
         "source": "netherite_ingot",
         "target": "opshards",
-        "exchangeRate": 53.86
+        "exchangeRate": 53.91
       }
     ]
   },
@@ -20,12 +20,12 @@
       {
         "source": "diamond_block",
         "target": "opshards",
-        "exchangeRate": 11.31
+        "exchangeRate": 11.69
       },
       {
         "source": "netherite_ingot",
         "target": "opshards",
-        "exchangeRate": 53.86
+        "exchangeRate": 53.72
       }
     ]
   }
