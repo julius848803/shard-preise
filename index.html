@@ -192,7 +192,11 @@ let fullHistory = [];
 let currentDays = 7;
 
 function pretty(name){
-  return name.replace(/_/g," ");
+  return name
+    .replace(/_/g, " ")
+    .split(" ")
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
 fetch("history.json")
