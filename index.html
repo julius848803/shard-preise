@@ -150,15 +150,14 @@ fetch("history.json")
 });
 
 function drawChart(history, item){
-  const points = [];
+  const labels = [];
+  const values = [];
 
   history.forEach(h=>{
     const found = h.data.find(d=>d.source===item);
     if(found){
-      points.push({
-        x: new Date(h.time),
-        y: found.exchangeRate
-      });
+      labels.push(new Date(h.time).toLocaleString("de-DE"));
+      values.push(found.exchangeRate);
     }
   });
 
@@ -167,17 +166,17 @@ function drawChart(history, item){
   chart = new Chart(document.getElementById("chart"), {
     type: "line",
     data: {
+      labels: labels,
       datasets: [{
         label: pretty(item),
-        data: points,
+        data: values,
         borderWidth: 2,
         tension: 0.2
       }]
     },
     options: {
-      parsing:false,
-      scales:{
-        x:{ type:"time", time:{ tooltipFormat:"dd.MM.yyyy HH:mm" } }
+      scales: {
+        y: { beginAtZero: false }
       }
     }
   });
