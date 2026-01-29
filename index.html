@@ -16,20 +16,10 @@ body {
   color:#222;
 }
 
-h1 {
-  text-align:center;
-  margin-bottom:10px;
-}
+h1 { text-align:center; margin-bottom:10px; }
+h2 { margin:22px 0 8px; font-size:1.15rem; }
 
-h2 {
-  margin:25px 0 10px;
-  font-size:1.2rem;
-}
-
-.section {
-  max-width:900px;
-  margin:0 auto 25px;
-}
+.section { max-width:900px; margin:0 auto 22px; }
 
 .card {
   background:white;
@@ -38,24 +28,49 @@ h2 {
   padding:12px 14px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin-bottom:8px;
   font-size:0.95rem;
+}
+
+.stat-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:8px;
+}
+
+.stat {
+  background:white;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+  font-size:0.9rem;
 }
 
 .up { color:#0a8f2f; font-weight:600; }
 .down { color:#c21d1d; font-weight:600; }
 
-select {
-  width:100%;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  margin-bottom:10px;
-  font-size:1rem;
+.range-buttons {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-/* Chart fix */
+.range-buttons button {
+  flex:1;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  background:white;
+  font-size:0.9rem;
+}
+
+.range-buttons button.active {
+  background:#222;
+  color:white;
+  border-color:#222;
+}
+
 .chart-box {
   background:white;
   border-radius:10px;
@@ -64,12 +79,8 @@ select {
   height:260px;
 }
 
-canvas {
-  width:100% !important;
-  height:100% !important;
-}
+canvas { width:100% !important; height:100% !important; }
 
-/* Tabelle mobil scrollbar */
 .table-wrap {
   overflow-x:auto;
   background:white;
@@ -90,17 +101,7 @@ th,td {
   font-size:0.9rem;
 }
 
-th {
-  background:#fafafa;
-  font-weight:600;
-}
-
-/* Mobile Feinschliff */
-@media (max-width:600px){
-  h1 { font-size:1.4rem; }
-  h2 { font-size:1.05rem; }
-  .card { font-size:0.9rem; }
-}
+th { background:#fafafa; font-weight:600; }
 </style>
 </head>
 <body>
@@ -113,16 +114,26 @@ th {
 </div>
 
 <div class="section">
+<h2>Zeitraum</h2>
+<div class="range-buttons">
+<button data-days="7" class="active">7 Tage</button>
+<button data-days="14">14 Tage</button>
+<button data-days="30">1 Monat</button>
+<button data-days="90">3 Monate</button>
+</div>
+</div>
+
+<div class="section">
+<h2>Statistik</h2>
+<div id="stats" class="stat-grid"></div>
+</div>
+
+<div class="section">
 <h2>Verlauf (Diagramm)</h2>
 <select id="itemSelect"></select>
 <div class="chart-box">
   <canvas id="chart"></canvas>
 </div>
-</div>
-
-<div class="section">
-<h2>Letzte Änderung</h2>
-<div id="lastChange"></div>
 </div>
 
 <div class="section">
@@ -136,6 +147,8 @@ th {
 
 <script>
 let chart;
+let fullHistory = [];
+let currentDays = 7;
 
 function pretty(name){
   return name.replace(/_/g," ");
@@ -145,12 +158,26 @@ fetch("history.json")
 .then(r=>r.json())
 .then(history=>{
   if(!history.length) return;
+  fullHistory = history;
 
-  const latest = history.at(-1).data;
-  const prev = history.length > 1 ? history.at(-2).data : null;
+  renderCurrent(history.at(-1).data);
+  initRangeButtons();
+  initItems();
+  applyRange(7);
+});
 
-  // Dropdown
-  const items = [...new Set(history.flatMap(h => h.data.map(d => d.source)))];
+function renderCurrent(latest){
+  document.getElementById("current").innerHTML="";
+  latest.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<span>${pretty(item.source)}</span><b>${item.exchangeRate.toFixed(2).replace(".",",")}</b>`;
+    document.getElementById("current").appendChild(div);
+  });
+}
+
+function initItems(){
+  const items = [...new Set(fullHistory.flatMap(h => h.data.map(d => d.source)))];
   const select = document.getElementById("itemSelect");
 
   items.forEach(i=>{
@@ -160,55 +187,62 @@ fetch("history.json")
     select.appendChild(o);
   });
 
-  select.onchange = ()=>drawChart(history, select.value);
-  drawChart(history, items[0]);
+  select.onchange = ()=>applyRange(currentDays);
+}
 
-  // Aktuelle Werte
-  latest.forEach(item=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<span>${pretty(item.source)}</span><b>${item.exchangeRate.toFixed(2).replace(".",",")}</b>`;
-    document.getElementById("current").appendChild(div);
+function initRangeButtons(){
+  document.querySelectorAll(".range-buttons button").forEach(btn=>{
+    btn.onclick = ()=>{
+      document.querySelectorAll(".range-buttons button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      currentDays = parseInt(btn.dataset.days);
+      applyRange(currentDays);
+    };
   });
+}
 
-  // Letzte Änderung
-  if(prev){
-    latest.forEach(item=>{
-      const old = prev.find(p=>p.source===item.source);
-      if(!old || old.exchangeRate !== item.exchangeRate){
-        const diff = item.exchangeRate - (old?.exchangeRate ?? 0);
-        const cls = diff >= 0 ? "up" : "down";
+function applyRange(days){
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
 
-        const div=document.createElement("div");
-        div.className="card";
-        div.innerHTML=`<span>${pretty(item.source)}</span>
-                       <span class="${cls}">
-                       ${old?.exchangeRate?.toFixed(2) ?? "?"} → ${item.exchangeRate.toFixed(2)}
-                       </span>`;
-        document.getElementById("lastChange").appendChild(div);
-      }
-    });
-  }
+  const filtered = fullHistory.filter(h => new Date(h.time) >= cutoff);
+  const item = document.getElementById("itemSelect").value;
 
-  // Verlauf – nur Änderungen
-  for(let i = history.length - 1; i > 0; i--){
-    const current = history[i];
-    const previous = history[i - 1];
+  buildStats(filtered, item);
+  drawChart(filtered, item);
+  buildTable(filtered);
+}
 
-    current.data.forEach(item => {
-      const old = previous.data.find(p => p.source === item.source);
-      if(!old || old.exchangeRate !== item.exchangeRate){
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${new Date(current.time).toLocaleString("de-DE")}</td>
-          <td>${pretty(item.source)}</td>
-          <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>
-        `;
-        document.getElementById("historyTable").appendChild(tr);
-      }
-    });
-  }
-});
+function buildStats(history, item){
+  const statsBox = document.getElementById("stats");
+  statsBox.innerHTML="";
+
+  const values = history.map(h => h.data.find(d=>d.source===item)?.exchangeRate).filter(v=>v!==undefined);
+  if(values.length < 2) return;
+
+  const start = values[0];
+  const end = values[values.length-1];
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const diff = end - start;
+  const percent = ((diff / start) * 100).toFixed(2);
+
+  const stats = [
+    ["Start", start],
+    ["Ende", end],
+    ["Min", min],
+    ["Max", max],
+    ["Differenz", diff.toFixed(2)],
+    ["%", percent + " %"]
+  ];
+
+  stats.forEach(s=>{
+    const d=document.createElement("div");
+    d.className="stat";
+    d.innerHTML=`<div>${s[0]}</div><b>${String(s[1]).replace(".",",")}</b>`;
+    statsBox.appendChild(d);
+  });
+}
 
 function drawChart(history, item){
   const labels = [];
@@ -217,7 +251,7 @@ function drawChart(history, item){
   history.forEach(h=>{
     const found = h.data.find(d=>d.source===item);
     if(found){
-      labels.push(new Date(h.time).toLocaleString("de-DE"));
+      labels.push(new Date(h.time).toLocaleDateString("de-DE"));
       values.push(found.exchangeRate);
     }
   });
@@ -237,12 +271,30 @@ function drawChart(history, item){
     },
     options: {
       responsive:true,
-      maintainAspectRatio:false,
-      scales: {
-        y: { beginAtZero:false }
-      }
+      maintainAspectRatio:false
     }
   });
+}
+
+function buildTable(history){
+  const table = document.getElementById("historyTable");
+  table.innerHTML = "<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>";
+
+  for(let i = history.length - 1; i > 0; i--){
+    const cur = history[i];
+    const prev = history[i-1];
+
+    cur.data.forEach(item=>{
+      const old = prev.data.find(p=>p.source===item.source);
+      if(!old || old.exchangeRate !== item.exchangeRate){
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td>${new Date(cur.time).toLocaleString("de-DE")}</td>
+                      <td>${pretty(item.source)}</td>
+                      <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
+        table.appendChild(tr);
+      }
+    });
+  }
 }
 </script>
 
