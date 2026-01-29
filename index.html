@@ -3,146 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merchant Rates</title>
+<title>OPSUCHT Shard Verlauf</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+/* Grund */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background:#f5f6f8;
-  margin:0;
-  padding:16px;
-  color:#222;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #f4f6f8;
+  color: #333;
 }
 
-h1 { text-align:center; margin-bottom:10px; }
-h2 { margin:22px 0 8px; font-size:1.15rem; }
-
-.section { max-width:900px; margin:0 auto 22px; }
-
-.card {
-  background:white;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:12px 14px;
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:8px;
-  font-size:0.95rem;
+/* Header */
+header {
+  background: #1e242d;
+  color: #fff;
+  text-align: center;
+  padding: 18px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
-.stat-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:8px;
+/* Container */
+.section {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
-.stat {
-  background:white;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:10px;
-  text-align:center;
-  font-size:0.9rem;
-}
-
-.up { color:#0a8f2f; font-weight:600; }
-.down { color:#c21d1d; font-weight:600; }
-
+/* Statistik-Buttons */
 .range-buttons {
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
 }
-
 .range-buttons button {
-  flex:1;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  background:white;
-  font-size:0.9rem;
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: #dde1e6;
+  color: #2c3e50;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.range-buttons button.active,
+.range-buttons button:hover {
+  background: #2c3e50;
+  color: #fff;
 }
 
-.range-buttons button.active {
-  background:#222;
-  color:white;
-  border-color:#222;
+/* Statistik-Boxen */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.stat {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccd1d9;
+  padding: 14px 12px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.stat b {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.2rem;
 }
 
+/* Aktuelle Werte */
+.card {
+  background: #fff;
+  border: 1px solid #ccd1d9;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* Chart */
 .chart-box {
-  background:white;
-  border-radius:10px;
-  padding:8px;
-  border:1px solid #ddd;
-  height:260px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ccd1d9;
+  height: 260px;
+  margin-top: 12px;
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
-canvas { width:100% !important; height:100% !important; }
-
+/* Tabelle */
 .table-wrap {
   overflow-x:auto;
-  background:white;
-  border-radius:10px;
-  border:1px solid #ddd;
+  margin-top: 12px;
+  background:#fff;
+  border-radius:8px;
+  border:1px solid #ccd1d9;
 }
-
 table {
   width:100%;
   border-collapse: collapse;
-  min-width:520px;
+  min-width:600px;
 }
-
 th,td {
   padding:10px 12px;
-  border-bottom:1px solid #eee;
   text-align:left;
-  font-size:0.9rem;
+}
+th {
+  background:#eef1f5;
+  font-weight:600;
+}
+tr:nth-child(even) {
+  background:#f9fafb;
 }
 
-th { background:#fafafa; font-weight:600; }
+/* Trendfarben */
+.up { color:#2ecc71; font-weight:600; }
+.down { color:#e74c3c; font-weight:600; }
+
+@media (max-width:600px){
+  header h1 { font-size:1.4rem; }
+}
 </style>
 </head>
 <body>
 
-<h1>Merchant Rates</h1>
+<header>
+  <h1>OPSUCHT Shard Verlauf</h1>
+</header>
 
 <div class="section">
-<h2>Aktuelle Werte</h2>
-<div id="current"></div>
-</div>
-
-<div class="section">
-<h2>Zeitraum</h2>
-<div class="range-buttons">
-<button data-days="7" class="active">7 Tage</button>
-<button data-days="14">14 Tage</button>
-<button data-days="30">1 Monat</button>
-<button data-days="90">3 Monate</button>
-</div>
+  <h2>Aktuelle Werte</h2>
+  <div id="current"></div>
 </div>
 
 <div class="section">
-<h2>Statistik</h2>
-<div id="stats" class="stat-grid"></div>
+  <h2>Zeitraum</h2>
+  <div class="range-buttons">
+    <button data-days="7" class="active">7 Tage</button>
+    <button data-days="14">14 Tage</button>
+    <button data-days="30">1 Monat</button>
+    <button data-days="90">3 Monate</button>
+  </div>
 </div>
 
 <div class="section">
-<h2>Verlauf (Diagramm)</h2>
-<select id="itemSelect"></select>
-<div class="chart-box">
-  <canvas id="chart"></canvas>
-</div>
+  <h2>Statistik</h2>
+  <div id="stats" class="stat-grid"></div>
 </div>
 
 <div class="section">
-<h2>Verlauf (nur Änderungen)</h2>
-<div class="table-wrap">
-<table id="historyTable">
-<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
-</table>
+  <h2>Verlauf (Diagramm)</h2>
+  <select id="itemSelect"></select>
+  <div class="chart-box"><canvas id="chart"></canvas></div>
 </div>
+
+<div class="section">
+  <h2>Verlauf (nur Änderungen)</h2>
+  <div class="table-wrap">
+    <table id="historyTable">
+      <tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
+    </table>
+  </div>
 </div>
 
 <script>
@@ -179,14 +220,13 @@ function renderCurrent(latest){
 function initItems(){
   const items = [...new Set(fullHistory.flatMap(h => h.data.map(d => d.source)))];
   const select = document.getElementById("itemSelect");
-
+  select.innerHTML = "";
   items.forEach(i=>{
     const o=document.createElement("option");
     o.value=i; 
     o.textContent=pretty(i);
     select.appendChild(o);
   });
-
   select.onchange = ()=>applyRange(currentDays);
 }
 
@@ -204,10 +244,8 @@ function initRangeButtons(){
 function applyRange(days){
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - days);
-
   const filtered = fullHistory.filter(h => new Date(h.time) >= cutoff);
   const item = document.getElementById("itemSelect").value;
-
   buildStats(filtered, item);
   drawChart(filtered, item);
   buildTable(filtered);
@@ -227,94 +265,54 @@ function buildStats(history, item){
   const diff = end - start;
   const percent = ((diff / start) * 100);
 
-  let trendText = "stabil geblieben";
-  let trendIcon = "➖";
+  let trendText = "stabil";
   let trendClass = "";
+  if(diff > 0){ trendText="gestiegen"; trendClass="up"; }
+  if(diff < 0){ trendText="gefallen"; trendClass="down"; }
 
-  if(diff > 0){
-    trendText = "gestiegen";
-    trendIcon = "📈";
-    trendClass = "up";
-  }
-  if(diff < 0){
-    trendText = "gefallen";
-    trendIcon = "📉";
-    trendClass = "down";
-  }
-
-  const info = document.createElement("div");
-  info.className = "stat";
-  info.style.gridColumn = "1 / -1";
-  info.innerHTML = `
-    <div style="font-size:0.95rem">
-      ${trendIcon} <b>${pretty(item)}</b> ist im gewählten Zeitraum <b class="${trendClass}">${trendText}</b><br>
-      Von <b>${start.toFixed(2).replace(".",",")}</b> auf <b>${end.toFixed(2).replace(".",",")}</b>
-      (${diff >= 0 ? "+" : ""}${diff.toFixed(2).replace(".",",")} | ${percent >= 0 ? "+" : ""}${percent.toFixed(2).replace(".",",")} %)
-    </div>
+  const info=document.createElement("div");
+  info.className="stat";
+  info.style.gridColumn="1 / -1";
+  info.innerHTML=`
+    <div><b>${pretty(item)}</b> ist <span class="${trendClass}">${trendText}</span></div>
+    <b>${diff >= 0 ? "+" : ""}${diff.toFixed(2).replace(".",",")} (${percent >= 0 ? "+" : ""}${percent.toFixed(2).replace(".",",")} %)</b>
   `;
   statsBox.appendChild(info);
 
-  const stats = [
-    ["Tiefstwert", min],
-    ["Höchstwert", max]
-  ];
-
-  stats.forEach(s=>{
+  ["Tiefstwert", "Höchstwert"].forEach((label,i)=>{
+    const val = i===0 ? min : max;
     const d=document.createElement("div");
     d.className="stat";
-    d.innerHTML=`<div>${s[0]}</div><b>${s[1].toFixed(2).replace(".",",")}</b>`;
+    d.innerHTML=`<div>${label}</div><b>${val.toFixed(2).replace(".",",")}</b>`;
     statsBox.appendChild(d);
   });
 }
 
-
 function drawChart(history, item){
-  const labels = [];
-  const values = [];
-
+  const labels=[]; const values=[];
   history.forEach(h=>{
-    const found = h.data.find(d=>d.source===item);
-    if(found){
-      labels.push(new Date(h.time).toLocaleDateString("de-DE"));
-      values.push(found.exchangeRate);
-    }
+    const found=h.data.find(d=>d.source===item);
+    if(found){ labels.push(new Date(h.time).toLocaleDateString("de-DE")); values.push(found.exchangeRate); }
   });
 
   if(chart) chart.destroy();
-
-  chart = new Chart(document.getElementById("chart"), {
-    type: "line",
-    data: {
-      labels: labels,
-      datasets: [{
-        label: pretty(item),
-        data: values,
-        borderWidth: 2,
-        tension: 0.25
-      }]
-    },
-    options: {
-      responsive:true,
-      maintainAspectRatio:false
-    }
+  chart=new Chart(document.getElementById("chart"), {
+    type:"line",
+    data:{ labels:labels, datasets:[{ label:pretty(item), data:values, borderWidth:2, tension:0.25 }] },
+    options:{ responsive:true, maintainAspectRatio:false }
   });
 }
 
 function buildTable(history){
-  const table = document.getElementById("historyTable");
-  table.innerHTML = "<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>";
-
-  for(let i = history.length - 1; i > 0; i--){
-    const cur = history[i];
-    const prev = history[i-1];
-
+  const table=document.getElementById("historyTable");
+  table.innerHTML="<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>";
+  for(let i=history.length-1;i>0;i--){
+    const cur=history[i]; const prev=history[i-1];
     cur.data.forEach(item=>{
-      const old = prev.data.find(p=>p.source===item.source);
-      if(!old || old.exchangeRate !== item.exchangeRate){
+      const old=prev.data.find(p=>p.source===item.source);
+      if(!old||old.exchangeRate!==item.exchangeRate){
         const tr=document.createElement("tr");
-        tr.innerHTML=`<td>${new Date(cur.time).toLocaleString("de-DE")}</td>
-                      <td>${pretty(item.source)}</td>
-                      <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
+        tr.innerHTML=`<td>${new Date(cur.time).toLocaleString("de-DE")}</td><td>${pretty(item.source)}</td><td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
         table.appendChild(tr);
       }
     });
