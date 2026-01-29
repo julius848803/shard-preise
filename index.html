@@ -3,89 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPSUCHT Shard Verlauf</title>
+<title>OPShards – Kurse und Mehr</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-:root {
-  --bg:#070b11; --card:#0e1520; --text:#fff; --muted:#8b93a7; --accent:#2dd4bf;
+:root{
+  --bg:#07080f;
+  --card:#0d0f1a;
+  --accent:#7c7cff;
+  --accent2:#9b5cff;
+  --text:#ffffff;
+  --muted:#9aa0b4;
+  --border:#1a1d2d;
 }
 
 *{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
-body{margin:0;background:radial-gradient(circle at top,#0f172a,#05070b);color:var(--text)}
-
-header{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 16px;font-size:20px;font-weight:700;
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#11142a,#05060c);
+  color:var(--text);
 }
 
-.container{max-width:900px;margin:auto;padding:16px}
+header{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:14px;align-items:center;
+  padding:14px 18px;
+  background:rgba(7,8,15,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+
+header b{font-size:18px;letter-spacing:.3px}
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:12px;
+  font-size:14px;
+}
+nav a.active, nav a:hover{color:var(--accent)}
+
+.container{max-width:1000px;margin:auto;padding:18px}
 
 .card{
-  background:linear-gradient(180deg,#121a25,#0a0f17);
-  border-radius:20px;padding:18px;margin-bottom:16px;
-  box-shadow:0 10px 40px rgba(0,0,0,.6)
+  background:linear-gradient(180deg,#0f1220,#090b14);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 
+h2{margin:4px 0 10px 0;font-size:18px}
 .price{font-size:34px;font-weight:700}
-.muted{color:var(--muted);font-size:14px}
+.muted{color:var(--muted);font-size:13px}
 
-.selector{display:flex;gap:10px;margin-bottom:12px}
+.selector{display:flex;gap:10px;margin-bottom:10px}
 .selector button{
-  flex:1;background:#0f1622;border:1px solid #1f2937;
-  color:white;padding:10px;border-radius:12px;font-size:16px
+  flex:1;
+  background:#0b0d18;
+  border:1px solid var(--border);
+  color:white;
+  padding:10px;
+  border-radius:12px;
+  font-size:15px;
 }
-.selector button.active{border-color:var(--accent)}
+.selector button.active{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent) inset;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  background:#090b14;
+  border:1px solid var(--border);
+  color:white;
+  font-size:16px;
+}
+
+.stat{
+  background:#090b14;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+}
+.stat b{font-size:18px}
 
 canvas{width:100%!important;height:300px!important}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.stat{background:#0b1220;border-radius:14px;padding:12px;text-align:center}
-.stat b{font-size:20px}
-
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:10px;border-bottom:1px solid #1f2937;text-align:left}
-th{color:#9ca3af}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px;border-bottom:1px solid var(--border);text-align:left}
+th{color:var(--muted)}
 </style>
 </head>
 
 <body>
 
-<header>💎 OPSUCHT Shard Verlauf</header>
+<header>
+  <b>OPShards – Kurse und Mehr</b>
+  <nav>
+    <a class="active" href="index.html">OPShards</a>
+    <a href="ah-markt-rechner.html">OPMarkt & OPAH</a>
+    <a href="more.html">Weiteres</a>
+  </nav>
+</header>
 
 <div class="container">
 
-<!-- ===== KURSE ===== -->
-
+<!-- KURSE -->
 <div class="card grid2">
   <div>
     <div class="muted">Diamond Block</div>
     <div class="price" id="diaShard">–</div>
-    <div class="muted">Shards</div>
+    <div class="muted">OPShards</div>
   </div>
   <div>
     <div class="muted">Netherite Ingot</div>
     <div class="price" id="netShard">–</div>
-    <div class="muted">Shards</div>
+    <div class="muted">OPShards</div>
   </div>
 </div>
 
-<!-- ===== ITEM AUSWAHL ===== -->
-
+<!-- RECHNER -->
 <div class="card">
+  <h2>OPShard Rechner</h2>
   <div class="selector">
     <button id="diaBtn" class="active">Diamond Block</button>
     <button id="netBtn">Netherite Ingot</button>
   </div>
+  <input id="amount" type="number" value="1" min="0" step="1">
+  <div style="margin-top:10px">
+    <div class="muted" id="calcText">–</div>
+    <div class="price" id="calcResult">–</div>
+  </div>
 </div>
 
-<!-- ===== STATISTIK ===== -->
-
+<!-- STATISTIK -->
 <div class="card">
-  <h3>Statistik</h3>
-  <div class="stats">
+  <h2>Statistik</h2>
+  <div class="grid4">
     <div class="stat">Start<br><b id="sStart">–</b></div>
     <div class="stat">Min<br><b id="sMin">–</b></div>
     <div class="stat">Max<br><b id="sMax">–</b></div>
@@ -93,17 +154,15 @@ th{color:#9ca3af}
   </div>
 </div>
 
-<!-- ===== CHART ===== -->
-
+<!-- CHART -->
 <div class="card">
-  <h3>Preisverlauf</h3>
+  <h2>Verlauf</h2>
   <canvas id="chart"></canvas>
 </div>
 
-<!-- ===== TABELLE ===== -->
-
+<!-- TABELLE -->
 <div class="card">
-  <h3>Preisverlauf (Zahlen)</h3>
+  <h2>Zahlenverlauf</h2>
   <table>
     <thead><tr><th>Zeit</th><th>Item</th><th>Wert</th></tr></thead>
     <tbody id="table"></tbody>
@@ -118,12 +177,15 @@ const HISTORY="history.json";
 
 let mode="diamond_block",diaShard=0,netShard=0,chart,rows=[];
 
+function label(s){return s==="diamond_block"?"Diamond Block":"Netherite Ingot"}
+
 async function loadRates(){
   const shard=await fetch(SHARD_API).then(r=>r.json());
   diaShard=shard.find(i=>i.source==="diamond_block").exchangeRate;
   netShard=shard.find(i=>i.source==="netherite_ingot").exchangeRate;
   diaShardEl.textContent=diaShard.toFixed(2);
   netShardEl.textContent=netShard.toFixed(2);
+  updateCalc();
 }
 
 async function loadHistory(){
@@ -136,11 +198,17 @@ async function loadHistory(){
   render();
 }
 
+function updateCalc(){
+  const a=Number(amount.value||0);
+  const val = mode==="diamond_block"?diaShard:netShard;
+  calcText.textContent=`${a} ${label(mode)} =`;
+  calcResult.textContent=(a*val).toFixed(2)+" OPShards";
+}
+
 function render(){
   const f=rows.filter(r=>r.source===mode).reverse();
   if(!f.length)return;
 
-  // Statistik
   const vals=f.map(r=>r.value);
   const start=vals[vals.length-1];
   const min=Math.min(...vals);
@@ -152,33 +220,26 @@ function render(){
   sMax.textContent=max.toFixed(2);
   sPerc.textContent=perc.toFixed(2)+" %";
 
-  // Tabelle
   table.innerHTML=f.map(r=>`
     <tr><td>${r.time}</td><td>${label(r.source)}</td><td>${r.value.toFixed(2)}</td></tr>
   `).join("");
 
-  // Chart
   if(chart)chart.destroy();
   chart=new Chart(chartEl,{
     type:"line",
     data:{labels:f.map(r=>r.time),datasets:[{
       data:vals.reverse(),
-      borderColor:"#2dd4bf",
-      backgroundColor:"rgba(45,212,191,.15)",
-      fill:true,tension:.35,pointRadius:3
+      borderColor:"#8b8bff",
+      backgroundColor:"rgba(140,140,255,.15)",
+      fill:true,tension:.35,pointRadius:2
     }]},
-    options:{
-      interaction:{mode:"index",intersect:false},
-      plugins:{legend:{display:false},tooltip:{enabled:true}},
-      scales:{x:{ticks:{color:"#8b93a7"}},y:{ticks:{color:"#8b93a7"}}}
-    }
+    options:{interaction:{mode:"index",intersect:false},plugins:{legend:{display:false}}}
   });
 }
 
-function label(s){return s==="diamond_block"?"Diamond Block":"Netherite Ingot"}
-
-diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");render()}
-netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");render()}
+diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");updateCalc();render()}
+netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");updateCalc();render()}
+amount.oninput=updateCalc;
 
 const diaShardEl=document.getElementById("diaShard");
 const netShardEl=document.getElementById("netShard");
@@ -188,6 +249,8 @@ const sStart=document.getElementById("sStart");
 const sMin=document.getElementById("sMin");
 const sMax=document.getElementById("sMax");
 const sPerc=document.getElementById("sPerc");
+const calcText=document.getElementById("calcText");
+const calcResult=document.getElementById("calcResult");
 
 loadRates();
 loadHistory();
