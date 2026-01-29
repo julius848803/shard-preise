@@ -4,306 +4,268 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPSUCHT Shard Verlauf</title>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-/* Grund */
 body {
   margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f4f6f8;
   color: #333;
 }
 
-/* Header */
 header {
   background: #1e242d;
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 18px 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 600;
-}
 
-/* Container */
+header h1 { margin: 0; font-size: 1.7rem; }
+
 .section {
   max-width: 1100px;
-  margin: 24px auto;
+  margin: 22px auto;
   padding: 0 16px;
 }
 
-/* Statistik-Buttons */
-.range-buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 12px;
-}
-.range-buttons button {
-  flex: 1;
-  padding: 10px 0;
-  border: none;
-  background: #dde1e6;
-  color: #2c3e50;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.range-buttons button.active,
-.range-buttons button:hover {
-  background: #2c3e50;
-  color: #fff;
-}
+h2 { margin-bottom: 10px; }
 
-/* Statistik-Boxen */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-  gap: 12px;
-  margin-top: 12px;
-}
-.stat {
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #ccd1d9;
-  padding: 14px 12px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
-.stat b {
-  display: block;
-  margin-top: 6px;
-  font-size: 1.2rem;
-}
-
-/* Aktuelle Werte */
 .card {
-  background: #fff;
+  background: white;
   border: 1px solid #ccd1d9;
   border-radius: 8px;
   padding: 12px 14px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 1rem;
+  margin-bottom: 8px;
 }
 
-/* Chart */
+.range-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.range-buttons button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #e4e7eb;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.range-buttons button.active {
+  background: #1e242d;
+  color: white;
+  border-color: #1e242d;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 12px;
+}
+
+.stat {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ccd1d9;
+  padding: 12px;
+  text-align: center;
+}
+
 .chart-box {
-  background: #fff;
+  background: white;
   border-radius: 8px;
   padding: 10px;
   border: 1px solid #ccd1d9;
   height: 260px;
-  margin-top: 12px;
-}
-canvas {
-  width: 100% !important;
-  height: 100% !important;
 }
 
-/* Tabelle */
+canvas { width:100%!important; height:100%!important; }
+
 .table-wrap {
   overflow-x:auto;
-  margin-top: 12px;
-  background:#fff;
+  background:white;
   border-radius:8px;
   border:1px solid #ccd1d9;
 }
+
 table {
   width:100%;
   border-collapse: collapse;
   min-width:600px;
 }
+
 th,td {
-  padding:10px 12px;
+  padding:10px;
+  border-bottom:1px solid #eee;
   text-align:left;
 }
-th {
-  background:#eef1f5;
-  font-weight:600;
-}
-tr:nth-child(even) {
-  background:#f9fafb;
-}
 
-/* Trendfarben */
-.up { color:#2ecc71; font-weight:600; }
-.down { color:#e74c3c; font-weight:600; }
+th { background:#eef1f5; }
 
-@media (max-width:600px){
-  header h1 { font-size:1.4rem; }
-}
+.up { color:#1faa59; font-weight:600; }
+.down { color:#d63031; font-weight:600; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>OPSUCHT Shard Verlauf</h1>
+<h1>OPSUCHT Shard Verlauf</h1>
 </header>
 
 <div class="section">
-  <h2>Aktuelle Werte</h2>
-  <div id="current"></div>
+<h2>Aktuelle Werte</h2>
+<div id="current"></div>
 </div>
 
 <div class="section">
-  <h2>Zeitraum</h2>
-  <div class="range-buttons">
-    <button data-days="7" class="active">7 Tage</button>
-    <button data-days="14">14 Tage</button>
-    <button data-days="30">1 Monat</button>
-    <button data-days="90">3 Monate</button>
-  </div>
+<h2>Item</h2>
+<div class="range-buttons" id="itemButtons"></div>
 </div>
 
 <div class="section">
-  <h2>Statistik</h2>
-  <div id="stats" class="stat-grid"></div>
+<h2>Zeitraum</h2>
+<div class="range-buttons">
+<button data-days="7" class="active">7 Tage</button>
+<button data-days="14">14 Tage</button>
+<button data-days="30">1 Monat</button>
+<button data-days="90">3 Monate</button>
+</div>
 </div>
 
 <div class="section">
-  <h2>Verlauf (Diagramm)</h2>
-  <select id="itemSelect"></select>
-  <div class="chart-box"><canvas id="chart"></canvas></div>
+<h2>Statistik</h2>
+<div id="stats" class="stat-grid"></div>
 </div>
 
 <div class="section">
-  <h2>Verlauf (nur Änderungen)</h2>
-  <div class="table-wrap">
-    <table id="historyTable">
-      <tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
-    </table>
-  </div>
+<h2>Verlauf (Diagramm)</h2>
+<div class="chart-box">
+<canvas id="chart"></canvas>
+</div>
+</div>
+
+<div class="section">
+<h2>Verlauf (nur Änderungen)</h2>
+<div class="table-wrap">
+<table id="historyTable">
+<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
+</table>
+</div>
 </div>
 
 <script>
 let chart;
 let fullHistory = [];
 let currentDays = 7;
+let currentItem = "diamond_block";
 
 function pretty(name){
-  return name
-    .replace(/_/g, " ")
-    .split(" ")
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+  return name.replace(/_/g," ").split(" ").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
 }
 
-fetch("history.json")
-.then(r=>r.json())
-.then(history=>{
-  if(!history.length) return;
+fetch("history.json").then(r=>r.json()).then(history=>{
   fullHistory = history;
-
   renderCurrent(history.at(-1).data);
-  initRangeButtons();
   initItems();
+  initRangeButtons();
   applyRange(7);
 });
 
 function renderCurrent(latest){
   document.getElementById("current").innerHTML="";
   latest.forEach(item=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<span>${pretty(item.source)}</span><b>${item.exchangeRate.toFixed(2).replace(".",",")}</b>`;
-    document.getElementById("current").appendChild(div);
+    const d=document.createElement("div");
+    d.className="card";
+    d.innerHTML=`<span>${pretty(item.source)}</span><b>${item.exchangeRate.toFixed(2).replace(".",",")}</b>`;
+    current.appendChild(d);
   });
 }
 
 function initItems(){
-  const items = [...new Set(fullHistory.flatMap(h => h.data.map(d => d.source)))];
-  const select = document.getElementById("itemSelect");
-  select.innerHTML = "";
-  items.forEach(i=>{
-    const o=document.createElement("option");
-    o.value=i; 
-    o.textContent=pretty(i);
-    select.appendChild(o);
+  const items=[...new Set(fullHistory.flatMap(h=>h.data.map(d=>d.source)))];
+  const box=document.getElementById("itemButtons");
+  box.innerHTML="";
+  items.forEach(item=>{
+    const b=document.createElement("button");
+    b.textContent=pretty(item);
+    if(item==="diamond_block"){ b.classList.add("active"); currentItem=item; }
+    b.onclick=()=>{
+      document.querySelectorAll("#itemButtons button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      currentItem=item;
+      applyRange(currentDays);
+    };
+    box.appendChild(b);
   });
-  select.onchange = ()=>applyRange(currentDays);
 }
 
 function initRangeButtons(){
-  document.querySelectorAll(".range-buttons button").forEach(btn=>{
-    btn.onclick = ()=>{
-      document.querySelectorAll(".range-buttons button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("[data-days]").forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll("[data-days]").forEach(b=>b.classList.remove("active"));
       btn.classList.add("active");
-      currentDays = parseInt(btn.dataset.days);
+      currentDays=parseInt(btn.dataset.days);
       applyRange(currentDays);
-    };
+    }
   });
 }
 
 function applyRange(days){
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - days);
-  const filtered = fullHistory.filter(h => new Date(h.time) >= cutoff);
-  const item = document.getElementById("itemSelect").value;
-  buildStats(filtered, item);
-  drawChart(filtered, item);
+  const cut=new Date(); cut.setDate(cut.getDate()-days);
+  const filtered=fullHistory.filter(h=>new Date(h.time)>=cut);
+  buildStats(filtered);
+  drawChart(filtered);
   buildTable(filtered);
 }
 
-function buildStats(history, item){
-  const statsBox = document.getElementById("stats");
-  statsBox.innerHTML="";
+function buildStats(history){
+  const box=document.getElementById("stats");
+  box.innerHTML="";
+  const values=history.map(h=>h.data.find(d=>d.source===currentItem)?.exchangeRate).filter(v=>v);
+  if(values.length<2)return;
 
-  const values = history.map(h => h.data.find(d=>d.source===item)?.exchangeRate).filter(v=>v!==undefined);
-  if(values.length < 2) return;
+  const start=values[0], end=values.at(-1);
+  const min=Math.min(...values), max=Math.max(...values);
+  const diff=end-start, percent=((diff/start)*100);
 
-  const start = values[0];
-  const end = values[values.length-1];
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const diff = end - start;
-  const percent = ((diff / start) * 100);
+  let text="stabil", cls="";
+  if(diff>0){text="gestiegen";cls="up";}
+  if(diff<0){text="gefallen";cls="down";}
 
-  let trendText = "stabil";
-  let trendClass = "";
-  if(diff > 0){ trendText="gestiegen"; trendClass="up"; }
-  if(diff < 0){ trendText="gefallen"; trendClass="down"; }
+  const main=document.createElement("div");
+  main.className="stat";
+  main.style.gridColumn="1/-1";
+  main.innerHTML=`<b>${pretty(currentItem)}</b> ist <span class="${cls}">${text}</span><br>
+  ${diff.toFixed(2)} (${percent.toFixed(2)} %)`;
+  box.appendChild(main);
 
-  const info=document.createElement("div");
-  info.className="stat";
-  info.style.gridColumn="1 / -1";
-  info.innerHTML=`
-    <div><b>${pretty(item)}</b> ist <span class="${trendClass}">${trendText}</span></div>
-    <b>${diff >= 0 ? "+" : ""}${diff.toFixed(2).replace(".",",")} (${percent >= 0 ? "+" : ""}${percent.toFixed(2).replace(".",",")} %)</b>
-  `;
-  statsBox.appendChild(info);
-
-  ["Tiefstwert", "Höchstwert"].forEach((label,i)=>{
-    const val = i===0 ? min : max;
+  [["Tiefstwert",min],["Höchstwert",max]].forEach(s=>{
     const d=document.createElement("div");
     d.className="stat";
-    d.innerHTML=`<div>${label}</div><b>${val.toFixed(2).replace(".",",")}</b>`;
-    statsBox.appendChild(d);
+    d.innerHTML=`${s[0]}<br><b>${s[1].toFixed(2).replace(".",",")}</b>`;
+    box.appendChild(d);
   });
 }
 
-function drawChart(history, item){
-  const labels=[]; const values=[];
+function drawChart(history){
+  const labels=[], data=[];
   history.forEach(h=>{
-    const found=h.data.find(d=>d.source===item);
-    if(found){ labels.push(new Date(h.time).toLocaleDateString("de-DE")); values.push(found.exchangeRate); }
+    const f=h.data.find(d=>d.source===currentItem);
+    if(f){labels.push(new Date(h.time).toLocaleDateString("de-DE")); data.push(f.exchangeRate);}
   });
 
-  if(chart) chart.destroy();
-  chart=new Chart(document.getElementById("chart"), {
+  if(chart)chart.destroy();
+  chart=new Chart(document.getElementById("chart"),{
     type:"line",
-    data:{ labels:labels, datasets:[{ label:pretty(item), data:values, borderWidth:2, tension:0.25 }] },
-    options:{ responsive:true, maintainAspectRatio:false }
+    data:{labels,datasets:[{label:pretty(currentItem),data,borderWidth:2,tension:0.25}]},
+    options:{responsive:true,maintainAspectRatio:false}
   });
 }
 
@@ -311,18 +273,18 @@ function buildTable(history){
   const table=document.getElementById("historyTable");
   table.innerHTML="<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>";
   for(let i=history.length-1;i>0;i--){
-    const cur=history[i]; const prev=history[i-1];
-    cur.data.forEach(item=>{
-      const old=prev.data.find(p=>p.source===item.source);
-      if(!old||old.exchangeRate!==item.exchangeRate){
+    const cur=history[i], prev=history[i-1];
+    cur.data.forEach(it=>{
+      const old=prev.data.find(p=>p.source===it.source);
+      if(!old||old.exchangeRate!==it.exchangeRate){
         const tr=document.createElement("tr");
-        tr.innerHTML=`<td>${new Date(cur.time).toLocaleString("de-DE")}</td><td>${pretty(item.source)}</td><td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
+        tr.innerHTML=`<td>${new Date(cur.time).toLocaleString("de-DE")}</td>
+        <td>${pretty(it.source)}</td><td>${it.exchangeRate.toFixed(2).replace(".",",")}</td>`;
         table.appendChild(tr);
       }
     });
   }
 }
 </script>
-
 </body>
 </html>
