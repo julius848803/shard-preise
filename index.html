@@ -225,24 +225,48 @@ function buildStats(history, item){
   const min = Math.min(...values);
   const max = Math.max(...values);
   const diff = end - start;
-  const percent = ((diff / start) * 100).toFixed(2);
+  const percent = ((diff / start) * 100);
+
+  let trendText = "stabil geblieben";
+  let trendIcon = "➖";
+  let trendClass = "";
+
+  if(diff > 0){
+    trendText = "gestiegen";
+    trendIcon = "📈";
+    trendClass = "up";
+  }
+  if(diff < 0){
+    trendText = "gefallen";
+    trendIcon = "📉";
+    trendClass = "down";
+  }
+
+  const info = document.createElement("div");
+  info.className = "stat";
+  info.style.gridColumn = "1 / -1";
+  info.innerHTML = `
+    <div style="font-size:0.95rem">
+      ${trendIcon} <b>${pretty(item)}</b> ist im gewählten Zeitraum <b class="${trendClass}">${trendText}</b><br>
+      Von <b>${start.toFixed(2).replace(".",",")}</b> auf <b>${end.toFixed(2).replace(".",",")}</b>
+      (${diff >= 0 ? "+" : ""}${diff.toFixed(2).replace(".",",")} | ${percent >= 0 ? "+" : ""}${percent.toFixed(2).replace(".",",")} %)
+    </div>
+  `;
+  statsBox.appendChild(info);
 
   const stats = [
-    ["Start", start],
-    ["Ende", end],
-    ["Min", min],
-    ["Max", max],
-    ["Differenz", diff.toFixed(2)],
-    ["%", percent + " %"]
+    ["Tiefstwert", min],
+    ["Höchstwert", max]
   ];
 
   stats.forEach(s=>{
     const d=document.createElement("div");
     d.className="stat";
-    d.innerHTML=`<div>${s[0]}</div><b>${String(s[1]).replace(".",",")}</b>`;
+    d.innerHTML=`<div>${s[0]}</div><b>${s[1].toFixed(2).replace(".",",")}</b>`;
     statsBox.appendChild(d);
   });
 }
+
 
 function drawChart(history, item){
   const labels = [];
