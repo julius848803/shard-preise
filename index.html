@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Merchant Rates</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,47 +12,87 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background:#f5f6f8;
   margin:0;
-  padding:30px;
+  padding:16px;
   color:#222;
 }
 
-h1 { text-align:center; }
-h2 { margin-top:50px; }
+h1 {
+  text-align:center;
+  margin-bottom:10px;
+}
+
+h2 {
+  margin:25px 0 10px;
+  font-size:1.2rem;
+}
 
 .section {
-  max-width:1000px;
-  margin:0 auto 40px;
+  max-width:900px;
+  margin:0 auto 25px;
 }
 
 .card {
   background:white;
   border:1px solid #ddd;
-  border-radius:6px;
-  padding:12px 16px;
+  border-radius:10px;
+  padding:12px 14px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:8px;
+  font-size:0.95rem;
 }
 
 .up { color:#0a8f2f; font-weight:600; }
 .down { color:#c21d1d; font-weight:600; }
 
+select {
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  margin-bottom:10px;
+  font-size:1rem;
+}
+
+canvas {
+  background:white;
+  border-radius:10px;
+  padding:8px;
+  border:1px solid #ddd;
+}
+
+/* Tabelle mobil scrollbar */
+.table-wrap {
+  overflow-x:auto;
+  background:white;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
 table {
   width:100%;
   border-collapse: collapse;
-  background:white;
-  border:1px solid #ddd;
+  min-width:520px;
 }
 
 th,td {
   padding:10px 12px;
   border-bottom:1px solid #eee;
   text-align:left;
+  font-size:0.9rem;
 }
 
 th {
   background:#fafafa;
   font-weight:600;
+}
+
+/* Mobile Feinschliff */
+@media (max-width:600px){
+  h1 { font-size:1.4rem; }
+  h2 { font-size:1.05rem; }
+  .card { font-size:0.9rem; }
 }
 </style>
 </head>
@@ -67,7 +108,7 @@ th {
 <div class="section">
 <h2>Verlauf (Diagramm)</h2>
 <select id="itemSelect"></select>
-<canvas id="chart" height="120"></canvas>
+<canvas id="chart" height="180"></canvas>
 </div>
 
 <div class="section">
@@ -76,10 +117,12 @@ th {
 </div>
 
 <div class="section">
-<h2>Verlauf</h2>
+<h2>Verlauf (nur Änderungen)</h2>
+<div class="table-wrap">
 <table id="historyTable">
 <tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
 </table>
+</div>
 </div>
 
 <script>
@@ -97,6 +140,7 @@ fetch("history.json")
   const latest = history.at(-1).data;
   const prev = history.length > 1 ? history.at(-2).data : null;
 
+  // Dropdown
   const items = [...new Set(history.flatMap(h => h.data.map(d => d.source)))];
   const select = document.getElementById("itemSelect");
 
@@ -114,7 +158,7 @@ fetch("history.json")
   latest.forEach(item=>{
     const div=document.createElement("div");
     div.className="card";
-    div.innerHTML=`<span>${pretty(item.source)}</span><span>${item.exchangeRate.toFixed(2).replace(".",",")}</span>`;
+    div.innerHTML=`<span>${pretty(item.source)}</span><b>${item.exchangeRate.toFixed(2).replace(".",",")}</b>`;
     document.getElementById("current").appendChild(div);
   });
 
@@ -137,16 +181,24 @@ fetch("history.json")
     });
   }
 
-  // Verlaufstabelle
-  history.slice().reverse().forEach(entry=>{
-    entry.data.forEach(item=>{
-      const tr=document.createElement("tr");
-      tr.innerHTML=`<td>${new Date(entry.time).toLocaleString("de-DE")}</td>
-                    <td>${pretty(item.source)}</td>
-                    <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
-      document.getElementById("historyTable").appendChild(tr);
+  // Verlauf – nur Änderungen
+  for(let i = history.length - 1; i > 0; i--){
+    const current = history[i];
+    const previous = history[i - 1];
+
+    current.data.forEach(item => {
+      const old = previous.data.find(p => p.source === item.source);
+      if(!old || old.exchangeRate !== item.exchangeRate){
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${new Date(current.time).toLocaleString("de-DE")}</td>
+          <td>${pretty(item.source)}</td>
+          <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>
+        `;
+        document.getElementById("historyTable").appendChild(tr);
+      }
     });
-  });
+  }
 });
 
 function drawChart(history, item){
@@ -171,12 +223,14 @@ function drawChart(history, item){
         label: pretty(item),
         data: values,
         borderWidth: 2,
-        tension: 0.2
+        tension: 0.25
       }]
     },
     options: {
+      responsive:true,
+      maintainAspectRatio:false,
       scales: {
-        y: { beginAtZero: false }
+        y: { beginAtZero:false }
       }
     }
   });
