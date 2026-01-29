@@ -2,73 +2,186 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Merchant Rates Verlauf</title>
+<title>Merchant Rates</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 body {
-  font-family: Arial, sans-serif;
-  background:#0f1115;
-  color:white;
-  padding:40px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:#f5f6f8;
+  margin:0;
+  padding:30px;
+  color:#222;
 }
 
 h1 { text-align:center; }
+h2 { margin-top:50px; }
 
-table {
-  border-collapse: collapse;
-  width:100%;
-  max-width:900px;
-  margin:30px auto;
-  background:#161a21;
-  border-radius:12px;
-  overflow:hidden;
+.section {
+  max-width:1000px;
+  margin:0 auto 40px;
 }
 
-th, td {
-  padding:10px 14px;
+.card {
+  background:white;
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+}
+
+.up { color:#0a8f2f; font-weight:600; }
+.down { color:#c21d1d; font-weight:600; }
+
+table {
+  width:100%;
+  border-collapse: collapse;
+  background:white;
+  border:1px solid #ddd;
+}
+
+th,td {
+  padding:10px 12px;
+  border-bottom:1px solid #eee;
   text-align:left;
 }
 
 th {
-  background:#1f2530;
+  background:#fafafa;
+  font-weight:600;
 }
-
-tr:nth-child(even) { background:#1a202b; }
-tr:hover { background:#242c3a; }
 </style>
 </head>
 <body>
 
-<h1>Merchant Rates Verlauf</h1>
+<h1>Merchant Rates</h1>
 
-<table id="table">
+<div class="section">
+<h2>Aktuelle Werte</h2>
+<div id="current"></div>
+</div>
+
+<div class="section">
+<h2>Verlauf (Diagramm)</h2>
+<select id="itemSelect"></select>
+<canvas id="chart" height="120"></canvas>
+</div>
+
+<div class="section">
+<h2>Letzte Änderung</h2>
+<div id="lastChange"></div>
+</div>
+
+<div class="section">
+<h2>Verlauf</h2>
+<table id="historyTable">
 <tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
 </table>
+</div>
 
 <script>
+let chart;
+
+function pretty(name){
+  return name.replace(/_/g," ");
+}
+
 fetch("history.json")
-.then(r => r.json())
-.then(history => {
-  const table = document.getElementById("table");
+.then(r=>r.json())
+.then(history=>{
+  if(!history.length) return;
 
-  history.reverse().forEach(entry => {
-    entry.data.forEach(item => {
-      const tr = document.createElement("tr");
-      const time = new Date(entry.time).toLocaleString("de-DE");
-      const name = item.source.replace(/_/g," ");
-      const value = item.exchangeRate.toFixed(2).replace(".",",");
+  const latest = history.at(-1).data;
+  const prev = history.length > 1 ? history.at(-2).data : null;
 
-      tr.innerHTML = `
-        <td>${time}</td>
-        <td>${name}</td>
-        <td>${value}</td>
-      `;
-      table.appendChild(tr);
+  const items = [...new Set(history.flatMap(h => h.data.map(d => d.source)))];
+  const select = document.getElementById("itemSelect");
+
+  items.forEach(i=>{
+    const o=document.createElement("option");
+    o.value=i; 
+    o.textContent=pretty(i);
+    select.appendChild(o);
+  });
+
+  select.onchange = ()=>drawChart(history, select.value);
+  drawChart(history, items[0]);
+
+  // Aktuelle Werte
+  latest.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<span>${pretty(item.source)}</span><span>${item.exchangeRate.toFixed(2).replace(".",",")}</span>`;
+    document.getElementById("current").appendChild(div);
+  });
+
+  // Letzte Änderung
+  if(prev){
+    latest.forEach(item=>{
+      const old = prev.find(p=>p.source===item.source);
+      if(!old || old.exchangeRate !== item.exchangeRate){
+        const diff = item.exchangeRate - (old?.exchangeRate ?? 0);
+        const cls = diff >= 0 ? "up" : "down";
+
+        const div=document.createElement("div");
+        div.className="card";
+        div.innerHTML=`<span>${pretty(item.source)}</span>
+                       <span class="${cls}">
+                       ${old?.exchangeRate?.toFixed(2) ?? "?"} → ${item.exchangeRate.toFixed(2)}
+                       </span>`;
+        document.getElementById("lastChange").appendChild(div);
+      }
+    });
+  }
+
+  // Verlaufstabelle
+  history.slice().reverse().forEach(entry=>{
+    entry.data.forEach(item=>{
+      const tr=document.createElement("tr");
+      tr.innerHTML=`<td>${new Date(entry.time).toLocaleString("de-DE")}</td>
+                    <td>${pretty(item.source)}</td>
+                    <td>${item.exchangeRate.toFixed(2).replace(".",",")}</td>`;
+      document.getElementById("historyTable").appendChild(tr);
     });
   });
-})
-.catch(() => {
-  alert("history.json existiert noch nicht oder ist leer.");
 });
+
+function drawChart(history, item){
+  const points = [];
+
+  history.forEach(h=>{
+    const found = h.data.find(d=>d.source===item);
+    if(found){
+      points.push({
+        x: new Date(h.time),
+        y: found.exchangeRate
+      });
+    }
+  });
+
+  if(chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type: "line",
+    data: {
+      datasets: [{
+        label: pretty(item),
+        data: points,
+        borderWidth: 2,
+        tension: 0.2
+      }]
+    },
+    options: {
+      parsing:false,
+      scales:{
+        x:{ type:"time", time:{ tooltipFormat:"dd.MM.yyyy HH:mm" } }
+      }
+    }
+  });
+}
 </script>
 
 </body>
