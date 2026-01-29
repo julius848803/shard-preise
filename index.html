@@ -55,11 +55,18 @@ select {
   font-size:1rem;
 }
 
-canvas {
+/* Chart fix */
+.chart-box {
   background:white;
   border-radius:10px;
   padding:8px;
   border:1px solid #ddd;
+  height:260px;
+}
+
+canvas {
+  width:100% !important;
+  height:100% !important;
 }
 
 /* Tabelle mobil scrollbar */
@@ -108,7 +115,9 @@ th {
 <div class="section">
 <h2>Verlauf (Diagramm)</h2>
 <select id="itemSelect"></select>
-<canvas id="chart" height="180"></canvas>
+<div class="chart-box">
+  <canvas id="chart"></canvas>
+</div>
 </div>
 
 <div class="section">
