@@ -19,8 +19,6 @@ header{
   padding:14px 16px;font-size:20px;font-weight:700;
 }
 
-.menu{font-size:26px;text-decoration:none;color:white}
-
 .container{max-width:900px;margin:auto;padding:16px}
 
 .card{
@@ -43,6 +41,10 @@ header{
 
 canvas{width:100%!important;height:300px!important}
 
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:#0b1220;border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:20px}
+
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:10px;border-bottom:1px solid #1f2937;text-align:left}
 th{color:#9ca3af}
@@ -51,14 +53,11 @@ th{color:#9ca3af}
 
 <body>
 
-<header>
-  <a class="menu" href="stats.html">☰</a>
-  💎 OPSUCHT Shard Verlauf
-</header>
+<header>💎 OPSUCHT Shard Verlauf</header>
 
 <div class="container">
 
-<!-- ===== KURSE OBEN ===== -->
+<!-- ===== KURSE ===== -->
 
 <div class="card grid2">
   <div>
@@ -73,12 +72,24 @@ th{color:#9ca3af}
   </div>
 </div>
 
-<!-- ===== AUSWAHL ===== -->
+<!-- ===== ITEM AUSWAHL ===== -->
 
 <div class="card">
   <div class="selector">
     <button id="diaBtn" class="active">Diamond Block</button>
     <button id="netBtn">Netherite Ingot</button>
+  </div>
+</div>
+
+<!-- ===== STATISTIK ===== -->
+
+<div class="card">
+  <h3>Statistik</h3>
+  <div class="stats">
+    <div class="stat">Start<br><b id="sStart">–</b></div>
+    <div class="stat">Min<br><b id="sMin">–</b></div>
+    <div class="stat">Max<br><b id="sMax">–</b></div>
+    <div class="stat">Δ %<br><b id="sPerc">–</b></div>
   </div>
 </div>
 
@@ -94,9 +105,7 @@ th{color:#9ca3af}
 <div class="card">
   <h3>Preisverlauf (Zahlen)</h3>
   <table>
-    <thead>
-      <tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
-    </thead>
+    <thead><tr><th>Zeit</th><th>Item</th><th>Wert</th></tr></thead>
     <tbody id="table"></tbody>
   </table>
 </div>
@@ -113,7 +122,6 @@ async function loadRates(){
   const shard=await fetch(SHARD_API).then(r=>r.json());
   diaShard=shard.find(i=>i.source==="diamond_block").exchangeRate;
   netShard=shard.find(i=>i.source==="netherite_ingot").exchangeRate;
-
   diaShardEl.textContent=diaShard.toFixed(2);
   netShardEl.textContent=netShard.toFixed(2);
 }
@@ -130,6 +138,19 @@ async function loadHistory(){
 
 function render(){
   const f=rows.filter(r=>r.source===mode).reverse();
+  if(!f.length)return;
+
+  // Statistik
+  const vals=f.map(r=>r.value);
+  const start=vals[vals.length-1];
+  const min=Math.min(...vals);
+  const max=Math.max(...vals);
+  const perc=((vals[0]-start)/start*100);
+
+  sStart.textContent=start.toFixed(2);
+  sMin.textContent=min.toFixed(2);
+  sMax.textContent=max.toFixed(2);
+  sPerc.textContent=perc.toFixed(2)+" %";
 
   // Tabelle
   table.innerHTML=f.map(r=>`
@@ -140,15 +161,12 @@ function render(){
   if(chart)chart.destroy();
   chart=new Chart(chartEl,{
     type:"line",
-    data:{
-      labels:f.map(r=>r.time),
-      datasets:[{
-        data:f.map(r=>r.value),
-        borderColor:"#2dd4bf",
-        backgroundColor:"rgba(45,212,191,.15)",
-        fill:true,tension:.35,pointRadius:3
-      }]
-    },
+    data:{labels:f.map(r=>r.time),datasets:[{
+      data:vals.reverse(),
+      borderColor:"#2dd4bf",
+      backgroundColor:"rgba(45,212,191,.15)",
+      fill:true,tension:.35,pointRadius:3
+    }]},
     options:{
       interaction:{mode:"index",intersect:false},
       plugins:{legend:{display:false},tooltip:{enabled:true}},
@@ -157,9 +175,7 @@ function render(){
   });
 }
 
-function label(s){
-  return s==="diamond_block"?"Diamond Block":"Netherite Ingot";
-}
+function label(s){return s==="diamond_block"?"Diamond Block":"Netherite Ingot"}
 
 diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");render()}
 netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");render()}
@@ -168,6 +184,10 @@ const diaShardEl=document.getElementById("diaShard");
 const netShardEl=document.getElementById("netShard");
 const chartEl=document.getElementById("chart");
 const table=document.getElementById("table");
+const sStart=document.getElementById("sStart");
+const sMin=document.getElementById("sMin");
+const sMax=document.getElementById("sMax");
+const sPerc=document.getElementById("sPerc");
 
 loadRates();
 loadHistory();
