@@ -206,36 +206,74 @@ function updateCalc(){
 }
 
 function render(){
-  const f=rows.filter(r=>r.source===mode).reverse();
-  if(!f.length)return;
+  const f = rows
+    .filter(r=>r.source===mode)
+    .map(r=>({ ...r, ts:new Date(r.time).getTime() }))
+    .sort((a,b)=>a.ts-b.ts); // 👉 garantiert richtige Reihenfolge
 
-  const vals=f.map(r=>r.value);
-  const start=vals[vals.length-1];
-  const min=Math.min(...vals);
-  const max=Math.max(...vals);
-  const perc=((vals[0]-start)/start*100);
+  if(!f.length) return;
 
-  sStart.textContent=start.toFixed(2);
-  sMin.textContent=min.toFixed(2);
-  sMax.textContent=max.toFixed(2);
-  sPerc.textContent=perc.toFixed(2)+" %";
+  const vals = f.map(r=>r.value);
 
-  table.innerHTML=f.map(r=>`
-    <tr><td>${r.time}</td><td>${label(r.source)}</td><td>${r.value.toFixed(2)}</td></tr>
+  const start = vals[0];
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const perc = ((vals[vals.length-1]-start)/start*100);
+
+  sStart.textContent = start.toFixed(2);
+  sMin.textContent = min.toFixed(2);
+  sMax.textContent = max.toFixed(2);
+  sPerc.textContent = perc.toFixed(2)+" %";
+
+  table.innerHTML = [...f].reverse().map(r=>`
+    <tr>
+      <td>${new Date(r.ts).toLocaleString("de-DE")}</td>
+      <td>${label(r.source)}</td>
+      <td>${r.value.toFixed(2)}</td>
+    </tr>
   `).join("");
 
-  if(chart)chart.destroy();
-  chart=new Chart(chartEl,{
+  if(chart) chart.destroy();
+
+  chart = new Chart(chartEl,{
     type:"line",
-    data:{labels:f.map(r=>r.time),datasets:[{
-      data:vals.reverse(),
-      borderColor:"#8b8bff",
-      backgroundColor:"rgba(140,140,255,.15)",
-      fill:true,tension:.35,pointRadius:2
-    }]},
-    options:{interaction:{mode:"index",intersect:false},plugins:{legend:{display:false}}}
+    data:{
+      labels: f.map(r =>
+        new Date(r.ts).toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})
+      ),
+      datasets:[{
+        data: vals,
+        borderColor:"#8b8bff",
+        backgroundColor:"rgba(140,140,255,.18)",
+        fill:true,
+        tension:.35,
+        pointRadius:2
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      interaction:{mode:"index",intersect:false},
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{
+          ticks:{
+            color:"#9aa0b4",
+            maxTicksLimit:6,      // 👉 verhindert Text-Müll
+            autoSkip:true,
+            maxRotation:0
+          },
+          grid:{display:false}
+        },
+        y:{
+          ticks:{color:"#9aa0b4"},
+          grid:{color:"rgba(255,255,255,.04)"}
+        }
+      }
+    }
   });
 }
+
 
 diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");updateCalc();render()}
 netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");updateCalc();render()}
