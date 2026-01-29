@@ -2,8 +2,7 @@ name: Merchant Rates Logger
 
 on:
   schedule:
-    # 11:10 Uhr deutscher Zeit (UTC+1) = 10:10 Uhr UTC
-    - cron: "10 30 * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
