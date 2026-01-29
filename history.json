@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "time": "2026-01-29T07:57:32.846Z",
+    "data": [
+      {
+        "source": "diamond_block",
+        "target": "opshards",
+        "exchangeRate": 11.31
+      },
+      {
+        "source": "netherite_ingot",
+        "target": "opshards",
+        "exchangeRate": 53.86
+      }
+    ]
+  }
+]
