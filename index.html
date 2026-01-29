@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Merchant Rates Verlauf</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#0f1115;
+  color:white;
+  padding:40px;
+}
+
+h1 { text-align:center; }
+
+table {
+  border-collapse: collapse;
+  width:100%;
+  max-width:900px;
+  margin:30px auto;
+  background:#161a21;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+th, td {
+  padding:10px 14px;
+  text-align:left;
+}
+
+th {
+  background:#1f2530;
+}
+
+tr:nth-child(even) { background:#1a202b; }
+tr:hover { background:#242c3a; }
+</style>
+</head>
+<body>
+
+<h1>Merchant Rates Verlauf</h1>
+
+<table id="table">
+<tr><th>Zeit</th><th>Item</th><th>Wert</th></tr>
+</table>
+
+<script>
+fetch("history.json")
+.then(r => r.json())
+.then(history => {
+  const table = document.getElementById("table");
+
+  history.reverse().forEach(entry => {
+    entry.data.forEach(item => {
+      const tr = document.createElement("tr");
+      const time = new Date(entry.time).toLocaleString("de-DE");
+      const name = item.source.replace(/_/g," ");
+      const value = item.exchangeRate.toFixed(2).replace(".",",");
+
+      tr.innerHTML = `
+        <td>${time}</td>
+        <td>${name}</td>
+        <td>${value}</td>
+      `;
+      table.appendChild(tr);
+    });
+  });
+})
+.catch(() => {
+  alert("history.json existiert noch nicht oder ist leer.");
+});
+</script>
+
+</body>
+</html>
