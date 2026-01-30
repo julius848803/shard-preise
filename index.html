@@ -186,21 +186,33 @@ th,td{
 <main>
 
 <!-- ITEM SWITCH -->
-<section class="card">
-  <div class="stats">
-    <div class="stat"><small>Wichtige Info</small><Strong>Der Kurs Aktualisiert sich von 5-8 Uhr jede 15 Minuten.</Strong></div>
+<section class="card info-layout">
+  <div class="info-main">
+    <div class="info-title">Wichtige Info</div>
+    <div class="info-text">
+      Der Kurs aktualisiert sich von 5–8 Uhr jede 15 Minuten.
+    </div>
+
+    <div class="switch">
+      <button class="active" data-item="diamond_block">Diamond Block</button>
+      <button data-item="netherite_ingot">Netherite Ingot</button>
+    </div>
+
+    <div class="switch">
+      <button class="active" data-days="7">7 Tage</button>
+      <button data-days="14">14 Tage</button>
+      <button data-days="30">30 Tage</button>
+    </div>
   </div>
-  
-  <div class="switch">
-    <button class="active" data-item="diamond_block">Diamond Block</button>
-    <button data-item="netherite_ingot">Netherite Ingot</button>
-  </div>
-  
-  <div class="switch">
-    <button class="active" data-days="7">7 Tage</button>
-    <button data-days="14">14 Tage</button>
-    <button data-days="30">30 Tage</button>
-  </div>
+
+  <aside class="info-side">
+    <!-- Platzhalter-Spalte -->
+    <div class="side-box">
+      ⏱ Updates<br>
+      5–8 Uhr<br>
+      Dann jede 15 Min.
+    </div>
+  </aside>
 </section>
 
 <!-- STATISTIK -->
