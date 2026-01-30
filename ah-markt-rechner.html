@@ -5,6 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPSUCHT – Tool</title>
 <style>
+  .topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  background:rgba(7,8,15,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #1a1d2d;
+}
+
+.topbar .title{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+.topbar nav a{
+  margin-left:14px;
+  text-decoration:none;
+  font-size:14px;
+  color:#9aa0b4;
+}
+
+.topbar nav a:hover{
+  color:#7c7cff;
+}
+
 body{margin:0;background:radial-gradient(circle at top,#11142a,#05060c);color:white;font-family:system-ui}
 header{padding:14px 18px;border-bottom:1px solid #1a1d2d}
 nav a{color:#9aa0b4;text-decoration:none;margin-left:12px}
@@ -14,7 +44,7 @@ nav a.active,nav a:hover{color:#7c7cff}
 </head>
 <body>
 
-  <header class="topbar">
+  <header>
     <div class="title">OPSUCHT – Tool</div>
     <nav>
       <a href="index.html">OPShards</a>
