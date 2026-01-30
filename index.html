@@ -1,137 +1,130 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>OPSUCHT – Tool</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>OPSUCHT – Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<!-- Chart.js + Time Adapter -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
-  <style>
-    :root {
-      --bg: #0b0f1a;
-      --card: #12172a;
-      --border: #1f2640;
-      --text: #e8ebff;
-      --muted: #9aa3ff;
-      --accent: #7c83ff;
-      --white: #ffffff;
-    }
+<style>
+:root {
+  --bg:#0b0f1a;
+  --card:#12172a;
+  --border:#1f2640;
+  --text:#e8ebff;
+  --white:#fff;
+  --accent:#7c83ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(1200px 600px at top,#141a33,#080b14);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+header{
+  padding:16px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+nav{display:flex;gap:8px}
+nav a{
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:10px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:14px;
+}
+nav a.active{
+  background:var(--white);
+  color:#000;
+  font-weight:600;
+}
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:24px;
+  display:grid;
+  gap:24px;
+}
+.card{
+  background:linear-gradient(180deg,#131833,#0b0f1f);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:20px;
+}
+h2{margin:0 0 16px;font-size:18px}
 
-    * { box-sizing: border-box; }
+/* Switches */
+.switch{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.switch button{
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:6px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.switch button.active{
+  background:#fff;
+  color:#000;
+  font-weight:600;
+}
 
-    body {
-      margin: 0;
-      background: radial-gradient(1200px 600px at top, #141a33, #080b14);
-      color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    }
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:16px;
+}
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+}
+.stat small{opacity:.7;display:block}
+.stat strong{font-size:18px}
 
-    /* ---------- HEADER ---------- */
-    header {
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* Chart */
+.chart-wrap{height:320px}
 
-    .title {
-      font-weight: 700;
-      letter-spacing: 0.4px;
-    }
+/* Table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:16px;
+}
+th,td{
+  padding:8px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
 
-    nav {
-      display: flex;
-      gap: 8px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      padding: 8px 14px;
-      border-radius: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      font-size: 14px;
-    }
-
-    nav a.active {
-      background: var(--white);
-      color: #000;
-      font-weight: 600;
-    }
-
-    /* ---------- LAYOUT ---------- */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px;
-      display: grid;
-      gap: 24px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, #131833, #0b0f1f);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    h2 {
-      margin: 0 0 16px;
-      font-size: 18px;
-    }
-
-    /* ---------- STATISTIK ---------- */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      text-align: center;
-    }
-
-    .stat small {
-      display: block;
-      opacity: 0.7;
-      margin-bottom: 4px;
-    }
-
-    .stat strong {
-      font-size: 18px;
-    }
-
-    /* ---------- CHART ---------- */
-    .chart-wrap {
-      height: 320px;
-    }
-
-    canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-    }
-  </style>
+/* Mobile */
+@media(max-width:600px){
+  .chart-wrap{height:220px}
+  table{font-size:13px}
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <div class="title">OPSUCHT – Tool</div>
+  <strong>OPSUCHT – Tool</strong>
   <nav>
     <a class="active" href="index.html">OPShards</a>
     <a href="ah-markt-rechner.html">Markt & AH</a>
@@ -141,94 +134,145 @@
 
 <main>
 
-  <!-- STATISTIK -->
-  <section class="card">
-    <h2>Statistik</h2>
-    <div class="stats">
-      <div class="stat"><small>Start</small><strong id="statStart">–</strong></div>
-      <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
-      <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
-      <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
-    </div>
-  </section>
+<!-- ITEM SWITCH -->
+<section class="card">
+  <div class="switch">
+    <button class="active" data-item="diamond_block">Diamond Block</button>
+    <button data-item="netherite_ingot">Netherite Ingot</button>
+  </div>
 
-  <!-- VERLAUF -->
-  <section class="card">
-    <h2>Verlauf</h2>
-    <div class="chart-wrap">
-      <canvas id="chart"></canvas>
-    </div>
-  </section>
+  <div class="switch">
+    <button class="active" data-days="7">7 Tage</button>
+    <button data-days="14">14 Tage</button>
+    <button data-days="30">30 Tage</button>
+  </div>
+</section>
+
+<!-- STATISTIK -->
+<section class="card">
+  <h2>Statistik</h2>
+  <div class="stats">
+    <div class="stat"><small>Start</small><strong id="statStart">–</strong></div>
+    <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
+    <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
+    <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
+  </div>
+</section>
+
+<!-- VERLAUF -->
+<section class="card">
+  <h2>Verlauf</h2>
+  <div class="chart-wrap">
+    <canvas id="chart"></canvas>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Datum</th><th>Wert</th></tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</section>
 
 </main>
 
 <script>
-async function loadHistory() {
-  const res = await fetch("history.json");
-  const raw = await res.json();
+let currentItem="diamond_block";
+let currentDays=7;
+let chart;
 
-  const rows = [];
+document.querySelectorAll("[data-item]").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll("[data-item]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    currentItem=b.dataset.item;
+    loadHistory();
+  };
+});
 
-  raw.forEach(entry => {
-    entry.data.forEach(d => {
-      if (d.source === "diamond_block") {
-        rows.push({
-          ts: Date.parse(entry.time),
-          value: d.exchangeRate
-        });
+document.querySelectorAll("[data-days]").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll("[data-days]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    currentDays=+b.dataset.days;
+    loadHistory();
+  };
+});
+
+async function loadHistory(){
+  const res=await fetch("history.json");
+  const raw=await res.json();
+  let rows=[];
+
+  raw.forEach(e=>{
+    e.data.forEach(d=>{
+      if(d.source===currentItem){
+        rows.push({ts:Date.parse(e.time),value:d.exchangeRate});
       }
     });
   });
 
-  rows.sort((a, b) => a.ts - b.ts);
+  rows.sort((a,b)=>a.ts-b.ts);
+  const cutoff=Date.now()-currentDays*86400000;
+  rows=rows.filter(r=>r.ts>=cutoff);
+  if(!rows.length) return;
 
-  if (rows.length === 0) return;
+  const vals=rows.map(r=>r.value);
+  statStart.textContent=rows[0].value.toFixed(2);
+  statMin.textContent=Math.min(...vals).toFixed(2);
+  statMax.textContent=Math.max(...vals).toFixed(2);
+  statDelta.textContent=(((rows.at(-1).value-rows[0].value)/rows[0].value)*100).toFixed(2)+" %";
 
-  // Statistik
-  const start = rows[0].value;
-  const values = rows.map(r => r.value);
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const delta = ((rows.at(-1).value - start) / start) * 100;
+  renderChart(rows);
+  renderTable(rows);
+}
 
-  statStart.textContent = start.toFixed(2);
-  statMin.textContent = min.toFixed(2);
-  statMax.textContent = max.toFixed(2);
-  statDelta.textContent = delta.toFixed(2) + " %";
-
-  // Chart
-  new Chart(document.getElementById("chart"), {
-    type: "line",
-    data: {
-      labels: rows.map(r => new Date(r.ts)),
-      datasets: [{
-        data: rows.map(r => r.value),
-        borderColor: "#7c83ff",
-        backgroundColor: "rgba(124,131,255,0.15)",
-        fill: true,
-        tension: 0.4,
-        pointRadius: 3
+function renderChart(rows){
+  if(chart) chart.destroy();
+  chart=new Chart(chartEl,{
+    type:"line",
+    data:{
+      labels:rows.map(r=>new Date(r.ts)),
+      datasets:[{
+        data:rows.map(r=>r.value),
+        borderColor:"#7c83ff",
+        backgroundColor:"rgba(124,131,255,.15)",
+        fill:true,
+        tension:.4,
+        pointRadius:3
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "time",
-          time: {
-            unit: "day"
-          },
-          ticks: { color: "#aaa" }
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      scales:{
+        x:{
+          type:"time",
+          time:{unit:"day",displayFormats:{day:"dd. MMM"}},
+          ticks:{color:"#aaa"}
         },
-        y: {
-          ticks: { color: "#aaa" }
-        }
+        y:{ticks:{color:"#aaa"}}
       },
-      plugins: {
-        legend: { display: false }
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          callbacks:{
+            title:i=>new Date(i[0].parsed.x)
+              .toLocaleDateString("de-DE",{day:"2-digit",month:"short"}),
+            label:c=>c.parsed.y.toFixed(2)+" OPShards"
+          }
+        }
       }
     }
+  });
+}
+
+function renderTable(rows){
+  tableBody.innerHTML="";
+  rows.slice().reverse().forEach(r=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${new Date(r.ts).toLocaleDateString("de-DE")}</td><td>${r.value.toFixed(2)}</td>`;
+    tableBody.appendChild(tr);
   });
 }
 
