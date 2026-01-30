@@ -1,116 +1,11 @@
 [
   {
-    "time": "2026-01-22T08:00:00.000Z",
+    "time": "2026-01-28T07:00:30.000Z",
     "data": [
       {
         "source": "diamond_block",
         "target": "opshards",
-        "exchangeRate": 9.54
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 50.13
-      }
-    ]
-  },
-  {
-    "time": "2026-01-23T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 10.86
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 50.79
-      }
-    ]
-  },
-  {
-    "time": "2026-01-24T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 8.21
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 51.42
-      }
-    ]
-  },
-  {
-    "time": "2026-01-25T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 10.4
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 49.97
-      }
-    ]
-  },
-  {
-    "time": "2026-01-26T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 9.96
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 48.54
-      }
-    ]
-  },
-  {
-    "time": "2026-01-27T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 9.32
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 56.32
-      }
-    ]
-  },
-  {
-    "time": "2026-01-28T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 11.4
-      },
-      {
-        "source": "netherite_ingot",
-        "target": "opshards",
-        "exchangeRate": 53.74
-      }
-    ]
-  },
-  {
-    "time": "2026-01-29T08:00:00.000Z",
-    "data": [
-      {
-        "source": "diamond_block",
-        "target": "opshards",
-        "exchangeRate": 10.29
+        "exchangeRate": 11.39
       },
       {
         "source": "netherite_ingot",
@@ -120,7 +15,7 @@
     ]
   },
   {
-    "time": "2026-01-29T12:00:26.422Z",
+    "time": "2026-01-29T07:00:26.422Z",
     "data": [
       {
         "source": "diamond_block",
