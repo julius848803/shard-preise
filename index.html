@@ -5,120 +5,115 @@
 <title>OPSUCHT – Tool</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Chart.js + Time Adapter -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
 <style>
-/* =========================
-   GLOBAL
-========================= */
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,sans-serif;
+  background:radial-gradient(circle at top,#0f1a3a,#050814);
+  color:#fff
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, Ubuntu, sans-serif;
-  background: radial-gradient(circle at top, #0f1a3a, #050814);
-  color: #ffffff;
+/* HEADER */
+header{
+  max-width:1100px;
+  margin:20px auto;
+  padding:0 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+header strong{font-size:18px}
+nav{display:flex;gap:10px}
+nav a{
+  flex:1;
+  text-align:center;
+  padding:10px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff
+}
+nav a.active{background:#fff;color:#000}
+
+/* CARD */
+.card{
+  max-width:1100px;
+  margin:20px auto;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(180deg,#0d1535,#070b1d);
+  box-shadow:0 20px 60px rgba(0,0,0,.6)
 }
 
-/* =========================
-   CARD
-========================= */
-.card {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 22px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #0d1535, #070b1d);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+/* INFO */
+.info-bar{
+  margin-bottom:14px;
+  padding:12px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  font-size:14px
 }
 
-/* =========================
-   INFO BAR
-========================= */
-.info-bar {
-  margin-bottom: 18px;
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.06);
-  font-size: 14px;
-  line-height: 1.4;
-  opacity: 0.9;
+/* SWITCHES */
+.switch{display:grid;gap:12px;margin-bottom:14px}
+.switch-items{grid-template-columns:1fr 1fr}
+.switch-days{grid-template-columns:repeat(3,1fr)}
+.switch button{
+  padding:14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer
+}
+.switch button.active{background:#fff;color:#000}
+
+/* STATISTIK */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+.stat{
+  background:rgba(255,255,255,.05);
+  border-radius:14px;
+  padding:14px;
+  text-align:center
+}
+.stat small{opacity:.7;font-size:13px}
+.stat strong{display:block;margin-top:6px;font-size:22px}
+
+/* CHART */
+.chart-wrap{height:260px;margin-bottom:16px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+thead th{
+  text-align:left;
+  opacity:.7;
+  font-size:13px;
+  padding:8px 0
+}
+tbody td{
+  padding:8px 0;
+  border-top:1px solid rgba(255,255,255,.08)
 }
 
-/* =========================
-   SWITCHES (Buttons)
-========================= */
-.switch {
-  display: grid;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-/* Item Switch (2 Buttons) */
-.switch-items {
-  grid-template-columns: 1fr 1fr;
-}
-
-/* Day Switch (3 Buttons) */
-.switch-days {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.switch button {
-  padding: 14px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.switch button:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.switch button.active {
-  background: #ffffff;
-  color: #000000;
-  border-color: transparent;
-}
-
-/* =========================
-   MOBILE OPTIMIERUNG
-========================= */
-@media (max-width: 700px) {
-  .card {
-    margin: 20px 12px;
-    padding: 18px;
-  }
-
-  .switch-items {
-    grid-template-columns: 1fr;
-  }
-
-  .switch-days {
-    grid-template-columns: 1fr;
-  }
-
-  .switch button {
-    font-size: 16px;
-    padding: 15px;
-  }
-
-  .info-bar {
-    font-size: 13px;
-  }
+/* MOBILE */
+@media(max-width:700px){
+  header{flex-direction:column;gap:12px}
+  nav{width:100%}
+  .stats{grid-template-columns:1fr 1fr}
+  .switch-items,.switch-days{grid-template-columns:1fr}
 }
 </style>
-
 </head>
 
 <body>
@@ -132,12 +127,9 @@ body {
   </nav>
 </header>
 
-<main>
-
-<!-- ITEM SWITCH -->
 <section class="card">
   <div class="info-bar">
-    ℹ️ Updates täglich von <b>5–8 Uhr</b> · In der Zeit alle <b>15 Minuten</b>
+    ℹ️ Updates täglich von <b>5–8 Uhr</b> · alle <b>15 Minuten</b>
   </div>
 
   <div class="switch switch-items">
@@ -152,43 +144,25 @@ body {
   </div>
 </section>
 
-  <aside class="info-side">
-    <!-- Platzhalter-Spalte -->
-    <div class="side-box">
-      ⏱ Updates<br>
-      5–8 Uhr<br>
-      Dann jede 15 Min.
-    </div>
-  </aside>
-</section>
-
-<!-- STATISTIK -->
 <section class="card">
   <h2>Statistik</h2>
   <div class="stats">
-    <div class="stat"><small>Aktueller Wert</small><strong id="statStart">–</strong></div>
+    <div class="stat"><small>Aktueller Wert</small><strong id="statCurrent">–</strong></div>
     <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
     <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
     <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
   </div>
 </section>
 
-<!-- VERLAUF -->
 <section class="card">
   <h2>Verlauf</h2>
-  <div class="chart-wrap">
-    <canvas id="chart"></canvas>
-  </div>
+  <div class="chart-wrap"><canvas id="chart"></canvas></div>
 
   <table>
-    <thead>
-      <tr><th>Datum</th><th>Wert</th></tr>
-    </thead>
+    <thead><tr><th>Datum</th><th>Wert</th></tr></thead>
     <tbody id="tableBody"></tbody>
   </table>
 </section>
-
-</main>
 
 <script>
 let currentItem="diamond_block";
@@ -201,7 +175,7 @@ document.querySelectorAll("[data-item]").forEach(b=>{
     b.classList.add("active");
     currentItem=b.dataset.item;
     loadHistory();
-  };
+  }
 });
 
 document.querySelectorAll("[data-days]").forEach(b=>{
@@ -210,7 +184,7 @@ document.querySelectorAll("[data-days]").forEach(b=>{
     b.classList.add("active");
     currentDays=+b.dataset.days;
     loadHistory();
-  };
+  }
 });
 
 async function loadHistory(){
@@ -221,7 +195,7 @@ async function loadHistory(){
   raw.forEach(e=>{
     e.data.forEach(d=>{
       if(d.source===currentItem){
-        rows.push({ts:Date.parse(e.time),value:d.exchangeRate});
+        rows.push({ts:new Date(e.time),value:d.exchangeRate});
       }
     });
   });
@@ -232,74 +206,54 @@ async function loadHistory(){
   if(!rows.length) return;
 
   const vals=rows.map(r=>r.value);
-  statStart.textContent = rows.at(-1).value.toFixed(2);
+  statCurrent.textContent=rows.at(-1).value.toFixed(2);
   statMin.textContent=Math.min(...vals).toFixed(2);
   statMax.textContent=Math.max(...vals).toFixed(2);
-  statDelta.textContent=(((rows.at(-1).value-rows[0].value)/rows[0].value)*100).toFixed(2)+" %";
+
+  const delta=((rows.at(-1).value-rows[0].value)/rows[0].value)*100;
+  statDelta.textContent=delta.toFixed(2)+" %";
+  statDelta.style.color=delta<0?"#f87171":"#4ade80";
 
   renderChart(rows);
   renderTable(rows);
 }
 
 function renderChart(rows){
-  if(chart) chart.destroy();
-
-  const ctx = document.getElementById("chart");
-
-  chart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: rows.map(r => new Date(r.ts)),
-      datasets: [{
-        data: rows.map(r => r.value),
-        borderColor: "#7c83ff",
-        backgroundColor: "rgba(124,131,255,.15)",
-        fill: true,
-        tension: 0.4,
-        pointRadius: 3
+  if(chart)chart.destroy();
+  chart=new Chart(document.getElementById("chart"),{
+    type:"line",
+    data:{
+      labels:rows.map(r=>r.ts),
+      datasets:[{
+        data:rows.map(r=>r.value),
+        borderColor:"#7c83ff",
+        backgroundColor:"rgba(124,131,255,.15)",
+        fill:true,
+        tension:.4,
+        pointRadius:3
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "time",
-          time: {
-            unit: "day",
-            displayFormats: { day: "dd. MMM" }
-          },
-          ticks: { color: "#aaa" }
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      scales:{
+        x:{
+          type:"time",
+          time:{unit:"day",displayFormats:{day:"dd. MMM"}},
+          ticks:{color:"#aaa"}
         },
-        y: {
-          ticks: { color: "#aaa" }
-        }
+        y:{ticks:{color:"#aaa"},grace:"15%"}
       },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            title(items) {
-              return new Date(items[0].parsed.x)
-                .toLocaleDateString("de-DE", { day: "2-digit", month: "short" });
-            },
-            label(ctx) {
-              return ctx.parsed.y.toFixed(2) + " OPShards";
-            }
-          }
-        }
-      }
+      plugins:{legend:{display:false}}
     }
   });
 }
 
-
 function renderTable(rows){
   tableBody.innerHTML="";
   rows.slice().reverse().forEach(r=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${new Date(r.ts).toLocaleDateString("de-DE")}</td><td>${r.value.toFixed(2)}</td>`;
-    tableBody.appendChild(tr);
+    tableBody.innerHTML+=
+      `<tr><td>${r.ts.toLocaleDateString("de-DE")}</td><td>${r.value.toFixed(2)}</td></tr>`;
   });
 }
 
