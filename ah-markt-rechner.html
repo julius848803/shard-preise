@@ -5,234 +5,87 @@
   <title>OPSUCHT – Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <style>
     :root {
-      --bg: #0b0f1a;
-      --card: #12172a;
-      --border: #1f2640;
-      --text: #e8ebff;
-      --muted: #9aa3ff;
-      --accent: #7c83ff;
-      --white: #ffffff;
+      --bg:#0b0f1a;
+      --card:#12172a;
+      --border:#1f2640;
+      --text:#e8ebff;
+      --white:#ffffff;
     }
-
-    * { box-sizing: border-box; }
 
     body {
-      margin: 0;
-      background: radial-gradient(1200px 600px at top, #141a33, #080b14);
-      color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin:0;
+      background: radial-gradient(1200px 600px at top,#141a33,#080b14);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     }
 
-    /* ---------- HEADER ---------- */
     header {
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding:16px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .title {
-      font-weight: 700;
-      letter-spacing: 0.4px;
-    }
-
-    nav {
-      display: flex;
-      gap: 8px;
-    }
+    nav { display:flex; gap:8px; }
 
     nav a {
-      text-decoration: none;
-      color: var(--text);
-      padding: 8px 14px;
-      border-radius: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      font-size: 14px;
+      text-decoration:none;
+      color:var(--text);
+      padding:8px 14px;
+      border-radius:10px;
+      background:var(--card);
+      border:1px solid var(--border);
+      font-size:14px;
     }
 
     nav a.active {
-      background: var(--white);
-      color: #000;
-      font-weight: 600;
+      background:var(--white);
+      color:#000;
+      font-weight:600;
     }
 
-    /* ---------- LAYOUT ---------- */
     main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px;
-      display: grid;
-      gap: 24px;
+      max-width:900px;
+      margin:0 auto;
+      padding:24px;
     }
 
     .card {
-      background: linear-gradient(180deg, #131833, #0b0f1f);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 20px;
+      background:linear-gradient(180deg,#131833,#0b0f1f);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
     }
 
-    h2 {
-      margin: 0 0 16px;
-      font-size: 18px;
-    }
-
-    /* ---------- STATISTIK ---------- */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      text-align: center;
-    }
-
-    .stat small {
-      display: block;
-      opacity: 0.7;
-      margin-bottom: 4px;
-    }
-
-    .stat strong {
-      font-size: 18px;
-    }
-
-    /* ---------- CHART ---------- */
-    .chart-wrap {
-      height: 320px;
-    }
-
-    canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-    }
+    h2 { margin-top:0; }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="title">OPSUCHT – Tool</div>
+  <div><strong>OPSUCHT – Tool</strong></div>
   <nav>
-    <a class="active" href="index.html">OPShards</a>
-    <a href="ah-markt-rechner.html">Markt & AH</a>
+    <a href="index.html">OPShards</a>
+    <a class="active" href="ah-markt-rechner.html">Markt & AH</a>
     <a href="more.html">Weiteres</a>
   </nav>
 </header>
 
 <main>
-
-  <!-- STATISTIK -->
   <section class="card">
-    <h2>Statistik</h2>
-    <div class="stats">
-      <div class="stat"><small>Start</small><strong id="statStart">–</strong></div>
-      <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
-      <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
-      <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
-    </div>
+    <h2>Markt & AH Rechner</h2>
+    <p>
+      Hier entsteht später der Auktionshaus- / Markt-Rechner.
+    </p>
+    <ul>
+      <li>AH-Preis → OPShards</li>
+      <li>Vergleich Markt vs. Händler</li>
+      <li>Gebühren / Steuern</li>
+    </ul>
   </section>
-
-  <!-- VERLAUF -->
-  <section class="card">
-    <h2>Verlauf</h2>
-    <div class="chart-wrap">
-      <canvas id="chart"></canvas>
-    </div>
-  </section>
-
 </main>
-
-<script>
-async function loadHistory() {
-  const res = await fetch("history.json");
-  const raw = await res.json();
-
-  const rows = [];
-
-  raw.forEach(entry => {
-    entry.data.forEach(d => {
-      if (d.source === "diamond_block") {
-        rows.push({
-          ts: Date.parse(entry.time),
-          value: d.exchangeRate
-        });
-      }
-    });
-  });
-
-  rows.sort((a, b) => a.ts - b.ts);
-
-  if (rows.length === 0) return;
-
-  // Statistik
-  const start = rows[0].value;
-  const values = rows.map(r => r.value);
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const delta = ((rows.at(-1).value - start) / start) * 100;
-
-  statStart.textContent = start.toFixed(2);
-  statMin.textContent = min.toFixed(2);
-  statMax.textContent = max.toFixed(2);
-  statDelta.textContent = delta.toFixed(2) + " %";
-
-  // Chart
-  new Chart(document.getElementById("chart"), {
-    type: "line",
-    data: {
-      labels: rows.map(r => new Date(r.ts)),
-      datasets: [{
-        data: rows.map(r => r.value),
-        borderColor: "#7c83ff",
-        backgroundColor: "rgba(124,131,255,0.15)",
-        fill: true,
-        tension: 0.4,
-        pointRadius: 3
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "time",
-          time: {
-            unit: "day"
-          },
-          ticks: { color: "#aaa" }
-        },
-        y: {
-          ticks: { color: "#aaa" }
-        }
-      },
-      plugins: {
-        legend: { display: false }
-      }
-    }
-  });
-}
-
-loadHistory();
-</script>
 
 </body>
 </html>
