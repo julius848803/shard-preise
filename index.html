@@ -229,43 +229,56 @@ async function loadHistory(){
 
 function renderChart(rows){
   if(chart) chart.destroy();
-  chart=new Chart(chartEl,{
-    type:"line",
-    data:{
-      labels:rows.map(r=>new Date(r.ts)),
-      datasets:[{
-        data:rows.map(r=>r.value),
-        borderColor:"#7c83ff",
-        backgroundColor:"rgba(124,131,255,.15)",
-        fill:true,
-        tension:.4,
-        pointRadius:3
+
+  const ctx = document.getElementById("chart");
+
+  chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: rows.map(r => new Date(r.ts)),
+      datasets: [{
+        data: rows.map(r => r.value),
+        borderColor: "#7c83ff",
+        backgroundColor: "rgba(124,131,255,.15)",
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3
       }]
     },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      scales:{
-        x:{
-          type:"time",
-          time:{unit:"day",displayFormats:{day:"dd. MMM"}},
-          ticks:{color:"#aaa"}
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day",
+            displayFormats: { day: "dd. MMM" }
+          },
+          ticks: { color: "#aaa" }
         },
-        y:{ticks:{color:"#aaa"}}
+        y: {
+          ticks: { color: "#aaa" }
+        }
       },
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          callbacks:{
-            title:i=>new Date(i[0].parsed.x)
-              .toLocaleDateString("de-DE",{day:"2-digit",month:"short"}),
-            label:c=>c.parsed.y.toFixed(2)+" OPShards"
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title(items) {
+              return new Date(items[0].parsed.x)
+                .toLocaleDateString("de-DE", { day: "2-digit", month: "short" });
+            },
+            label(ctx) {
+              return ctx.parsed.y.toFixed(2) + " OPShards";
+            }
           }
         }
       }
     }
   });
 }
+
 
 function renderTable(rows){
   tableBody.innerHTML="";
