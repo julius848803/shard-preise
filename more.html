@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPSUCHT- Tool</title>
-<style>
-  .topbar{
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 20px;
-  background:rgba(7,8,15,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #1a1d2d;
-}
+  <meta charset="UTF-8" />
+  <title>OPSUCHT – Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.topbar .title{
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:.3px;
-}
+  <style>
+    :root {
+      --bg:#0b0f1a;
+      --card:#12172a;
+      --border:#1f2640;
+      --text:#e8ebff;
+      --white:#ffffff;
+    }
 
-.topbar nav a{
-  margin-left:14px;
-  text-decoration:none;
-  font-size:14px;
-  color:#9aa0b4;
-}
+    body {
+      margin:0;
+      background: radial-gradient(1200px 600px at top,#141a33,#080b14);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    }
 
-.topbar nav a:hover{
-  color:#7c7cff;
-}
+    header {
+      padding:16px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
-body{margin:0;background:radial-gradient(circle at top,#11142a,#05060c);color:white;font-family:system-ui}
-header{padding:14px 18px;border-bottom:1px solid #1a1d2d}
-nav a{color:#9aa0b4;text-decoration:none;margin-left:12px}
-nav a.active,nav a:hover{color:#7c7cff}
-.card{max-width:900px;margin:18px auto;background:#0d0f1a;border:1px solid #1a1d2d;border-radius:18px;padding:18px}
-</style>
+    nav { display:flex; gap:8px; }
+
+    nav a {
+      text-decoration:none;
+      color:var(--text);
+      padding:8px 14px;
+      border-radius:10px;
+      background:var(--card);
+      border:1px solid var(--border);
+      font-size:14px;
+    }
+
+    nav a.active {
+      background:var(--white);
+      color:#000;
+      font-weight:600;
+    }
+
+    main {
+      max-width:900px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    .card {
+      background:linear-gradient(180deg,#131833,#0b0f1f);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+    }
+
+    h2 { margin-top:0; }
+  </style>
 </head>
 <body>
 
-  <header>
-    <div class="title">OPSUCHT – Tool</div>
-    <nav>
-      <a href="index.html">OPShards</a>
-      <a href="ah-markt-rechner.html">Markt & AH</a>
-      <a href="more.html">Weiteres</a>
-    </nav>
-  </header>
-  
+<header>
+  <div><strong>OPSUCHT – Tool</strong></div>
+  <nav>
+    <a href="index.html">OPShards</a>
+    <a class="active" href="ah-markt-rechner.html">Markt & AH</a>
+    <a href="more.html">Weiteres</a>
+  </nav>
+</header>
 
-<div class="card">
-  <h2>Erweiterungen & Ideen</h2>
-  <ul>
-    <li>Discord Benachrichtigungen</li>
-    <li>Stream Overlay</li>
-    <li>Öffentliche API</li>
-    <li>Langzeit-Statistiken</li>
-    <li>Community Tools</li>
-  </ul>
-</div>
+<main>
+  <section class="card">
+    <h2>Markt & AH Rechner</h2>
+    <p>
+      Hier entsteht später der Auktionshaus- / Markt-Rechner.
+    </p>
+    <ul>
+      <li>AH-Preis → OPShards</li>
+      <li>Vergleich Markt vs. Händler</li>
+      <li>Gebühren / Steuern</li>
+    </ul>
+  </section>
+</main>
 
 </body>
 </html>

@@ -1,69 +1,238 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPSUCHT – Tool</title>
-<style>
-  .topbar{
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 20px;
-  background:rgba(7,8,15,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #1a1d2d;
-}
+  <meta charset="UTF-8" />
+  <title>OPSUCHT – Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.topbar .title{
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:.3px;
-}
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-.topbar nav a{
-  margin-left:14px;
-  text-decoration:none;
-  font-size:14px;
-  color:#9aa0b4;
-}
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #12172a;
+      --border: #1f2640;
+      --text: #e8ebff;
+      --muted: #9aa3ff;
+      --accent: #7c83ff;
+      --white: #ffffff;
+    }
 
-.topbar nav a:hover{
-  color:#7c7cff;
-}
+    * { box-sizing: border-box; }
 
-body{margin:0;background:radial-gradient(circle at top,#11142a,#05060c);color:white;font-family:system-ui}
-header{padding:14px 18px;border-bottom:1px solid #1a1d2d}
-nav a{color:#9aa0b4;text-decoration:none;margin-left:12px}
-nav a.active,nav a:hover{color:#7c7cff}
-.card{max-width:900px;margin:18px auto;background:#0d0f1a;border:1px solid #1a1d2d;border-radius:18px;padding:18px}
-</style>
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at top, #141a33, #080b14);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    nav a.active {
+      background: var(--white);
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #131833, #0b0f1f);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    /* ---------- STATISTIK ---------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat small {
+      display: block;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .stat strong {
+      font-size: 18px;
+    }
+
+    /* ---------- CHART ---------- */
+    .chart-wrap {
+      height: 320px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <div class="title">OPSUCHT – Tool</div>
-    <nav>
-      <a href="index.html">OPShards</a>
-      <a href="ah-markt-rechner.html">Markt & AH</a>
-      <a href="more.html">Weiteres</a>
-    </nav>
-  </header>
-  
+<header>
+  <div class="title">OPSUCHT – Tool</div>
+  <nav>
+    <a class="active" href="index.html">OPShards</a>
+    <a href="ah-markt-rechner.html">Markt & AH</a>
+    <a href="more.html">Weiteres</a>
+  </nav>
+</header>
 
-<div class="card">
-  <h2>AH / Markt Tools (Platzhalter)</h2>
-  <p>Hier kommen später z. B.:</p>
-  <ul>
-    <li>AH Preisrechner</li>
-    <li>Gewinn-/Verlustrechner</li>
-    <li>Trend-Analyse</li>
-    <li>Marktvergleiche</li>
-  </ul>
-</div>
+<main>
+
+  <!-- STATISTIK -->
+  <section class="card">
+    <h2>Statistik</h2>
+    <div class="stats">
+      <div class="stat"><small>Start</small><strong id="statStart">–</strong></div>
+      <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
+      <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
+      <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
+    </div>
+  </section>
+
+  <!-- VERLAUF -->
+  <section class="card">
+    <h2>Verlauf</h2>
+    <div class="chart-wrap">
+      <canvas id="chart"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<script>
+async function loadHistory() {
+  const res = await fetch("history.json");
+  const raw = await res.json();
+
+  const rows = [];
+
+  raw.forEach(entry => {
+    entry.data.forEach(d => {
+      if (d.source === "diamond_block") {
+        rows.push({
+          ts: Date.parse(entry.time),
+          value: d.exchangeRate
+        });
+      }
+    });
+  });
+
+  rows.sort((a, b) => a.ts - b.ts);
+
+  if (rows.length === 0) return;
+
+  // Statistik
+  const start = rows[0].value;
+  const values = rows.map(r => r.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const delta = ((rows.at(-1).value - start) / start) * 100;
+
+  statStart.textContent = start.toFixed(2);
+  statMin.textContent = min.toFixed(2);
+  statMax.textContent = max.toFixed(2);
+  statDelta.textContent = delta.toFixed(2) + " %";
+
+  // Chart
+  new Chart(document.getElementById("chart"), {
+    type: "line",
+    data: {
+      labels: rows.map(r => new Date(r.ts)),
+      datasets: [{
+        data: rows.map(r => r.value),
+        borderColor: "#7c83ff",
+        backgroundColor: "rgba(124,131,255,0.15)",
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day"
+          },
+          ticks: { color: "#aaa" }
+        },
+        y: {
+          ticks: { color: "#aaa" }
+        }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+loadHistory();
+</script>
 
 </body>
 </html>

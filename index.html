@@ -1,281 +1,236 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OPSUCHT – Tool</title>
+  <meta charset="UTF-8" />
+  <title>OPSUCHT – Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<style>
-:root{
-  --bg:#07080f;
-  --card:#0d0f1a;
-  --accent:#7c7cff;
-  --text:#ffffff;
-  --muted:#9aa0b4;
-  --border:#1a1d2d;
-}
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #12172a;
+      --border: #1f2640;
+      --text: #e8ebff;
+      --muted: #9aa3ff;
+      --accent: #7c83ff;
+      --white: #ffffff;
+    }
 
-*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
-body{
-  margin:0;
-  background:radial-gradient(circle at top,#11142a,#05060c);
-  color:var(--text);
-}
+    * { box-sizing: border-box; }
 
-/* ===== HEADER ===== */
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 20px;
-  background:rgba(7,8,15,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-}
-header .title{font-size:18px;font-weight:700}
-header nav a{
-  margin-left:14px;
-  text-decoration:none;
-  font-size:14px;
-  color:var(--muted);
-}
-header nav a:hover{color:var(--accent)}
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at top, #141a33, #080b14);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
 
-.container{max-width:1000px;margin:auto;padding:18px}
+    /* ---------- HEADER ---------- */
+    header {
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.card{
-  background:linear-gradient(180deg,#0f1220,#090b14);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:16px;
-}
+    .title {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
 
-/* ===== UI ===== */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    nav {
+      display: flex;
+      gap: 8px;
+    }
 
-.price{font-size:32px;font-weight:700}
-.muted{color:var(--muted);font-size:13px}
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
 
-.selector{display:flex;gap:10px;margin-bottom:10px}
-.selector button{
-  flex:1;
-  background:#0b0d18;
-  border:1px solid var(--border);
-  color:white;
-  padding:10px;
-  border-radius:12px;
-}
-.selector button.active{
-  border-color:var(--accent);
-  box-shadow:0 0 0 1px var(--accent) inset;
-}
+    nav a.active {
+      background: var(--white);
+      color: #000;
+      font-weight: 600;
+    }
 
-input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  background:#090b14;
-  border:1px solid var(--border);
-  color:white;
-  font-size:16px;
-}
+    /* ---------- LAYOUT ---------- */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      gap: 24px;
+    }
 
-.stat{
-  background:#090b14;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-  text-align:center;
-}
-.stat b{font-size:18px}
+    .card {
+      background: linear-gradient(180deg, #131833, #0b0f1f);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
 
-canvas{width:100%!important;height:300px!important}
+    h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
 
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:9px;border-bottom:1px solid var(--border)}
-th{color:var(--muted)}
-</style>
+    /* ---------- STATISTIK ---------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat small {
+      display: block;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .stat strong {
+      font-size: 18px;
+    }
+
+    /* ---------- CHART ---------- */
+    .chart-wrap {
+      height: 320px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
   <div class="title">OPSUCHT – Tool</div>
   <nav>
-    <a href="index.html">OPShards</a>
+    <a class="active" href="index.html">OPShards</a>
     <a href="ah-markt-rechner.html">Markt & AH</a>
     <a href="more.html">Weiteres</a>
   </nav>
 </header>
 
-<div class="container">
+<main>
 
-<!-- ===== KURSE ===== -->
-<div class="card grid2">
-  <div>
-    <div class="muted">Diamond Block</div>
-    <div class="price" id="diaShard">–</div>
-    <div class="muted">OPShards</div>
-  </div>
-  <div>
-    <div class="muted">Netherite Ingot</div>
-    <div class="price" id="netShard">–</div>
-    <div class="muted">OPShards</div>
-  </div>
-</div>
+  <!-- STATISTIK -->
+  <section class="card">
+    <h2>Statistik</h2>
+    <div class="stats">
+      <div class="stat"><small>Start</small><strong id="statStart">–</strong></div>
+      <div class="stat"><small>Min</small><strong id="statMin">–</strong></div>
+      <div class="stat"><small>Max</small><strong id="statMax">–</strong></div>
+      <div class="stat"><small>Δ %</small><strong id="statDelta">–</strong></div>
+    </div>
+  </section>
 
-<!-- ===== RECHNER ===== -->
-<div class="card">
-  <h3>OPShard Rechner</h3>
-  <div class="selector">
-    <button id="diaBtn" class="active">Diamond Block</button>
-    <button id="netBtn">Netherite Ingot</button>
-  </div>
-  <input id="amount" type="number" value="1" min="0">
-  <div class="muted" id="calcText"></div>
-  <div class="price" id="calcResult"></div>
-</div>
+  <!-- VERLAUF -->
+  <section class="card">
+    <h2>Verlauf</h2>
+    <div class="chart-wrap">
+      <canvas id="chart"></canvas>
+    </div>
+  </section>
 
-<!-- ===== STATISTIK ===== -->
-<div class="card">
-  <h3>Statistik</h3>
-  <div class="grid4">
-    <div class="stat">Start<br><b id="sStart">–</b></div>
-    <div class="stat">Min<br><b id="sMin">–</b></div>
-    <div class="stat">Max<br><b id="sMax">–</b></div>
-    <div class="stat">Δ %<br><b id="sPerc">–</b></div>
-  </div>
-</div>
-
-<!-- ===== CHART ===== -->
-<div class="card">
-  <h3>Verlauf</h3>
-  <canvas id="chart"></canvas>
-</div>
-
-<!-- ===== TABELLE ===== -->
-<div class="card">
-  <h3>Zahlenverlauf</h3>
-  <table>
-    <thead><tr><th>Zeit</th><th>Item</th><th>Wert</th></tr></thead>
-    <tbody id="table"></tbody>
-  </table>
-</div>
-
-</div>
+</main>
 
 <script>
-const SHARD_API = "https://api.opsucht.net/merchant/rates";
-const HISTORY_API = "history.json";
+async function loadHistory() {
+  const res = await fetch("history.json");
+  const raw = await res.json();
 
-let mode = "diamond_block";
-let diaRate = 0, netRate = 0;
-let history = [];
-let chart;
+  const rows = [];
 
-/* ===== HILFE ===== */
-const label = s => s==="diamond_block" ? "Diamond Block" : "Netherite Ingot";
-
-/* ===== AKTUELLE KURSE ===== */
-async function loadRates(){
-  const data = await fetch(SHARD_API).then(r=>r.json());
-  diaRate = data.find(i=>i.source==="diamond_block").exchangeRate;
-  netRate = data.find(i=>i.source==="netherite_ingot").exchangeRate;
-  diaShard.textContent = diaRate.toFixed(2);
-  netShard.textContent = netRate.toFixed(2);
-  updateCalc();
-}
-
-/* ===== HISTORY LADEN (WICHTIGER TEIL) ===== */
-async function loadHistory(){
-  const raw = await fetch(HISTORY_API).then(r=>r.json());
-  history = [];
-
-  raw.forEach(entry=>{
-    entry.data.forEach(d=>{
-      history.push({
-        ts: Date.parse(entry.time),                    // 🔥 ECHTER ZEITWERT
-        displayTime: new Date(entry.time).toLocaleString("de-DE"),
-        source: d.source,
-        value: d.exchangeRate
-      });
+  raw.forEach(entry => {
+    entry.data.forEach(d => {
+      if (d.source === "diamond_block") {
+        rows.push({
+          ts: Date.parse(entry.time),
+          value: d.exchangeRate
+        });
+      }
     });
   });
 
-  render();
-}
+  rows.sort((a, b) => a.ts - b.ts);
 
-/* ===== RECHNER ===== */
-function updateCalc(){
-  const a = Number(amount.value || 0);
-  const rate = mode==="diamond_block" ? diaRate : netRate;
-  calcText.textContent = `${a} ${label(mode)} =`;
-  calcResult.textContent = (a*rate).toFixed(2)+" OPShards";
-}
+  if (rows.length === 0) return;
 
-/* ===== RENDER ===== */
-function render(){
-  const f = history
-    .filter(r=>r.source===mode)
-    .sort((a,b)=>a.ts-b.ts);
+  // Statistik
+  const start = rows[0].value;
+  const values = rows.map(r => r.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const delta = ((rows.at(-1).value - start) / start) * 100;
 
-  if(!f.length) return;
+  statStart.textContent = start.toFixed(2);
+  statMin.textContent = min.toFixed(2);
+  statMax.textContent = max.toFixed(2);
+  statDelta.textContent = delta.toFixed(2) + " %";
 
-  const vals = f.map(r=>r.value);
-
-  sStart.textContent = vals[0].toFixed(2);
-  sMin.textContent = Math.min(...vals).toFixed(2);
-  sMax.textContent = Math.max(...vals).toFixed(2);
-  sPerc.textContent = (((vals.at(-1)-vals[0])/vals[0])*100).toFixed(2)+" %";
-
-  table.innerHTML = [...f].reverse().map(r=>`
-    <tr>
-      <td>${r.displayTime}</td>
-      <td>${label(r.source)}</td>
-      <td>${r.value.toFixed(2)}</td>
-    </tr>
-  `).join("");
-
-  if(chart) chart.destroy();
-
-  chart = new Chart(chartEl,{
-    type:"line",
-    data:{
-      labels:f.map(r=>new Date(r.ts).toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})),
-      datasets:[{
-        data:vals,
-        borderColor:"#7c7cff",
-        backgroundColor:"rgba(124,124,255,.18)",
-        fill:true,
-        tension:.35,
-        pointRadius:2
+  // Chart
+  new Chart(document.getElementById("chart"), {
+    type: "line",
+    data: {
+      labels: rows.map(r => new Date(r.ts)),
+      datasets: [{
+        data: rows.map(r => r.value),
+        borderColor: "#7c83ff",
+        backgroundColor: "rgba(124,131,255,0.15)",
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3
       }]
     },
-    options:{
-      interaction:{mode:"index",intersect:false},
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{ticks:{maxTicksLimit:6,color:"#9aa0b4"}},
-        y:{ticks:{color:"#9aa0b4"}}
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day"
+          },
+          ticks: { color: "#aaa" }
+        },
+        y: {
+          ticks: { color: "#aaa" }
+        }
+      },
+      plugins: {
+        legend: { display: false }
       }
     }
   });
 }
 
-/* ===== EVENTS ===== */
-diaBtn.onclick=()=>{mode="diamond_block";diaBtn.classList.add("active");netBtn.classList.remove("active");updateCalc();render();}
-netBtn.onclick=()=>{mode="netherite_ingot";netBtn.classList.add("active");diaBtn.classList.remove("active");updateCalc();render();}
-amount.oninput = updateCalc;
-
-/* ===== INIT ===== */
-loadRates();
 loadHistory();
 </script>
 
