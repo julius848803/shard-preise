@@ -58,5 +58,20 @@
         "exchangeRate": 54.12
       }
     ]
+  },
+  {
+    "time": "2026-02-01T05:00:28.608Z",
+    "data": [
+      {
+        "source": "diamond_block",
+        "target": "opshards",
+        "exchangeRate": 11.1
+      },
+      {
+        "source": "netherite_ingot",
+        "target": "opshards",
+        "exchangeRate": 45.04
+      }
+    ]
   }
 ]
