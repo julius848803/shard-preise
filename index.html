@@ -62,7 +62,9 @@ nav a.active{background:#fff;color:#000}
 
 /* SWITCHES */
 .switch{display:grid;gap:12px;margin-bottom:14px}
-.switch-items{grid-template-columns:1fr 1fr}
+.switch-items {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
 .switch-days{grid-template-columns:repeat(3,1fr)}
 .switch button{
   padding:14px;
@@ -132,10 +134,12 @@ tbody td{
     ℹ️ Updates täglich von <b>5–8 Uhr</b> · alle <b>15 Minuten</b>
   </div>
 
-  <div class="switch switch-items">
-    <button class="active" data-item="diamond_block">Diamond Block</button>
-    <button data-item="netherite_ingot">Netherite Ingot</button>
-  </div>
+<div class="switch switch-items">
+  <button class="active" data-item="diamond_block">Diamond Block</button>
+  <button data-item="netherite_ingot">Netherite Ingot</button>
+  <button data-item="wood_bundle">Holzbündel</button>
+  <button data-item="gravel_mix">Kiesgemisch</button>
+</div>
 
   <div class="switch switch-days">
     <button class="active" data-days="7">7 Tage</button>
@@ -195,7 +199,11 @@ async function loadHistory(){
   raw.forEach(e=>{
     e.data.forEach(d=>{
       if(d.source===currentItem){
-        rows.push({ts:new Date(e.time),value:d.exchangeRate});
+        rows.push({
+        ts: new Date(e.time),
+        value: Number(d.exchangeRate),
+        raw: d // 🔥 GANZES Objekt behalten
+        });
       }
     });
   });
