@@ -137,9 +137,10 @@ tbody td{
 <div class="switch switch-items">
   <button class="active" data-item="diamond_block">Diamond Block</button>
   <button data-item="netherite_ingot">Netherite Ingot</button>
-  <button data-item="wood_bundle">Holzbündel</button>
-  <button data-item="gravel_mix">Kiesgemisch</button>
+  <button data-item="Holzbündel">Holzbündel</button>
+  <button data-item="Gräbergemisch">Gräbergemisch</button>
 </div>
+
 
   <div class="switch switch-days">
     <button class="active" data-days="7">7 Tage</button>
@@ -169,102 +170,147 @@ tbody td{
 </section>
 
 <script>
-let currentItem="diamond_block";
-let currentDays=7;
+let currentItem = "Diamond Block"; // Default muss zum Button-Text passen
+let currentDays = 7;
 let chart;
 
-document.querySelectorAll("[data-item]").forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll("[data-item]").forEach(x=>x.classList.remove("active"));
+/* --------------------
+   BUTTON HANDLING
+-------------------- */
+document.querySelectorAll("[data-item]").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll("[data-item]").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
-    currentItem=b.dataset.item;
+    currentItem = b.dataset.item;
     loadHistory();
-  }
+  };
 });
 
-document.querySelectorAll("[data-days]").forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll("[data-days]").forEach(x=>x.classList.remove("active"));
+document.querySelectorAll("[data-days]").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll("[data-days]").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
-    currentDays=+b.dataset.days;
+    currentDays = Number(b.dataset.days);
     loadHistory();
-  }
+  };
 });
 
-async function loadHistory(){
-  const res=await fetch("history.json");
-  const raw=await res.json();
-  let rows=[];
+/* --------------------
+   LOAD & FILTER DATA
+-------------------- */
+async function loadHistory() {
+  const res = await fetch("history.json");
+  const raw = await res.json();
+  let rows = [];
 
-  raw.forEach(e=>{
-    e.data.forEach(d=>{
-      if(d.source===currentItem){
+  raw.forEach(entry => {
+    entry.data.forEach(d => {
+
+      // 🔥 WICHTIG: Item-Namen im source-String suchen
+      if (
+        typeof d.source === "string" &&
+        d.source.includes(currentItem)
+      ) {
         rows.push({
-        ts: new Date(e.time),
-        value: Number(d.exchangeRate),
-        raw: d // 🔥 GANZES Objekt behalten
+          ts: new Date(entry.time),
+          value: Number(d.exchangeRate),
+          raw: d
         });
       }
     });
   });
 
-  rows.sort((a,b)=>a.ts-b.ts);
-  const cutoff=Date.now()-currentDays*86400000;
-  rows=rows.filter(r=>r.ts>=cutoff);
-  if(!rows.length) return;
+  rows.sort((a, b) => a.ts - b.ts);
 
-  const vals=rows.map(r=>r.value);
-  statCurrent.textContent=rows.at(-1).value.toFixed(2);
-  statMin.textContent=Math.min(...vals).toFixed(2);
-  statMax.textContent=Math.max(...vals).toFixed(2);
+  const cutoff = Date.now() - currentDays * 86400000;
+  rows = rows.filter(r => r.ts >= cutoff);
 
-  const delta=((rows.at(-1).value-rows[0].value)/rows[0].value)*100;
-  statDelta.textContent=delta.toFixed(2)+" %";
-  statDelta.style.color=delta<0?"#f87171":"#4ade80";
+  if (!rows.length) {
+    // optional: Anzeige leeren
+    statCurrent.textContent = "–";
+    statMin.textContent = "–";
+    statMax.textContent = "–";
+    statDelta.textContent = "–";
+    if (chart) chart.destroy();
+    tableBody.innerHTML = "";
+    return;
+  }
+
+  /* --------------------
+     STATISTIK
+  -------------------- */
+  const values = rows.map(r => r.value);
+  const first = rows[0];
+  const last = rows.at(-1);
+
+  statCurrent.textContent = last.value.toFixed(2);
+  statMin.textContent = Math.min(...values).toFixed(2);
+  statMax.textContent = Math.max(...values).toFixed(2);
+
+  const delta = ((last.value - first.value) / first.value) * 100;
+  statDelta.textContent = delta.toFixed(2) + " %";
+  statDelta.style.color = delta < 0 ? "#f87171" : "#4ade80";
 
   renderChart(rows);
   renderTable(rows);
 }
 
-function renderChart(rows){
-  if(chart)chart.destroy();
-  chart=new Chart(document.getElementById("chart"),{
-    type:"line",
-    data:{
-      labels:rows.map(r=>r.ts),
-      datasets:[{
-        data:rows.map(r=>r.value),
-        borderColor:"#7c83ff",
-        backgroundColor:"rgba(124,131,255,.15)",
-        fill:true,
-        tension:.4,
-        pointRadius:3
+/* --------------------
+   CHART
+-------------------- */
+function renderChart(rows) {
+  if (chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type: "line",
+    data: {
+      labels: rows.map(r => r.ts),
+      datasets: [{
+        data: rows.map(r => r.value),
+        borderColor: "#7c83ff",
+        backgroundColor: "rgba(124,131,255,.15)",
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3
       }]
     },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      scales:{
-        x:{
-          type:"time",
-          time:{unit:"day",displayFormats:{day:"dd. MMM"}},
-          ticks:{color:"#aaa"}
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          time: { unit: "day", displayFormats: { day: "dd. MMM" } },
+          ticks: { color: "#aaa" }
         },
-        y:{ticks:{color:"#aaa"},grace:"15%"}
+        y: {
+          ticks: { color: "#aaa" },
+          grace: "15%"
+        }
       },
-      plugins:{legend:{display:false}}
+      plugins: {
+        legend: { display: false }
+      }
     }
   });
 }
 
-function renderTable(rows){
-  tableBody.innerHTML="";
-  rows.slice().reverse().forEach(r=>{
-    tableBody.innerHTML+=
-      `<tr><td>${r.ts.toLocaleDateString("de-DE")}</td><td>${r.value.toFixed(2)}</td></tr>`;
+/* --------------------
+   TABLE
+-------------------- */
+function renderTable(rows) {
+  tableBody.innerHTML = "";
+  rows.slice().reverse().forEach(r => {
+    tableBody.innerHTML += `
+      <tr>
+        <td>${r.ts.toLocaleDateString("de-DE")}</td>
+        <td>${r.value.toFixed(2)}</td>
+      </tr>
+    `;
   });
 }
 
+/* Initial Load */
 loadHistory();
 </script>
 
