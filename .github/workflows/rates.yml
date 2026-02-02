@@ -14,27 +14,36 @@ jobs:
         run: |
           curl -s https://api.opsucht.net/merchant/rates > latest.json
 
-      - name: Compare & store
+      - name: Compare & store history
         run: |
           node << 'EOF'
           const fs = require("fs");
 
-          const latest = JSON.parse(fs.readFileSync("latest.json"));
+          const latest = JSON.parse(fs.readFileSync("latest.json", "utf8"));
           const now = new Date().toISOString();
 
           let history = [];
           if (fs.existsSync("history.json")) {
-            history = JSON.parse(fs.readFileSync("history.json"));
+            history = JSON.parse(fs.readFileSync("history.json", "utf8"));
           }
 
           const last = history.at(-1);
 
+          // Nur speichern, wenn sich IRGENDETWAS geändert hat
           if (!last || JSON.stringify(last.data) !== JSON.stringify(latest)) {
-            history.push({ time: now, data: latest });
-            fs.writeFileSync("history.json", JSON.stringify(history, null, 2));
-            console.log("Änderung gespeichert");
+            history.push({
+              time: now,
+              data: latest
+            });
+
+            fs.writeFileSync(
+              "history.json",
+              JSON.stringify(history, null, 2)
+            );
+
+            console.log("Neue Daten gespeichert:", now);
           } else {
-            console.log("Keine Änderung");
+            console.log("Keine Änderung – nichts gespeichert");
           }
           EOF
 
@@ -43,5 +52,5 @@ jobs:
           git config user.name "rates-bot"
           git config user.email "rates@bot.local"
           git add history.json
-          git commit -m "Update rates history" || exit 0
+          git commit -m "Update merchant rates history" || exit 0
           git push
