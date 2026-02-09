@@ -248,5 +248,30 @@
         "exchangeRate": 20.06
       }
     ]
+  },
+  {
+    "time": "2026-02-09T07:00:28.555Z",
+    "data": [
+      {
+        "source": "diamond_block",
+        "target": "opshards",
+        "exchangeRate": 9.25
+      },
+      {
+        "source": "netherite_ingot",
+        "target": "opshards",
+        "exchangeRate": 50.14
+      },
+      {
+        "source": "minecraft:paper[item_name='{\"extra\":[{\"bold\":true,\"color\":\"gray\",\"italic\":false,\"obfuscated\":false,\"strikethrough\":false,\"text\":\"Gräbergemisch\",\"underlined\":false}],\"text\":\"\"}',custom_model_data=626,custom_name='{\"extra\":[{\"bold\":true,\"color\":\"gray\",\"italic\":false,\"obfuscated\":false,\"strikethrough\":false,\"text\":\"Gräbergemisch\",\"underlined\":false}],\"text\":\"\"}']",
+        "target": "opshards",
+        "exchangeRate": 20.2
+      },
+      {
+        "source": "minecraft:paper[item_name='{\"extra\":[{\"bold\":true,\"color\":\"#926428\",\"italic\":false,\"obfuscated\":false,\"strikethrough\":false,\"text\":\"Holzbündel\",\"underlined\":false}],\"text\":\"\"}',custom_model_data=625,custom_name='{\"extra\":[{\"bold\":true,\"color\":\"#926428\",\"italic\":false,\"obfuscated\":false,\"strikethrough\":false,\"text\":\"Holzbündel\",\"underlined\":false}],\"text\":\"\"}']",
+        "target": "opshards",
+        "exchangeRate": 18.24
+      }
+    ]
   }
 ]
