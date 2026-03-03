@@ -60,12 +60,18 @@ nav a.active{background:#fff;color:#000}
   font-size:14px
 }
 
-/* SWITCHES */
-.switch{display:grid;gap:12px;margin-bottom:14px}
-.switch-items {
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+/* SWITCH */
+.switch{
+  display:grid;
+  gap:12px;
+  margin-bottom:14px
 }
-.switch-days{grid-template-columns:repeat(3,1fr)}
+.switch-items{
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr))
+}
+.switch-days{
+  grid-template-columns:repeat(3,1fr)
+}
 .switch button{
   padding:14px;
   border-radius:999px;
@@ -75,9 +81,12 @@ nav a.active{background:#fff;color:#000}
   font-weight:600;
   cursor:pointer
 }
-.switch button.active{background:#fff;color:#000}
+.switch button.active{
+  background:#fff;
+  color:#000
+}
 
-/* STATISTIK */
+/* STATS */
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -93,7 +102,10 @@ nav a.active{background:#fff;color:#000}
 .stat strong{display:block;margin-top:6px;font-size:22px}
 
 /* CHART */
-.chart-wrap{height:260px;margin-bottom:16px}
+.chart-wrap{
+  height:260px;
+  margin-bottom:16px
+}
 
 /* TABLE */
 table{width:100%;border-collapse:collapse}
@@ -113,7 +125,7 @@ tbody td{
   header{flex-direction:column;gap:12px}
   nav{width:100%}
   .stats{grid-template-columns:1fr 1fr}
-  .switch-items,.switch-days{grid-template-columns:1fr}
+  .switch-days{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -134,13 +146,7 @@ tbody td{
     ℹ️ Updates täglich von <b>5–8 Uhr</b> · alle <b>15 Minuten</b>
   </div>
 
-<div class="switch switch-items">
-  <button class="active" data-item="diamond_block">Diamond Block</button>
-  <button data-item="netherite_ingot">Netherite Ingot</button>
-  <button data-item="Holzbündel">Holzbündel</button>
-  <button data-item="Gräbergemisch">Gräbergemisch</button>
-</div>
-
+  <div id="itemSwitch" class="switch switch-items"></div>
 
   <div class="switch switch-days">
     <button class="active" data-days="7">7 Tage</button>
@@ -164,144 +170,133 @@ tbody td{
   <div class="chart-wrap"><canvas id="chart"></canvas></div>
 
   <table>
-    <thead><tr><th>Datum</th><th>Wert</th></tr></thead>
+    <thead>
+      <tr><th>Datum</th><th>Wert</th></tr>
+    </thead>
     <tbody id="tableBody"></tbody>
   </table>
 </section>
 
 <script>
-let currentItem = "Diamond Block"; // Default muss zum Button-Text passen
-let currentDays = 7;
+let currentItem=null;
+let currentDays=7;
 let chart;
 
-/* --------------------
-   BUTTON HANDLING
--------------------- */
-document.querySelectorAll("[data-item]").forEach(b => {
-  b.onclick = () => {
-    document.querySelectorAll("[data-item]").forEach(x => x.classList.remove("active"));
+/* ----------- DAYS SWITCH ----------- */
+document.querySelectorAll("[data-days]").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll("[data-days]").forEach(x=>x.classList.remove("active"));
     b.classList.add("active");
-    currentItem = b.dataset.item;
+    currentDays=Number(b.dataset.days);
     loadHistory();
-  };
+  }
 });
 
-document.querySelectorAll("[data-days]").forEach(b => {
-  b.onclick = () => {
-    document.querySelectorAll("[data-days]").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
-    currentDays = Number(b.dataset.days);
-    loadHistory();
-  };
-});
+/* ----------- LOAD HISTORY ----------- */
+async function loadHistory(){
+  const res=await fetch("history.json");
+  const raw=await res.json();
 
-/* --------------------
-   LOAD & FILTER DATA
--------------------- */
-async function loadHistory() {
-  const res = await fetch("history.json");
-  const raw = await res.json();
-  let rows = [];
+  const itemMap=new Map();
 
-  raw.forEach(entry => {
-    entry.data.forEach(d => {
+  raw.forEach(entry=>{
+    entry.data.forEach(d=>{
+      let key;
 
-      // 🔥 WICHTIG: Item-Namen im source-String suchen
-      if (
-        typeof d.source === "string" &&
-        d.source.includes(currentItem)
-      ) {
-        rows.push({
-          ts: new Date(entry.time),
-          value: Number(d.exchangeRate),
-          raw: d
-        });
+      if(d.source==="diamond_block"||d.source==="netherite_ingot"){
+        key=d.source;
+      }else{
+        const match=d.source.match(/"text":"([^"]+)"/);
+        if(match) key=match[1];
       }
+
+      if(!key) return;
+
+      if(!itemMap.has(key)) itemMap.set(key,[]);
+      itemMap.get(key).push({
+        ts:new Date(entry.time),
+        value:Number(d.exchangeRate)
+      });
     });
   });
 
-  rows.sort((a, b) => a.ts - b.ts);
+  renderItemButtons([...itemMap.keys()]);
 
-  const cutoff = Date.now() - currentDays * 86400000;
-  rows = rows.filter(r => r.ts >= cutoff);
+  if(!currentItem) currentItem=[...itemMap.keys()][0];
 
-  if (!rows.length) {
-    // optional: Anzeige leeren
-    statCurrent.textContent = "–";
-    statMin.textContent = "–";
-    statMax.textContent = "–";
-    statDelta.textContent = "–";
-    if (chart) chart.destroy();
-    tableBody.innerHTML = "";
-    return;
-  }
+  const rows=itemMap.get(currentItem)||[];
 
-  /* --------------------
-     STATISTIK
-  -------------------- */
-  const values = rows.map(r => r.value);
-  const first = rows[0];
-  const last = rows.at(-1);
+  rows.sort((a,b)=>a.ts-b.ts);
 
-  statCurrent.textContent = last.value.toFixed(2);
-  statMin.textContent = Math.min(...values).toFixed(2);
-  statMax.textContent = Math.max(...values).toFixed(2);
+  const cutoff=Date.now()-currentDays*86400000;
+  const filtered=rows.filter(r=>r.ts>=cutoff);
 
-  const delta = ((last.value - first.value) / first.value) * 100;
-  statDelta.textContent = delta.toFixed(2) + " %";
-  statDelta.style.color = delta < 0 ? "#f87171" : "#4ade80";
+  if(!filtered.length) return;
 
-  renderChart(rows);
-  renderTable(rows);
+  const values=filtered.map(r=>r.value);
+  const first=filtered[0];
+  const last=filtered.at(-1);
+
+  statCurrent.textContent=last.value.toFixed(2);
+  statMin.textContent=Math.min(...values).toFixed(2);
+  statMax.textContent=Math.max(...values).toFixed(2);
+
+  const delta=((last.value-first.value)/first.value)*100;
+  statDelta.textContent=delta.toFixed(2)+" %";
+  statDelta.style.color=delta<0?"#f87171":"#4ade80";
+
+  renderChart(filtered);
+  renderTable(filtered);
 }
 
-/* --------------------
-   CHART
--------------------- */
-function renderChart(rows) {
-  if (chart) chart.destroy();
+/* ----------- ITEM BUTTONS AUTO ----------- */
+function renderItemButtons(items){
+  const container=document.getElementById("itemSwitch");
+  container.innerHTML="";
+  items.forEach(item=>{
+    const btn=document.createElement("button");
+    btn.textContent=item;
+    btn.classList.toggle("active",item===currentItem);
+    btn.onclick=()=>{
+      currentItem=item;
+      loadHistory();
+    };
+    container.appendChild(btn);
+  });
+}
 
-  chart = new Chart(document.getElementById("chart"), {
-    type: "line",
-    data: {
-      labels: rows.map(r => r.ts),
-      datasets: [{
-        data: rows.map(r => r.value),
-        borderColor: "#7c83ff",
-        backgroundColor: "rgba(124,131,255,.15)",
-        fill: true,
-        tension: 0.4,
-        pointRadius: 3
+/* ----------- CHART ----------- */
+function renderChart(rows){
+  if(chart) chart.destroy();
+  chart=new Chart(document.getElementById("chart"),{
+    type:"line",
+    data:{
+      labels:rows.map(r=>r.ts),
+      datasets:[{
+        data:rows.map(r=>r.value),
+        borderColor:"#7c83ff",
+        backgroundColor:"rgba(124,131,255,.15)",
+        fill:true,
+        tension:.4
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          type: "time",
-          time: { unit: "day", displayFormats: { day: "dd. MMM" } },
-          ticks: { color: "#aaa" }
-        },
-        y: {
-          ticks: { color: "#aaa" },
-          grace: "15%"
-        }
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      scales:{
+        x:{type:"time",time:{unit:"day"},ticks:{color:"#aaa"}},
+        y:{ticks:{color:"#aaa"}}
       },
-      plugins: {
-        legend: { display: false }
-      }
+      plugins:{legend:{display:false}}
     }
   });
 }
 
-/* --------------------
-   TABLE
--------------------- */
-function renderTable(rows) {
-  tableBody.innerHTML = "";
-  rows.slice().reverse().forEach(r => {
-    tableBody.innerHTML += `
+/* ----------- TABLE ----------- */
+function renderTable(rows){
+  tableBody.innerHTML="";
+  rows.slice().reverse().forEach(r=>{
+    tableBody.innerHTML+=`
       <tr>
         <td>${r.ts.toLocaleDateString("de-DE")}</td>
         <td>${r.value.toFixed(2)}</td>
@@ -310,7 +305,6 @@ function renderTable(rows) {
   });
 }
 
-/* Initial Load */
 loadHistory();
 </script>
 
