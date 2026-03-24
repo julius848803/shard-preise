@@ -1,22 +1,5 @@
 [
   {
-    "id": "1774375846841",
-    "task": "test",
-    "items": "test",
-    "shards": 123,
-    "type": "daily",
-    "date": "2026-03-24",
-    "haupttags": [
-      "test"
-    ],
-    "nebentags": [
-      "test"
-    ],
-    "tags": [
-      "test"
-    ]
-  },
-  {
     "id": "1774376091036",
     "task": "najdfbj",
     "items": "jikanbskjdn",
@@ -64,11 +47,11 @@
     "haupttags": [],
     "nebentags": [],
     "tags": [],
-    "items": "100x baum · 200x tiscj · 3x drachd"
+    "items": "100x baum Â· 200x tiscj Â· 3x drachd"
   },
   {
     "id": "1774381354860",
-    "task": "Hköhti",
+    "task": "HkÃ¶hti",
     "steps": [
       "Vlvfg",
       "Vklbejl",
@@ -88,6 +71,6 @@
     "tags": [
       "Glbtkn"
     ],
-    "items": "Vlvfg · Vklbejl · Vvlgft · Go gul · Vjlvtu"
+    "items": "Vlvfg Â· Vklbejl Â· Vvlgft Â· Go gul Â· Vjlvtu"
   }
 ]
