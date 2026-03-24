@@ -14,7 +14,7 @@
   --green:#22c55e;--red:#ef4444;--orange:#f97316;
   --yellow:#eab308;
   --text:#e2e8f0;--text2:#94a3b8;--text3:#4a5568;
-  --max-w:1400px;
+  --max-w:1100px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
@@ -45,15 +45,15 @@ header{background:var(--bg2);border-bottom:1px solid var(--border);position:stic
 .neben-tags{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);width:100%}
 .neben-tags.open{display:flex}
 
-main{padding:20px;max-width:var(--max-w);margin:0 auto}
+main{padding:16px 20px;max-width:var(--max-w);margin:0 auto}
 
 /* ── DATE GROUP ── */
-.date-group{margin-bottom:28px}
+.date-group{margin-bottom:20px}
 /* Trennstrich / Hervorhebung NUR bei Weekly */
 .date-group.weekly{
-  border-left:3px solid var(--cyan);
-  padding-left:16px;
-  margin-left:2px;
+  border-left:2px solid rgba(0,229,200,.3);
+  padding-left:14px;
+  margin-left:0;
 }
 .date-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .date-label{font-size:13px;font-weight:700;color:var(--text2);font-family:'Share Tech Mono',monospace;letter-spacing:.5px}
@@ -65,7 +65,7 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 /* ── QUEST GRID — nebeneinander ── */
 .quests-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
   gap:12px;
 }
 

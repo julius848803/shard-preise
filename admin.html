@@ -13,7 +13,7 @@
   --purple:#a855f7;--purple-dim:rgba(168,85,247,.12);
   --green:#22c55e;--red:#ef4444;--orange:#f97316;--yellow:#eab308;
   --text:#e2e8f0;--text2:#94a3b8;--text3:#4a5568;
-  --max-w:1300px;
+  --max-w:1100px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
@@ -756,12 +756,27 @@ async function login(){
   errEl.textContent = '⏳ Authentifiziere…';
 
   try{
-    // 1. Benutzer prüfen (lokal gecachte users.json)
+    // 1. Benutzer prüfen — zuerst aus config.enc public raw laden (kein Token nötig bei public repo)
+    // Fix: users.json frisch vom Repo laden wenn lokaler Cache Username nicht kennt
     let users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
-    if(!users.length){ errEl.textContent='Keine Benutzerdaten. Bitte Setup wiederholen.'; return; }
-
     const hash = await sha256(password);
-    const user = users.find(u => u.username===username && u.passwordHash===hash);
+    let user = users.find(u => u.username===username && u.passwordHash===hash);
+
+    // Wenn nicht gefunden: users.json frisch vom GitHub (raw, public) laden
+    if(!user){
+      try{
+        const {user:ghUser,repo:ghRepo} = getRepoConfig();
+        const r = await fetch(`https://raw.githubusercontent.com/${ghUser}/${ghRepo}/main/users.json?t=${Date.now()}`);
+        if(r.ok){
+          const freshUsers = await r.json();
+          localStorage.setItem('opsucht_users', JSON.stringify(freshUsers));
+          users = freshUsers;
+          user = users.find(u => u.username===username && u.passwordHash===hash);
+        }
+      }catch(e){}
+    }
+
+    if(!users.length){ errEl.textContent='Keine Benutzerdaten. Bitte Setup wiederholen.'; return; }
     if(!user){ errEl.textContent='Ungültiger Benutzername oder Passwort.'; return; }
 
     // 2. Viewer braucht keinen Token
@@ -826,14 +841,22 @@ async function login(){
 }
 
 // App-Secret Feld dynamisch einblenden wenn Nutzer seinen Namen eingetippt hat
+// Fix: Wenn User nicht im lokalen Cache gefunden → App-Secret trotzdem zeigen
+// (Username könnte in users.json geändert worden sein, lokaler Cache veraltet)
 function checkShowAppSecret(){
   const username = document.getElementById('loginUsername').value.trim();
-  const users = JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-  const user = users.find(u=>u.username===username);
-  const needsSecret = user && user.role !== 'viewer';
+  if(!username){ document.getElementById('appSecretField').style.display='none'; return; }
   const alreadyInSession = !!sessionStorage.getItem('op_app_secret_session');
   const field = document.getElementById('appSecretField');
-  if(field) field.style.display = (needsSecret && !alreadyInSession) ? '' : 'none';
+  if(alreadyInSession){ field.style.display='none'; return; }
+  const users = JSON.parse(localStorage.getItem('opsucht_users')||'[]');
+  const user = users.find(u=>u.username===username);
+  // Wenn User bekannt und Viewer → kein App-Secret nötig
+  if(user && user.role==='viewer'){ field.style.display='none'; return; }
+  // Wenn User bekannt und Editor+ → App-Secret zeigen
+  // Wenn User NICHT gefunden → könnte Username geändert sein → zeige App-Secret an
+  // (schadet nicht, login() prüft dann nochmals)
+  field.style.display = '';
 }
 
 function logout(){
@@ -1044,10 +1067,11 @@ function initSteps(){ currentSteps=['']; renderSteps(); }
 
 function renderSteps(){
   const list = document.getElementById('stepsList');
+  // Nutze data-idx statt value im HTML um Sonderzeichen-Probleme zu vermeiden
   list.innerHTML = currentSteps.map((s,i)=>`
     <div class="step-row">
       <span class="step-num">${i+1}</span>
-      <input class="step-input" type="text" value="${esc(s)}"
+      <input class="step-input" type="text" data-idx="${i}"
         placeholder="z.B. 200x Kies abbauen"
         oninput="currentSteps[${i}]=this.value"
         onkeydown="stepKeydown(event,${i})"/>
@@ -1055,6 +1079,10 @@ function renderSteps(){
         ?`<button class="step-del" onclick="removeStep(${i})" title="Löschen">×</button>`
         :'<span style="width:24px"></span>'}
     </div>`).join('');
+  // Werte per JS setzen → Sonderzeichen korrekt behandeln
+  list.querySelectorAll('.step-input[data-idx]').forEach(inp=>{
+    inp.value = currentSteps[parseInt(inp.dataset.idx)] || '';
+  });
   const btn = document.getElementById('addStepBtn');
   if(btn){
     btn.disabled = currentSteps.length>=MAX_STEPS;
