@@ -1,1 +1,109 @@
-[]
+[
+  {
+    "id": "1774385958225",
+    "task": "Items abgeben (Goldblock)",
+    "steps": [
+      "16x Goldblöcke abgeben"
+    ],
+    "shards": 325,
+    "type": "daily",
+    "date": "2026-03-24",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Gold"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "16x Goldblöcke abgeben"
+  },
+  {
+    "id": "1774386033465",
+    "task": "Custom-Mobs töten (Grüner Wellensittich)",
+    "steps": [
+      "1x Grünen Wellensittich töten"
+    ],
+    "shards": 750,
+    "type": "daily",
+    "date": "2026-03-23",
+    "haupttags": [
+      "Custom-Mobs töten",
+      "Mobs töten"
+    ],
+    "nebentags": [
+      "Wellensittich"
+    ],
+    "tags": [
+      "Custom-Mobs töten",
+      "Mobs töten"
+    ],
+    "items": "1x Grünen Wellensittich töten"
+  },
+  {
+    "id": "1774386064177",
+    "task": "Tiere scheren (Schaf)",
+    "steps": [
+      "100 Schafe scheren"
+    ],
+    "shards": 600,
+    "type": "daily",
+    "date": "2026-03-22",
+    "haupttags": [
+      "Tiere scheren"
+    ],
+    "nebentags": [
+      "Schaf"
+    ],
+    "tags": [
+      "Tiere scheren"
+    ],
+    "items": "100 Schafe scheren"
+  },
+  {
+    "id": "1774386127721",
+    "task": "Items abbauen / abgeben (Kies)",
+    "steps": [
+      "2000x Kies abbauen",
+      "3000x Kies abgeben"
+    ],
+    "shards": 445,
+    "type": "daily",
+    "date": "2026-03-21",
+    "haupttags": [
+      "Items abbauen",
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Kies"
+    ],
+    "tags": [
+      "Items abbauen",
+      "Items abgeben"
+    ],
+    "items": "2000x Kies abbauen · 3000x Kies abgeben"
+  },
+  {
+    "id": "1774386198296",
+    "task": "Blöcke abbauen (Schneeblock)",
+    "steps": [
+      "10000x Schneeblock abbauen"
+    ],
+    "shards": 4750,
+    "type": "weekly",
+    "date": "2026-03-20",
+    "haupttags": [
+      "Items abbauen",
+      "Blöcke abbauen"
+    ],
+    "nebentags": [
+      "Schneeblock"
+    ],
+    "tags": [
+      "Items abbauen",
+      "Blöcke abbauen"
+    ],
+    "items": "10000x Schneeblock abbauen"
+  }
+]
