@@ -3,5 +3,10 @@
     "username": "Julian",
     "passwordHash": "cb9f618c88711ad3ea1a524706b91515e4a7eb20b46d34e21c1ff69a153693f4",
     "role": "owner"
+  },
+  {
+    "username": "Lara",
+    "passwordHash": "f71b10b0e34e1ecf1472053735dbfbce8b3c069fe8ef1b4a3869d24ea9f28561",
+    "role": "viewer"
   }
 ]
