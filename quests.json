@@ -3,7 +3,7 @@
     "id": "1774385958225",
     "task": "Items abgeben (Goldblock)",
     "steps": [
-      "16x GoldblÃÂÃÂ¶cke abgeben"
+      "16x GoldblÃÂÃÂÃÂÃÂ¶cke abgeben"
     ],
     "shards": 325,
     "type": "daily",
@@ -17,29 +17,29 @@
     "tags": [
       "Items abgeben"
     ],
-    "items": "16x GoldblÃÂÃÂ¶cke abgeben"
+    "items": "16x GoldblÃÂÃÂÃÂÃÂ¶cke abgeben"
   },
   {
     "id": "1774386033465",
-    "task": "Custom-Mobs tÃÂÃÂ¶ten (GrÃÂÃÂ¼ner Wellensittich)",
+    "task": "Custom-Mobs tÃÂÃÂÃÂÃÂ¶ten (GrÃÂÃÂÃÂÃÂ¼ner Wellensittich)",
     "steps": [
-      "1x GrÃÂÃÂ¼nen Wellensittich tÃÂÃÂ¶ten"
+      "1x GrÃÂÃÂÃÂÃÂ¼nen Wellensittich tÃÂÃÂÃÂÃÂ¶ten"
     ],
     "shards": 750,
     "type": "daily",
     "date": "2026-03-23",
     "haupttags": [
-      "Custom-Mobs tÃÂÃÂ¶ten",
-      "Mobs tÃÂÃÂ¶ten"
+      "Custom-Mobs tÃÂÃÂÃÂÃÂ¶ten",
+      "Mobs tÃÂÃÂÃÂÃÂ¶ten"
     ],
     "nebentags": [
       "Wellensittich"
     ],
     "tags": [
-      "Custom-Mobs tÃÂÃÂ¶ten",
-      "Mobs tÃÂÃÂ¶ten"
+      "Custom-Mobs tÃÂÃÂÃÂÃÂ¶ten",
+      "Mobs tÃÂÃÂÃÂÃÂ¶ten"
     ],
-    "items": "1x GrÃÂÃÂ¼nen Wellensittich tÃÂÃÂ¶ten"
+    "items": "1x GrÃÂÃÂÃÂÃÂ¼nen Wellensittich tÃÂÃÂÃÂÃÂ¶ten"
   },
   {
     "id": "1774386064177",
@@ -82,11 +82,11 @@
       "Items abbauen",
       "Items abgeben"
     ],
-    "items": "2000x Kies abbauen ÃÂ· 3000x Kies abgeben"
+    "items": "2000x Kies abbauen ÃÂÃÂ· 3000x Kies abgeben"
   },
   {
     "id": "1774386198296",
-    "task": "BlÃÂ¶cke abbauen (Schneeblock)",
+    "task": "BlÃÂÃÂ¶cke abbauen (Schneeblock)",
     "steps": [
       "10000x Schneeblock abbauen"
     ],
@@ -103,5 +103,85 @@
       "Items abbauen"
     ],
     "items": "10000x Schneeblock abbauen"
+  },
+  {
+    "id": "1774386502320",
+    "task": "Job XP sammeln",
+    "steps": [
+      "10000 Job XP sammeln"
+    ],
+    "shards": 650,
+    "type": "daily",
+    "date": "2026-03-20",
+    "haupttags": [
+      "Job XP sammeln"
+    ],
+    "nebentags": [
+      "Beliebiger Job"
+    ],
+    "tags": [
+      "Job XP sammeln"
+    ],
+    "items": "10000 Job XP sammeln"
+  },
+  {
+    "id": "1774386547160",
+    "task": "Blöcke platzieren (Sandstein)",
+    "steps": [
+      "?????"
+    ],
+    "shards": 100,
+    "type": "daily",
+    "date": "2026-03-19",
+    "haupttags": [
+      "Items platzieren"
+    ],
+    "nebentags": [
+      "Sandstein"
+    ],
+    "tags": [
+      "Items platzieren"
+    ],
+    "items": "?????"
+  },
+  {
+    "id": "1774386579736",
+    "task": "Items abgeben (Podsol)",
+    "steps": [
+      "?????"
+    ],
+    "shards": 525,
+    "type": "daily",
+    "date": "2026-03-18",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Podsol"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "?????"
+  },
+  {
+    "id": "1774386638816",
+    "task": "Items abgeben (Namenschild)",
+    "steps": [
+      "5x Namensschild abgeben"
+    ],
+    "shards": 325,
+    "type": "daily",
+    "date": "2026-03-17",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Namenschild"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "5x Namensschild abgeben"
   }
 ]
