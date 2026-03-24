@@ -51,9 +51,8 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .date-group{margin-bottom:28px}
 /* Trennstrich / Hervorhebung NUR bei Weekly */
 .date-group.weekly{
-  border-left:3px solid var(--cyan);
-  padding-left:16px;
-  margin-left:2px;
+  border-left:2px solid rgba(0,229,200,.25);
+  padding-left:12px;
 }
 .date-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .date-label{font-size:13px;font-weight:700;color:var(--text2);font-family:'Share Tech Mono',monospace;letter-spacing:.5px}
@@ -65,7 +64,7 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 /* ── QUEST GRID — nebeneinander ── */
 .quests-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
   gap:12px;
 }
 
@@ -116,30 +115,28 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .empty-state p{font-size:13px}
 .loading-state{text-align:center;padding:60px 20px;color:var(--text3);font-size:13px}
 
-/* Handy: immer mindestens 2 Cards nebeneinander */
-@media(max-width:768px){
-  .quests-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-}
-@media(max-width:500px){
-  /* 2 gleichgroße Spalten auf Handy — niemals 1 Spalte */
+@media(max-width:700px){
   .quests-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .quest-card{padding:14px 12px}
-  .qtitle{font-size:13px}
-  .qstep{font-size:11px;padding:6px 8px}
-  .qshards{font-size:15px}
-  .filter-inner{flex-direction:column;align-items:flex-start;gap:8px}
-  .h-title p{display:none}
-  /* Date-Header auf Handy kompakter */
-  .date-header{flex-wrap:wrap;gap:6px}
-  .date-label{font-size:11px}
-  /* Neben-Tags Feld volle Breite */
-  .neben-tags{padding-top:6px;margin-top:6px}
 }
-@media(max-width:360px){
-  /* Sehr kleine Handys: Cards etwas schmaler aber trotzdem 2 Spalten */
+@media(max-width:480px){
   .quests-grid{grid-template-columns:1fr 1fr;gap:6px}
   .quest-card{padding:12px 10px}
-  .qtitle{font-size:12px}
+  .qtitle{font-size:12px;margin-bottom:7px}
+  .qstep{font-size:11px;padding:5px 7px;gap:6px}
+  .qstep-num{width:16px;height:16px;font-size:9px}
+  .qshards{font-size:14px}
+  .qtag{font-size:9px;padding:2px 7px}
+  .filter-inner{flex-direction:column;align-items:flex-start;gap:8px;padding:10px 14px}
+  .h-title p{display:none}
+  .date-header{flex-wrap:wrap;gap:5px;margin-bottom:10px}
+  .date-label{font-size:11px}
+  main{padding:10px 12px}
+  .date-group{margin-bottom:18px}
+}
+@media(max-width:360px){
+  .quests-grid{grid-template-columns:1fr 1fr;gap:5px}
+  .quest-card{padding:10px 8px}
+  .qtitle{font-size:11px}
 }
 </style>
 </head>
@@ -242,28 +239,8 @@ function renderQuests(){
 
   if(!q.length){ main.innerHTML=`<div class="empty-state"><h2>Keine Quests gefunden</h2><p>Noch keine Quests eingetragen oder Filter passt nicht.</p></div>`; return; }
 
-  const isDateSort=sb==='date-desc'||sb==='date-asc';
-
-  if(isDateSort){
-    const groups={};
-    q.forEach(quest=>{ const key=quest.date+'_'+quest.type; if(!groups[key]) groups[key]={date:quest.date,type:quest.type,quests:[]}; groups[key].quests.push(quest); });
-    const arr=Object.values(groups);
-    arr.sort((a,b)=>sb==='date-desc'?new Date(b.date)-new Date(a.date):new Date(a.date)-new Date(b.date));
-    main.innerHTML=arr.map(g=>`
-      <div class="date-group ${g.type}">
-        <div class="date-header">
-          <span class="date-type-badge ${g.type}">${g.type==='daily'?'📅 Täglich':'📆 Wöchentlich'}</span>
-          <span class="date-label">${formatDate(g.date)}</span>
-          <span class="date-count">${g.quests.length} Quest${g.quests.length!==1?'s':''}</span>
-        </div>
-        <div class="quests-grid">
-          ${g.quests.map(quest=>renderQuestCard(quest)).join('')}
-        </div>
-      </div>
-    `).join('');
-  } else {
-    main.innerHTML=`<div class="quests-grid">${q.map(renderQuestCard).join('')}</div>`;
-  }
+  // Alle Quests einfach nebeneinander im Grid — keine Datums-Gruppierung
+  main.innerHTML=`<div class="quests-grid">${q.map(renderQuestCard).join('')}</div>`;
 }
 
 function renderQuestCard(quest){
