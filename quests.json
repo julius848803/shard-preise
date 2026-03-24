@@ -3,7 +3,7 @@
     "id": "1774385958225",
     "task": "Items abgeben (Goldblock)",
     "steps": [
-      "16x Goldblöcke abgeben"
+      "16x GoldblÃ¶cke abgeben"
     ],
     "shards": 325,
     "type": "daily",
@@ -17,29 +17,29 @@
     "tags": [
       "Items abgeben"
     ],
-    "items": "16x Goldblöcke abgeben"
+    "items": "16x GoldblÃ¶cke abgeben"
   },
   {
     "id": "1774386033465",
-    "task": "Custom-Mobs töten (Grüner Wellensittich)",
+    "task": "Custom-Mobs tÃ¶ten (GrÃ¼ner Wellensittich)",
     "steps": [
-      "1x Grünen Wellensittich töten"
+      "1x GrÃ¼nen Wellensittich tÃ¶ten"
     ],
     "shards": 750,
     "type": "daily",
     "date": "2026-03-23",
     "haupttags": [
-      "Custom-Mobs töten",
-      "Mobs töten"
+      "Custom-Mobs tÃ¶ten",
+      "Mobs tÃ¶ten"
     ],
     "nebentags": [
       "Wellensittich"
     ],
     "tags": [
-      "Custom-Mobs töten",
-      "Mobs töten"
+      "Custom-Mobs tÃ¶ten",
+      "Mobs tÃ¶ten"
     ],
-    "items": "1x Grünen Wellensittich töten"
+    "items": "1x GrÃ¼nen Wellensittich tÃ¶ten"
   },
   {
     "id": "1774386064177",
@@ -86,7 +86,7 @@
   },
   {
     "id": "1774386198296",
-    "task": "Blöcke abbauen (Schneeblock)",
+    "task": "BlÃ¶cke abbauen (Schneeblock)",
     "steps": [
       "10000x Schneeblock abbauen"
     ],
@@ -95,14 +95,14 @@
     "date": "2026-03-20",
     "haupttags": [
       "Items abbauen",
-      "Blöcke abbauen"
+      "BlÃ¶cke abbauen"
     ],
     "nebentags": [
       "Schneeblock"
     ],
     "tags": [
       "Items abbauen",
-      "Blöcke abbauen"
+      "BlÃ¶cke abbauen"
     ],
     "items": "10000x Schneeblock abbauen"
   }
