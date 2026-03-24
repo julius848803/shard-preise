@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>OPSUCHT Quest Übersicht</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0e1117;--bg2:#151920;--bg3:#1c2230;--bg4:#222a38;
+  --border:#1e2736;--border2:#253045;
+  --cyan:#00e5c8;--cyan-dim:rgba(0,229,200,.12);--cyan-glow:rgba(0,229,200,.25);
+  --purple:#a855f7;--purple-dim:rgba(168,85,247,.12);
+  --green:#22c55e;--red:#ef4444;--orange:#f97316;
+  --yellow:#eab308;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#4a5568;
+  --max-w:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+
+/* ── HEADER ── */
+header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-inner{max-width:var(--max-w);margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.h-icon{width:38px;height:38px;background:rgba(0,229,200,.12);border:1px solid rgba(0,229,200,.4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.h-title h1{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.h-title p{font-size:11px;color:var(--text2);margin-top:1px}
+.h-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.h-btn{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:6px 14px;cursor:pointer;transition:all .2s;text-decoration:none;display:flex;align-items:center;gap:5px}
+.h-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* ── FILTER BAR ── */
+.filter-wrap{background:var(--bg2);border-bottom:1px solid var(--border)}
+.filter-inner{max-width:var(--max-w);margin:0 auto;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.fsel{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;padding:7px 12px;cursor:pointer;outline:none;transition:border-color .2s}
+.fsel:hover,.fsel:focus{border-color:var(--cyan);color:var(--cyan)}
+
+/* Haupttag-Buttons (immer sichtbar) */
+.main-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag-btn{padding:5px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:all .2s;font-size:11px;font-weight:600;color:var(--text2)}
+.tag-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.tag-btn.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--cyan)}
+.tag-btn.neben{background:var(--purple-dim);border-color:rgba(168,85,247,.25);color:var(--purple)}
+.tag-btn.neben.active{background:rgba(168,85,247,.25);border-color:var(--purple);color:var(--purple)}
+
+/* Nebentags Toggle */
+.neben-toggle{background:none;border:1px dashed var(--border2);border-radius:99px;color:var(--text3);font-size:11px;font-weight:500;padding:5px 12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.neben-toggle:hover{border-color:var(--purple);color:var(--purple)}
+.neben-toggle.open{border-color:var(--purple);color:var(--purple)}
+.neben-tags{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);width:100%}
+.neben-tags.open{display:flex}
+
+/* ── MAIN ── */
+main{padding:20px;max-width:var(--max-w);margin:0 auto}
+
+/* ── DATE GROUP ── */
+.date-group{margin-bottom:24px}
+.date-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.date-label{font-size:13px;font-weight:700;color:var(--text2);font-family:'Share Tech Mono',monospace;letter-spacing:.5px}
+.date-type-badge{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.date-type-badge.daily{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
+.date-type-badge.weekly{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
+.date-count{font-size:11px;color:var(--text3);margin-left:auto}
+
+/* ── QUEST GRID ── */
+.quests-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+
+/* ── QUEST CARD ── */
+.quest-card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;overflow:hidden;transition:border-color .2s,transform .15s}
+.quest-card:hover{transform:translateY(-2px);border-color:var(--border2)}
+.quest-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.quest-card.daily::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.quest-card.weekly::before{background:linear-gradient(90deg,var(--cyan),var(--purple))}
+
+.qtitle{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4}
+.qitems{font-size:12px;color:var(--text2);margin-bottom:12px;padding:9px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border2);line-height:1.5}
+
+.qc-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
+.qshards{font-size:18px;font-weight:700;color:var(--cyan);letter-spacing:-.5px}
+.qshards small{font-size:10px;font-weight:400;color:var(--text3);margin-left:3px}
+
+/* Tags */
+.qtags-wrap{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.qtags-main{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.qtags-neben{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.qtag{padding:3px 9px;border-radius:99px;font-size:10px;font-weight:600}
+.qtag.haupt{background:var(--purple-dim);border:1px solid rgba(168,85,247,.25);color:var(--purple)}
+.qtag.neben{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2);color:var(--text3)}
+.neben-tags-toggle{background:none;border:none;color:var(--text3);font-size:10px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+.neben-tags-toggle:hover{color:var(--text2)}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:80px 20px;color:var(--text3)}
+.empty-state h2{font-size:18px;color:var(--text2);margin-bottom:8px}
+.empty-state p{font-size:13px}
+
+/* ── LOADING ── */
+.loading-state{text-align:center;padding:60px 20px;color:var(--text3);font-size:13px}
+
+@media(max-width:600px){
+  .quests-grid{grid-template-columns:1fr}
+  .filter-inner{flex-direction:column;align-items:flex-start}
+  .h-title p{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="h-icon">📋</div>
+    <div class="h-title">
+      <h1>OPSUCHT Quest Übersicht</h1>
+      <p>Alle täglichen und wöchentlichen Quests</p>
+    </div>
+    <div class="h-actions">
+      <a href="index.html" class="h-btn">📊 Kurse</a>
+      <a href="admin.html" class="h-btn">🔐 Admin</a>
+    </div>
+  </div>
+</header>
+
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <select class="fsel" id="typeFilter">
+      <option value="all">Alle Zeiträume</option>
+      <option value="daily">Täglich</option>
+      <option value="weekly">Wöchentlich</option>
+    </select>
+    <select class="fsel" id="sortBy">
+      <option value="date-desc">Neueste zuerst</option>
+      <option value="date-asc">Älteste zuerst</option>
+      <option value="shards-desc">Meiste Shards</option>
+      <option value="shards-asc">Wenigste Shards</option>
+    </select>
+    <!-- Haupttags (immer sichtbar) -->
+    <div class="main-tags" id="mainTagFilter"></div>
+    <!-- Nebentags Toggle -->
+    <button class="neben-toggle" id="nebenToggle" onclick="toggleNebenTags()" style="display:none">
+      <span id="nebenToggleArrow">▾</span> Neben-Tags
+    </button>
+    <!-- Nebentags (eingeklappt) -->
+    <div class="neben-tags" id="nebenTagFilter"></div>
+  </div>
+</div>
+
+<main id="mainContent">
+  <div class="loading-state">⏳ Lade Quests…</div>
+</main>
+
+<script>
+// ══ GITHUB STORAGE CONFIG ══
+// Daten werden aus dem GitHub Repo geladen (quests.json)
+const GITHUB_USER = 'julius848803';
+const GITHUB_REPO = 'shard-preise';
+const QUESTS_FILE = 'quests.json';
+const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${QUESTS_FILE}`;
+
+async function loadQuests() {
+  try {
+    const r = await fetch(RAW_URL + '?t=' + Date.now());
+    if (!r.ok) return [];
+    return await r.json();
+  } catch(e) {
+    // Fallback: localStorage
+    return JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+  }
+}
+
+// ══ TAG LOGIK ══
+let allQuests = [];
+let nebenOpen = false;
+
+function getMainTags(quests) {
+  const counts = {};
+  quests.forEach(q => (q.haupttags || []).forEach(t => { counts[t] = (counts[t]||0)+1; }));
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([t])=>t);
+}
+
+function getNebenTags(quests) {
+  const counts = {};
+  quests.forEach(q => (q.nebentags || []).forEach(t => { counts[t] = (counts[t]||0)+1; }));
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([t])=>t);
+}
+
+function renderTagFilters() {
+  const mainTags = getMainTags(allQuests);
+  const nebenTags = getNebenTags(allQuests);
+
+  const mf = document.getElementById('mainTagFilter');
+  mf.innerHTML = mainTags.map(t =>
+    `<button class="tag-btn" data-tag="${t}" data-type="haupt" onclick="toggleTag(this)">${t}</button>`
+  ).join('');
+
+  const nf = document.getElementById('nebenTagFilter');
+  nf.innerHTML = nebenTags.map(t =>
+    `<button class="tag-btn neben" data-tag="${t}" data-type="neben" onclick="toggleTag(this)">${t}</button>`
+  ).join('');
+
+  const toggleBtn = document.getElementById('nebenToggle');
+  if (nebenTags.length > 0) {
+    toggleBtn.style.display = '';
+  } else {
+    toggleBtn.style.display = 'none';
+  }
+}
+
+function toggleNebenTags() {
+  nebenOpen = !nebenOpen;
+  document.getElementById('nebenTagFilter').classList.toggle('open', nebenOpen);
+  document.getElementById('nebenToggle').classList.toggle('open', nebenOpen);
+  document.getElementById('nebenToggleArrow').textContent = nebenOpen ? '▴' : '▾';
+}
+
+function toggleTag(btn) {
+  btn.classList.toggle('active');
+  renderQuests();
+}
+
+// ══ RENDER ══
+function escapeHtml(t) {
+  const d = document.createElement('div');
+  d.textContent = t; return d.innerHTML;
+}
+
+function formatDate(s) {
+  return new Date(s).toLocaleDateString('de-DE', { weekday:'long', day:'2-digit', month:'2-digit', year:'numeric' });
+}
+
+function formatDateShort(s) {
+  return new Date(s).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+
+function renderQuests() {
+  const main = document.getElementById('mainContent');
+  let q = [...allQuests];
+
+  // Typ-Filter
+  const tf = document.getElementById('typeFilter').value;
+  if (tf !== 'all') q = q.filter(x => x.type === tf);
+
+  // Tag-Filter (Haupt)
+  const activeHaupt = Array.from(document.querySelectorAll('.tag-btn[data-type="haupt"].active')).map(b => b.dataset.tag);
+  if (activeHaupt.length) q = q.filter(x => activeHaupt.some(t => (x.haupttags||[]).includes(t)));
+
+  // Tag-Filter (Neben)
+  const activeNeben = Array.from(document.querySelectorAll('.tag-btn[data-type="neben"].active')).map(b => b.dataset.tag);
+  if (activeNeben.length) q = q.filter(x => activeNeben.some(t => (x.nebentags||[]).includes(t)));
+
+  // Sortierung
+  const sb = document.getElementById('sortBy').value;
+  if (sb === 'date-desc') q.sort((a,b) => new Date(b.date) - new Date(a.date));
+  else if (sb === 'date-asc') q.sort((a,b) => new Date(a.date) - new Date(b.date));
+  else if (sb === 'shards-desc') q.sort((a,b) => b.shards - a.shards);
+  else q.sort((a,b) => a.shards - b.shards);
+
+  if (!q.length) {
+    main.innerHTML = `<div class="empty-state"><h2>Keine Quests gefunden</h2><p>Noch keine Quests eingetragen oder Filter passt nicht.</p></div>`;
+    return;
+  }
+
+  // Gruppierung nach Datum (nur bei date-Sortierung sinnvoll)
+  const isDateSort = sb === 'date-desc' || sb === 'date-asc';
+
+  if (isDateSort) {
+    // Nach Datum gruppieren
+    const groups = {};
+    q.forEach(quest => {
+      const key = quest.date + '_' + quest.type;
+      if (!groups[key]) groups[key] = { date: quest.date, type: quest.type, quests: [] };
+      groups[key].quests.push(quest);
+    });
+
+    const groupArr = Object.values(groups);
+    groupArr.sort((a,b) => sb === 'date-desc'
+      ? new Date(b.date) - new Date(a.date)
+      : new Date(a.date) - new Date(b.date));
+
+    main.innerHTML = groupArr.map(g => `
+      <div class="date-group">
+        <div class="date-header">
+          <span class="date-type-badge ${g.type}">${g.type === 'daily' ? '📅 Täglich' : '📆 Wöchentlich'}</span>
+          <span class="date-label">${formatDate(g.date)}</span>
+          <span class="date-count">${g.quests.length} Quest${g.quests.length !== 1 ? 's' : ''}</span>
+        </div>
+        <div class="quests-grid">
+          ${g.quests.map(quest => renderQuestCard(quest)).join('')}
+        </div>
+      </div>
+    `).join('');
+  } else {
+    // Flat-Liste bei Shards-Sortierung
+    main.innerHTML = `<div class="quests-grid">${q.map(quest => renderQuestCard(quest)).join('')}</div>`;
+  }
+}
+
+function renderQuestCard(quest) {
+  const haupttags = quest.haupttags || quest.tags || [];
+  const nebentags = quest.nebentags || [];
+  const cardId = 'card_' + quest.id;
+
+  return `
+    <div class="quest-card ${quest.type}">
+      <div class="qtitle">${escapeHtml(quest.task)}</div>
+      <div class="qitems">📦 ${escapeHtml(quest.items)}</div>
+      <div class="qc-bottom">
+        <span class="qshards">💎 ${quest.shards}<small>Shards</small></span>
+        <div class="qtags-wrap">
+          ${haupttags.length ? `<div class="qtags-main">${haupttags.map(t=>`<span class="qtag haupt">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+          ${nebentags.length ? `
+            <button class="neben-tags-toggle" onclick="toggleCardNeben('${quest.id}')">
+              <span id="neben-lbl-${quest.id}">▾ ${nebentags.length} Neben-Tag${nebentags.length>1?'s':''}</span>
+            </button>
+            <div class="qtags-neben" id="neben-${quest.id}" style="display:none">
+              ${nebentags.map(t=>`<span class="qtag neben">${escapeHtml(t)}</span>`).join('')}
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleCardNeben(id) {
+  const el = document.getElementById('neben-' + id);
+  const lbl = document.getElementById('neben-lbl-' + id);
+  const isOpen = el.style.display !== 'none';
+  el.style.display = isOpen ? 'none' : 'flex';
+  const quest = allQuests.find(q => q.id === id);
+  const count = quest ? (quest.nebentags||[]).length : 0;
+  lbl.textContent = isOpen ? `▾ ${count} Neben-Tag${count>1?'s':''}` : `▴ ${count} Neben-Tag${count>1?'s':''}`;
+}
+
+document.getElementById('typeFilter').addEventListener('change', renderQuests);
+document.getElementById('sortBy').addEventListener('change', renderQuests);
+
+// ══ INIT ══
+async function init() {
+  allQuests = await loadQuests();
+  renderTagFilters();
+  renderQuests();
+}
+
+init();
+</script>
+</body>
+</html>
