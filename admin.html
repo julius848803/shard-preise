@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSUCHT Quest Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Login Screen */
+        .login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-small {
+            width: auto;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .error {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Admin Dashboard */
+        .admin-header {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+            color: #667eea;
+            font-size: 2em;
+        }
+
+        .admin-header .user-info {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .admin-header .username {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .tabs {
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .tab:hover {
+            background: #f0f0f0;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-panel {
+            display: none;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        .panel-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .panel-box h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        /* Quest Table */
+        .quest-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .quest-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .quest-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .quest-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .quest-table .quest-tags-cell {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .quest-table .quest-tag {
+            padding: 3px 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Tags Input */
+        .tags-input-container {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .tags-input-container:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .tag-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .tag-item button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tag-input {
+            border: none;
+            outline: none;
+            flex: 1;
+            min-width: 150px;
+            padding: 6px;
+            font-size: 1em;
+        }
+
+        /* User Table */
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .user-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .user-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .user-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .role-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .role-badge.admin {
+            background: #dc3545;
+            color: white;
+        }
+
+        .role-badge.editor {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .role-badge.viewer {
+            background: #6c757d;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .quest-table, .user-table {
+                font-size: 0.9em;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-box">
+        <h1>🔐 Quest Admin</h1>
+        <div class="form-group">
+            <label for="loginUsername">Benutzername</label>
+            <input type="text" id="loginUsername" placeholder="Benutzername eingeben">
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Passwort</label>
+            <input type="password" id="loginPassword" placeholder="Passwort eingeben">
+        </div>
+        <button class="btn" onclick="login()">Anmelden</button>
+        <div class="error" id="loginError"></div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="container hidden">
+        <div class="admin-header">
+            <h1>📋 Quest Administration</h1>
+            <div class="user-info">
+                <span class="username" id="currentUser"></span>
+                <button class="btn btn-small btn-secondary" onclick="logout()">Abmelden</button>
+                <a href="quest.html" class="btn btn-small" style="text-decoration: none; text-align: center;">👁️ Ansicht</a>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('quests')">Quests verwalten</button>
+            <button class="tab" onclick="switchTab('users')" id="usersTab">Benutzer verwalten</button>
+        </div>
+
+        <!-- Quests Panel -->
+        <div id="questsPanel" class="content-panel active">
+            <div class="panel-box">
+                <h2>Quest erstellen</h2>
+                <form onsubmit="saveQuest(event)">
+                    <input type="hidden" id="editQuestId">
+                    <div class="form-group">
+                        <label for="questTask">Aufgabe *</label>
+                        <input type="text" id="questTask" placeholder="z.B. Sammle Diamanten" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="questItems">Items & Anzahl *</label>
+                        <input type="text" id="questItems" placeholder="z.B. 64 Diamanten" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="questShards">Shards *</label>
+                        <input type="number" id="questShards" placeholder="z.B. 150" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="questType">Zeitraum *</label>
+                        <select id="questType" required>
+                            <option value="daily">Täglich</option>
+                            <option value="weekly">Wöchentlich</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="questDate">Datum *</label>
+                        <input type="date" id="questDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (Enter drücken zum Hinzufügen)</label>
+                        <div class="tags-input-container" id="tagsContainer">
+                            <input type="text" class="tag-input" id="tagInput" placeholder="Tag eingeben und Enter drücken">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" id="saveQuestBtn">Quest speichern</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn" onclick="cancelEdit()" style="display: none;">Abbrechen</button>
+                </form>
+            </div>
+
+            <div class="panel-box">
+                <h2>Alle Quests</h2>
+                <table class="quest-table" id="questsTable">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Zeitraum</th>
+                            <th>Aufgabe</th>
+                            <th>Items</th>
+                            <th>Shards</th>
+                            <th>Tags</th>
+                            <th>Aktionen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="questsTableBody">
+                        <!-- Wird dynamisch gefüllt -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Users Panel -->
+        <div id="usersPanel" class="content-panel">
+            <div class="panel-box">
+                <h2>Benutzer erstellen</h2>
+                <form onsubmit="saveUser(event)">
+                    <div class="form-group">
+                        <label for="newUsername">Benutzername *</label>
+                        <input type="text" id="newUsername" placeholder="Benutzername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Passwort *</label>
+                        <input type="password" id="newPassword" placeholder="Passwort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newRole">Rolle *</label>
+                        <select id="newRole" required>
+                            <option value="admin">Admin (Volle Rechte)</option>
+                            <option value="editor">Editor (Quests bearbeiten)</option>
+                            <option value="viewer">Viewer (Nur lesen)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Benutzer erstellen</button>
+                </form>
+            </div>
+
+            <div class="panel-box">
+                <h2>Alle Benutzer</h2>
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Benutzername</th>
+                            <th>Rolle</th>
+                            <th>Aktionen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Wird dynamisch gefüllt -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initial Setup - Hauptadmin erstellen falls noch nicht vorhanden
+        function initializeSystem() {
+            let users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
+            if (users.length === 0) {
+                // Erstelle Hauptadmins
+                users = [
+                    { username: 'Kr3pp1', password: 'admin123', role: 'admin' },
+                    { username: 'xXLuckyGamer04Xx', password: 'admin123', role: 'admin' }
+                ];
+                localStorage.setItem('opsucht_users', JSON.stringify(users));
+            }
+        }
+
+        // Login
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                showAdminDashboard();
+            } else {
+                document.getElementById('loginError').textContent = 'Ungültiger Benutzername oder Passwort!';
+            }
+        }
+
+        // Logout
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        // Admin Dashboard anzeigen
+        function showAdminDashboard() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            if (!currentUser) return;
+
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            document.getElementById('currentUser').textContent = `👤 ${currentUser.username} (${currentUser.role})`;
+
+            // User-Tab nur für Admins anzeigen
+            if (currentUser.role !== 'admin') {
+                document.getElementById('usersTab').style.display = 'none';
+            }
+
+            // Datum auf heute setzen
+            document.getElementById('questDate').valueAsDate = new Date();
+
+            renderQuests();
+            renderUsers();
+        }
+
+        // Check Session beim Laden
+        window.onload = function() {
+            initializeSystem();
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (currentUser) {
+                showAdminDashboard();
+            }
+        };
+
+        // Tab Wechsel
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Panel').classList.add('active');
+        }
+
+        // Tags Input Handling
+        const tagInput = document.getElementById('tagInput');
+        const tagsContainer = document.getElementById('tagsContainer');
+        let currentTags = [];
+
+        tagInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && tagInput.value.trim()) {
+                e.preventDefault();
+                const tag = tagInput.value.trim();
+                if (!currentTags.includes(tag)) {
+                    currentTags.push(tag);
+                    renderTags();
+                }
+                tagInput.value = '';
+            }
+        });
+
+        function renderTags() {
+            const tagItems = currentTags.map(tag => `
+                <div class="tag-item">
+                    ${tag}
+                    <button type="button" onclick="removeTag('${tag}')">×</button>
+                </div>
+            `).join('');
+            
+            tagsContainer.innerHTML = tagItems + '<input type="text" class="tag-input" id="tagInput" placeholder="Tag eingeben und Enter drücken">';
+            
+            // Event Listener neu hinzufügen
+            const newTagInput = document.getElementById('tagInput');
+            newTagInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && newTagInput.value.trim()) {
+                    e.preventDefault();
+                    const tag = newTagInput.value.trim();
+                    if (!currentTags.includes(tag)) {
+                        currentTags.push(tag);
+                        renderTags();
+                    }
+                    newTagInput.value = '';
+                }
+            });
+        }
+
+        function removeTag(tag) {
+            currentTags = currentTags.filter(t => t !== tag);
+            renderTags();
+        }
+
+        // Quest speichern
+        function saveQuest(e) {
+            e.preventDefault();
+            
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            if (currentUser.role === 'viewer') {
+                alert('Du hast keine Berechtigung, Quests zu bearbeiten!');
+                return;
+            }
+
+            let quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+            const editId = document.getElementById('editQuestId').value;
+
+            const quest = {
+                id: editId || Date.now().toString(),
+                task: document.getElementById('questTask').value,
+                items: document.getElementById('questItems').value,
+                shards: parseInt(document.getElementById('questShards').value),
+                type: document.getElementById('questType').value,
+                date: document.getElementById('questDate').value,
+                tags: currentTags
+            };
+
+            if (editId) {
+                const index = quests.findIndex(q => q.id === editId);
+                quests[index] = quest;
+            } else {
+                quests.push(quest);
+            }
+
+            localStorage.setItem('opsucht_quests', JSON.stringify(quests));
+            
+            // Form zurücksetzen
+            e.target.reset();
+            currentTags = [];
+            renderTags();
+            document.getElementById('editQuestId').value = '';
+            document.getElementById('saveQuestBtn').textContent = 'Quest speichern';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+            document.getElementById('questDate').valueAsDate = new Date();
+
+            renderQuests();
+            alert('Quest erfolgreich gespeichert!');
+        }
+
+        // Quest bearbeiten
+        function editQuest(id) {
+            const quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+            const quest = quests.find(q => q.id === id);
+            
+            if (quest) {
+                document.getElementById('editQuestId').value = quest.id;
+                document.getElementById('questTask').value = quest.task;
+                document.getElementById('questItems').value = quest.items;
+                document.getElementById('questShards').value = quest.shards;
+                document.getElementById('questType').value = quest.type;
+                document.getElementById('questDate').value = quest.date;
+                currentTags = [...quest.tags];
+                renderTags();
+                
+                document.getElementById('saveQuestBtn').textContent = 'Quest aktualisieren';
+                document.getElementById('cancelEditBtn').style.display = 'block';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Quest löschen
+        function deleteQuest(id) {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            if (currentUser.role === 'viewer') {
+                alert('Du hast keine Berechtigung, Quests zu löschen!');
+                return;
+            }
+
+            if (confirm('Möchtest du diese Quest wirklich löschen?')) {
+                let quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+                quests = quests.filter(q => q.id !== id);
+                localStorage.setItem('opsucht_quests', JSON.stringify(quests));
+                renderQuests();
+                alert('Quest gelöscht!');
+            }
+        }
+
+        // Bearbeitung abbrechen
+        function cancelEdit() {
+            document.getElementById('editQuestId').value = '';
+            document.getElementById('questTask').value = '';
+            document.getElementById('questItems').value = '';
+            document.getElementById('questShards').value = '';
+            document.getElementById('questType').value = 'daily';
+            document.getElementById('questDate').valueAsDate = new Date();
+            currentTags = [];
+            renderTags();
+            document.getElementById('saveQuestBtn').textContent = 'Quest speichern';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+        }
+
+        // Quests anzeigen
+        function renderQuests() {
+            const quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+            const tbody = document.getElementById('questsTableBody');
+            
+            if (quests.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #999;">Noch keine Quests vorhanden</td></tr>';
+                return;
+            }
+
+            quests.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            tbody.innerHTML = quests.map(quest => `
+                <tr>
+                    <td>${formatDate(quest.date)}</td>
+                    <td><span class="quest-type ${quest.type}">${quest.type === 'daily' ? 'Täglich' : 'Wöchentlich'}</span></td>
+                    <td><strong>${escapeHtml(quest.task)}</strong></td>
+                    <td>${escapeHtml(quest.items)}</td>
+                    <td><strong>${quest.shards} 💎</strong></td>
+                    <td>
+                        <div class="quest-tags-cell">
+                            ${quest.tags.map(tag => `<span class="quest-tag">${escapeHtml(tag)}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-small" onclick="editQuest('${quest.id}')">✏️ Bearbeiten</button>
+                            <button class="btn btn-small btn-danger" onclick="deleteQuest('${quest.id}')">🗑️ Löschen</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // User speichern
+        function saveUser(e) {
+            e.preventDefault();
+            
+            let users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
+            const username = document.getElementById('newUsername').value;
+            
+            if (users.find(u => u.username === username)) {
+                alert('Dieser Benutzername existiert bereits!');
+                return;
+            }
+
+            const user = {
+                username: username,
+                password: document.getElementById('newPassword').value,
+                role: document.getElementById('newRole').value
+            };
+
+            users.push(user);
+            localStorage.setItem('opsucht_users', JSON.stringify(users));
+            
+            e.target.reset();
+            renderUsers();
+            alert('Benutzer erfolgreich erstellt!');
+        }
+
+        // User löschen
+        function deleteUser(username) {
+            // Hauptadmins können nicht gelöscht werden
+            if (username === 'Kr3pp1' || username === 'xXLuckyGamer04Xx') {
+                alert('Hauptadmins können nicht gelöscht werden!');
+                return;
+            }
+
+            if (confirm(`Möchtest du den Benutzer "${username}" wirklich löschen?`)) {
+                let users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
+                users = users.filter(u => u.username !== username);
+                localStorage.setItem('opsucht_users', JSON.stringify(users));
+                renderUsers();
+                alert('Benutzer gelöscht!');
+            }
+        }
+
+        // Users anzeigen
+        function renderUsers() {
+            const users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
+            const tbody = document.getElementById('usersTableBody');
+
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td><strong>${escapeHtml(user.username)}</strong></td>
+                    <td><span class="role-badge ${user.role}">${getRoleText(user.role)}</span></td>
+                    <td>
+                        ${(user.username !== 'Kr3pp1' && user.username !== 'xXLuckyGamer04Xx') ? 
+                            `<button class="btn btn-small btn-danger" onclick="deleteUser('${user.username}')">🗑️ Löschen</button>` : 
+                            '<span style="color: #999;">Hauptadmin</span>'
+                        }
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getRoleText(role) {
+            switch(role) {
+                case 'admin': return 'Admin';
+                case 'editor': return 'Editor';
+                case 'viewer': return 'Viewer';
+                default: return role;
+            }
+        }
+
+        // Datum formatieren
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('de-DE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // HTML escapen
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPSUCHT Quest Übersicht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .filter-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-bar select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .filter-bar select:hover {
+            border-color: #667eea;
+        }
+
+        .filter-bar select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .tag-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .tag-filter-item {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .tag-filter-item:hover {
+            background: #e0e0e0;
+        }
+
+        .tag-filter-item.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .quests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .quest-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .quest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .quest-type {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .quest-type.daily {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+
+        .quest-type.weekly {
+            background: #74b9ff;
+            color: #0984e3;
+        }
+
+        .quest-title {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .quest-items {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .quest-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .quest-shards {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .quest-date {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .quest-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quest-tag {
+            padding: 5px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .admin-link {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .admin-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .no-quests {
+            background: white;
+            border-radius: 15px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .no-quests h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .no-quests p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .quests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            .admin-link {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 OPSUCHT Quest Übersicht</h1>
+            <p>Alle täglichen und wöchentlichen Quests</p>
+        </div>
+
+        <div class="filter-bar">
+            <select id="typeFilter">
+                <option value="all">Alle Zeiträume</option>
+                <option value="daily">Täglich</option>
+                <option value="weekly">Wöchentlich</option>
+            </select>
+
+            <select id="sortBy">
+                <option value="date-desc">Neueste zuerst</option>
+                <option value="date-asc">Älteste zuerst</option>
+                <option value="shards-desc">Meiste Shards</option>
+                <option value="shards-asc">Wenigste Shards</option>
+            </select>
+
+            <div class="tag-filter" id="tagFilter">
+                <!-- Tags werden hier dynamisch eingefügt -->
+            </div>
+        </div>
+
+        <div class="quests-grid" id="questsGrid">
+            <!-- Quest Cards werden hier dynamisch eingefügt -->
+        </div>
+    </div>
+
+    <a href="admin.html" class="admin-link">🔐 Admin</a>
+
+    <script>
+        // Quest Daten aus localStorage laden
+        function loadQuests() {
+            const quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+            return quests;
+        }
+
+        // Alle Tags sammeln
+        function getAllTags() {
+            const quests = loadQuests();
+            const tagsSet = new Set();
+            quests.forEach(quest => {
+                quest.tags.forEach(tag => tagsSet.add(tag));
+            });
+            return Array.from(tagsSet).sort();
+        }
+
+        // Tag Filter anzeigen
+        function renderTagFilter() {
+            const tagFilter = document.getElementById('tagFilter');
+            const tags = getAllTags();
+            
+            if (tags.length === 0) {
+                tagFilter.innerHTML = '<span style="color: #999;">Keine Tags vorhanden</span>';
+                return;
+            }
+
+            tagFilter.innerHTML = tags.map(tag => `
+                <div class="tag-filter-item" data-tag="${tag}">${tag}</div>
+            `).join('');
+
+            // Tag Filter Event Listeners
+            document.querySelectorAll('.tag-filter-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                    renderQuests();
+                });
+            });
+        }
+
+        // Quests anzeigen
+        function renderQuests() {
+            const questsGrid = document.getElementById('questsGrid');
+            let quests = loadQuests();
+
+            // Filter nach Typ
+            const typeFilter = document.getElementById('typeFilter').value;
+            if (typeFilter !== 'all') {
+                quests = quests.filter(q => q.type === typeFilter);
+            }
+
+            // Filter nach Tags
+            const activeTags = Array.from(document.querySelectorAll('.tag-filter-item.active'))
+                .map(item => item.dataset.tag);
+            if (activeTags.length > 0) {
+                quests = quests.filter(q => 
+                    activeTags.some(tag => q.tags.includes(tag))
+                );
+            }
+
+            // Sortierung
+            const sortBy = document.getElementById('sortBy').value;
+            switch(sortBy) {
+                case 'date-desc':
+                    quests.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'date-asc':
+                    quests.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'shards-desc':
+                    quests.sort((a, b) => b.shards - a.shards);
+                    break;
+                case 'shards-asc':
+                    quests.sort((a, b) => a.shards - b.shards);
+                    break;
+            }
+
+            // Quests anzeigen
+            if (quests.length === 0) {
+                questsGrid.innerHTML = `
+                    <div class="no-quests" style="grid-column: 1 / -1;">
+                        <h2>Keine Quests gefunden</h2>
+                        <p>Es wurden noch keine Quests eingetragen oder deine Filter passen zu keiner Quest.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            questsGrid.innerHTML = quests.map(quest => `
+                <div class="quest-card">
+                    <span class="quest-type ${quest.type}">${quest.type === 'daily' ? '📅 Täglich' : '📆 Wöchentlich'}</span>
+                    <div class="quest-title">${escapeHtml(quest.task)}</div>
+                    <div class="quest-items">📦 ${escapeHtml(quest.items)}</div>
+                    <div class="quest-info">
+                        <span class="quest-shards">💎 ${quest.shards} Shards</span>
+                        <span class="quest-date">${formatDate(quest.date)}</span>
+                    </div>
+                    ${quest.tags.length > 0 ? `
+                        <div class="quest-tags">
+                            ${quest.tags.map(tag => `<span class="quest-tag">${escapeHtml(tag)}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Datum formatieren
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('de-DE', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // HTML escapen
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event Listeners
+        document.getElementById('typeFilter').addEventListener('change', renderQuests);
+        document.getElementById('sortBy').addEventListener('change', renderQuests);
+
+        // Initial laden
+        renderTagFilter();
+        renderQuests();
+
+        // Auto-Refresh bei localStorage Änderungen (wenn Admin-Seite speichert)
+        window.addEventListener('storage', () => {
+            renderTagFilter();
+            renderQuests();
+        });
+    </script>
+</body>
+</html>
