@@ -3,7 +3,7 @@
     "id": "1774385958225",
     "task": "Items abgeben (Goldblock)",
     "steps": [
-      "16x GoldblÃÂ¶cke abgeben"
+      "16x GoldblÃÂÃÂ¶cke abgeben"
     ],
     "shards": 325,
     "type": "daily",
@@ -17,29 +17,29 @@
     "tags": [
       "Items abgeben"
     ],
-    "items": "16x GoldblÃÂ¶cke abgeben"
+    "items": "16x GoldblÃÂÃÂ¶cke abgeben"
   },
   {
     "id": "1774386033465",
-    "task": "Custom-Mobs tÃÂ¶ten (GrÃÂ¼ner Wellensittich)",
+    "task": "Custom-Mobs tÃÂÃÂ¶ten (GrÃÂÃÂ¼ner Wellensittich)",
     "steps": [
-      "1x GrÃÂ¼nen Wellensittich tÃÂ¶ten"
+      "1x GrÃÂÃÂ¼nen Wellensittich tÃÂÃÂ¶ten"
     ],
     "shards": 750,
     "type": "daily",
     "date": "2026-03-23",
     "haupttags": [
-      "Custom-Mobs tÃÂ¶ten",
-      "Mobs tÃÂ¶ten"
+      "Custom-Mobs tÃÂÃÂ¶ten",
+      "Mobs tÃÂÃÂ¶ten"
     ],
     "nebentags": [
       "Wellensittich"
     ],
     "tags": [
-      "Custom-Mobs tÃÂ¶ten",
-      "Mobs tÃÂ¶ten"
+      "Custom-Mobs tÃÂÃÂ¶ten",
+      "Mobs tÃÂÃÂ¶ten"
     ],
-    "items": "1x GrÃÂ¼nen Wellensittich tÃÂ¶ten"
+    "items": "1x GrÃÂÃÂ¼nen Wellensittich tÃÂÃÂ¶ten"
   },
   {
     "id": "1774386064177",
@@ -82,7 +82,7 @@
       "Items abbauen",
       "Items abgeben"
     ],
-    "items": "2000x Kies abbauen Â· 3000x Kies abgeben"
+    "items": "2000x Kies abbauen ÃÂ· 3000x Kies abgeben"
   },
   {
     "id": "1774386198296",
