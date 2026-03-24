@@ -3,7 +3,7 @@
     "id": "1774385958225",
     "task": "Items abgeben (Goldblock)",
     "steps": [
-      "16x Goldblöcke abgeben"
+      "16x GoldblÃ¶cke abgeben"
     ],
     "shards": 325,
     "type": "daily",
@@ -17,11 +17,11 @@
     "tags": [
       "Items abgeben"
     ],
-    "items": "16x Goldblöcke abgeben"
+    "items": "16x GoldblÃ¶cke abgeben"
   },
   {
     "id": "1774386033465",
-    "task": "Custom-Mobs töten (Grüner Wellensittich)",
+    "task": "Custom-Mobs töten (GrÃ¼ner Wellensittich)",
     "steps": [
       "1x Grünen Wellensittich töten"
     ],
@@ -82,11 +82,11 @@
       "Items abbauen",
       "Items abgeben"
     ],
-    "items": "2000x Kies abbauen ÃÂÃÂ· 3000x Kies abgeben"
+    "items": "2000x Kies abbauen ÃÂÃÂÃÂÃÂ· 3000x Kies abgeben"
   },
   {
     "id": "1774386198296",
-    "task": "Blöcke abbauen (Schneeblock)",
+    "task": "BlÃ¶cke abbauen (Schneeblock)",
     "steps": [
       "10000x Schneeblock abbauen"
     ],
@@ -126,7 +126,7 @@
   },
   {
     "id": "1774386547160",
-    "task": "Blöcke platzieren (Sandstein)",
+    "task": "BlÃ¶cke platzieren (Sandstein)",
     "steps": [
       "?????"
     ],
