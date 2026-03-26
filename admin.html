@@ -18,7 +18,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
 
-/* ── SCREENS ── */
 .screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .card{width:100%;max-width:440px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .card-wide{max-width:560px}
@@ -26,7 +25,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .card h1{text-align:center;font-size:20px;font-weight:700;margin-bottom:4px}
 .card-sub{text-align:center;font-size:12px;color:var(--text3);margin-bottom:28px}
 
-/* ── INFO BOX ── */
 .info-box{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:14px;margin-bottom:20px;font-size:12px;color:var(--text2);line-height:1.7}
 .info-box strong{color:var(--text)}
 .info-box code{background:var(--bg4);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--cyan)}
@@ -34,7 +32,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .info-box a:hover{text-decoration:underline}
 .enc-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--green);margin-bottom:16px}
 
-/* ── FORM ── */
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
 .fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
@@ -43,7 +40,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .fg select option{background:var(--bg3)}
 .fg-hint{font-size:10px;color:var(--text3);margin-top:5px;line-height:1.5}
 
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
 .btn-primary{background:linear-gradient(135deg,var(--cyan) 0%,#0bc5a8 100%);color:#0e1117;width:100%}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
@@ -59,7 +55,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .error-msg{font-size:12px;color:var(--red);text-align:center;margin-top:10px;min-height:18px}
 .success-msg{font-size:12px;color:var(--green);margin-top:10px;min-height:18px}
 
-/* ── HEADER ── */
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .header-inner{max-width:var(--max-w);margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px}
 .h-icon{width:36px;height:36px;background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
@@ -68,7 +63,6 @@ header{background:var(--bg2);border-bottom:1px solid var(--border);position:stic
 .user-chip{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:5px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px}
 .role-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
-/* ── NAV ── */
 nav{background:var(--bg2);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 20px;display:flex}
 .nav-tab{background:none;border:none;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:12px 18px;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
@@ -76,16 +70,13 @@ nav{background:var(--bg2);border-bottom:1px solid var(--border)}
 .nav-tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 .nav-tab:disabled{opacity:.3;cursor:not-allowed}
 
-/* ── MAIN ── */
 main{padding:20px;max-width:var(--max-w);margin:0 auto}
 
-/* ── PANELS ── */
 .panel-box{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
 .panel-box h2{font-size:15px;font-weight:700;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
 
-/* ── STEPS ── */
 .steps-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
 .step-row{display:flex;gap:8px;align-items:center}
 .step-num{width:24px;height:24px;background:var(--bg4);border:1px solid var(--border2);border-radius:6px;font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Share Tech Mono',monospace}
@@ -97,7 +88,11 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .add-step-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .add-step-btn:disabled{opacity:.3;cursor:not-allowed}
 
-/* ── QUEUE ── */
+/* Weekly Datums-Bereich */
+.weekly-dates{background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:10px;padding:14px;margin-top:8px;display:none}
+.weekly-dates.visible{display:block}
+.weekly-dates-label{font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+
 .queue-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
 .queue-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .queue-header h2{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
@@ -112,7 +107,6 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .queue-push-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .push-count{font-size:12px;color:var(--text3)}
 
-/* ── TABLE ── */
 .data-table{width:100%;border-collapse:collapse;margin-top:4px;font-size:13px}
 .data-table th{background:var(--bg3);color:var(--text3);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border2)}
 .data-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
@@ -123,7 +117,6 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .steps-cell-item{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
 .steps-cell-item::before{content:'→';color:var(--text3);font-size:10px}
 
-/* ── BADGES ── */
 .type-badge{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
 .type-badge.daily{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
 .type-badge.weekly{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
@@ -133,7 +126,6 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .role-badge.editor{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
 .role-badge.viewer{background:var(--bg3);border:1px solid var(--border2);color:var(--text3)}
 
-/* ── TAGS ── */
 .tag-pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;margin:2px}
 .tag-pill.haupt{background:var(--purple-dim);border:1px solid rgba(168,85,247,.25);color:var(--purple)}
 .tag-pill.neben{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2);color:var(--text3)}
@@ -151,7 +143,6 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .tag-input{background:none;border:none;outline:none;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;min-width:100px;flex:1;padding:2px 4px}
 .tag-input::placeholder{color:var(--text3)}
 
-/* ── MISC ── */
 .action-row{display:flex;gap:8px}
 .hidden{display:none!important}
 .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
@@ -163,144 +154,82 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .save-indicator.saved{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 .save-indicator.error{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
 
+/* Datum-Preview Badge */
+.date-preview{font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:6px;padding:4px 10px;margin-top:6px;display:inline-block}
+
 @media(max-width:768px){
   .stats-bar{grid-template-columns:1fr 1fr}
   .h-user .user-chip span:not(.role-dot){display:none}
   .form-grid{grid-template-columns:1fr}
   main{padding:12px}
   .panel-box{padding:16px;border-radius:10px}
-  .panel-box h2{font-size:13px;margin-bottom:14px}
 }
-
 @media(max-width:500px){
-  /* ── Stats ── */
   .stats-bar{grid-template-columns:1fr 1fr;gap:8px}
   .stat-card{padding:12px 14px}
   .stat-value{font-size:18px}
-
-  /* ── Header kompakt ── */
   .header-inner{padding:10px 14px;gap:8px}
   .h-icon{width:30px;height:30px;font-size:14px}
   .h-title{font-size:13px}
   .h-user{gap:6px}
   .h-user .btn-sm{padding:5px 9px;font-size:11px}
-
-  /* ── Nav ── */
   .nav-tab{padding:10px 12px;font-size:12px;gap:4px}
-
-  /* ── Formular ── */
   .form-grid{grid-template-columns:1fr}
   main{padding:10px 12px}
   .panel-box{padding:14px 12px;margin-bottom:14px}
-
-  /* ── Tabelle → Mobile Cards ── */
   .data-table{display:block}
   .data-table thead{display:none}
   .data-table tbody{display:flex;flex-direction:column;gap:8px}
-  .data-table tr{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:4px 8px;
-    background:var(--bg3);
-    border:1px solid var(--border2);
-    border-radius:10px;
-    padding:10px 12px;
-  }
+  .data-table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 12px;}
   .data-table tr:hover td{background:transparent}
-  .data-table td{
-    display:block;
-    padding:0;
-    border:none;
-    font-size:12px;
-    line-height:1.5;
-  }
-  /* Aufgabe + Einträge nehmen volle Breite */
-  .data-table td:nth-child(3),
-  .data-table td:nth-child(4){
-    grid-column:1 / -1;
-    border-top:1px solid var(--border);
-    padding-top:6px;
-    margin-top:2px;
-  }
-  /* Aktionen volle Breite */
-  .data-table td:last-child{
-    grid-column:1 / -1;
-    border-top:1px solid var(--border);
-    padding-top:8px;
-    margin-top:2px;
-  }
-  .steps-cell{gap:2px}
-  .steps-cell-item{font-size:11px}
-
-  /* ── Queue Items ── */
+  .data-table td{display:block;padding:0;border:none;font-size:12px;line-height:1.5;}
+  .data-table td:nth-child(3),.data-table td:nth-child(4){grid-column:1 / -1;border-top:1px solid var(--border);padding-top:6px;margin-top:2px;}
+  .data-table td:last-child{grid-column:1 / -1;border-top:1px solid var(--border);padding-top:8px;margin-top:2px;}
   .queue-item{flex-direction:column;gap:6px}
-  .queue-item-title{font-size:12px}
   .queue-push-row{flex-direction:column;align-items:stretch}
-
-  /* ── Buttons ── */
   .btn{font-size:12px;padding:9px 14px}
   .btn-sm{padding:5px 10px;font-size:11px}
   .action-row{gap:5px}
-
-  /* ── Tags ── */
-  .tags-wrap{min-height:38px}
-  .tag-input{font-size:12px;min-width:80px}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 1: ERSTEINRICHTUNG (nur einmalig)
-     Wird gezeigt wenn noch kein verschlüsselter Token
-     im Repo vorhanden ist.
-════════════════════════════════════════════════════════ -->
+<!-- SETUP SCREEN -->
 <div id="setupScreen" class="screen hidden">
   <div class="card card-wide">
     <div class="card-icon">⚙️</div>
     <h1>Ersteinrichtung</h1>
     <p class="card-sub">GitHub Token wird AES-256-GCM verschlüsselt im Repo gespeichert</p>
-
     <div class="info-box">
       <strong>So funktioniert es:</strong><br>
-      Der GitHub-Token wird mit einem <strong>App-Passwort</strong> verschlüsselt (AES-256-GCM)
-      und als <code>config.enc</code> im Repo gespeichert. Im Repo steht nur unlesbarer Chiffretext.<br><br>
-      Jeder Benutzer mit Edit-Rechten (Editor, Admin, Owner) gibt beim Login einmalig das
-      App-Passwort ein — danach läuft alles automatisch.<br><br>
+      Der GitHub-Token wird mit einem <strong>App-Passwort</strong> verschlüsselt (AES-256-GCM) und als <code>config.enc</code> im Repo gespeichert.<br><br>
       <strong>1.</strong> Gehe zu <a href="https://github.com/settings/tokens/new" target="_blank">github.com → Settings → Tokens</a><br>
       <strong>2.</strong> Neuen Token erstellen: Scope <code>repo</code> aktivieren<br>
-      <strong>3.</strong> Token + ein App-Passwort festlegen (z.B. <code>shard2024</code>)<br>
+      <strong>3.</strong> Token + ein App-Passwort festlegen<br>
       <strong>4.</strong> App-Passwort an alle Admins/Editoren weitergeben
     </div>
-
     <div class="fg">
       <label>GitHub Personal Access Token</label>
       <input type="password" id="setupToken" placeholder="ghp_xxxxxxxxxxxxxxxxxx"/>
       <div class="fg-hint">Wird sofort verschlüsselt — niemals im Klartext gespeichert</div>
     </div>
     <div class="fg">
-      <label>App-Passwort <span style="font-weight:400;text-transform:none;letter-spacing:0">(frei wählbar, z.B. „shard2024")</span></label>
-      <input type="password" id="setupAppSecret" placeholder="App-Passwort festlegen"/>
-      <div class="fg-hint">Dieses Passwort gilt für alle Benutzer mit Edit-Rechten — <strong>nicht</strong> dein persönliches Login-Passwort. Einmalig festlegen und sicher teilen.</div>
+      <label>App-Passwort</label>
+      <input type="password" id="setupAppSecret" placeholder="App-Passwort festlegen (mind. 6 Zeichen)"/>
+      <div class="fg-hint">Für alle Benutzer mit Edit-Rechten — sicher teilen.</div>
     </div>
-    <button class="btn btn-primary" onclick="setupEncryptedToken()">🔐 Token verschlüsseln & im Repo speichern</button>
+    <button class="btn btn-primary" onclick="setupEncryptedToken()">🔐 Token verschlüsseln &amp; im Repo speichern</button>
     <div class="error-msg" id="setupError"></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 2: BOOTSTRAP (einmalig: Repo-URL eingeben)
-     Nur beim allerersten Start ohne gespeicherte Repo-Info
-════════════════════════════════════════════════════════ -->
+<!-- BOOTSTRAP SCREEN -->
 <div id="bootstrapScreen" class="screen hidden">
   <div class="card card-wide">
     <div class="card-icon">🔗</div>
     <h1>Repo-Verbindung</h1>
-    <p class="card-sub">Einmalige Einrichtung — wird lokal gespeichert</p>
-    <div class="info-box">
-      Gib die GitHub-Repo-Informationen ein. Diese werden nur in deinem Browser gespeichert
-      (kein Passwort, kein Token — nur User & Repo-Name).
-    </div>
+    <p class="card-sub">Einmalige Einrichtung</p>
     <div class="form-grid">
       <div class="fg">
         <label>GitHub Benutzername</label>
@@ -316,9 +245,7 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 3: LOGIN
-════════════════════════════════════════════════════════ -->
+<!-- LOGIN SCREEN -->
 <div id="loginScreen" class="screen hidden">
   <div class="card">
     <div class="card-icon">🔐</div>
@@ -328,7 +255,7 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
     <div class="fg">
       <label>Benutzername</label>
       <input type="text" id="loginUsername" placeholder="Benutzername" autocomplete="username"
-        onblur="checkShowAppSecret()" oninput="checkShowAppSecret()"/>
+        oninput="checkShowAppSecret()"/>
     </div>
     <div class="fg">
       <label>Passwort</label>
@@ -346,11 +273,8 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     DASHBOARD
-════════════════════════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div id="dashboard" class="hidden">
-
   <header>
     <div class="header-inner">
       <div class="h-icon">📋</div>
@@ -376,7 +300,6 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
   </nav>
 
   <main>
-
     <!-- QUESTS -->
     <div id="panelQuests">
       <div class="stats-bar" id="statsBar"></div>
@@ -395,22 +318,41 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
           </div>
           <div class="fg">
             <label>Zeitraum *</label>
-            <select id="questType">
+            <select id="questType" onchange="onTypeChange()">
               <option value="daily">📅 Täglich</option>
               <option value="weekly">📆 Wöchentlich</option>
             </select>
           </div>
           <div class="fg">
-            <label>Datum *</label>
-            <input type="date" id="questDate"/>
+            <label>Startdatum *</label>
+            <input type="date" id="questDate" oninput="onDateChange()"/>
+            <div class="date-preview" id="datePreview" style="display:none"></div>
           </div>
         </div>
 
-        <div class="fg" style="margin-top:4px">
+        <!-- Weekly Enddatum -->
+        <div class="weekly-dates" id="weeklyDatesBox">
+          <div class="weekly-dates-label">📆 Wöchentlicher Zeitraum</div>
+          <div class="form-grid">
+            <div class="fg" style="margin-bottom:0">
+              <label>Startdatum (Freitag)</label>
+              <input type="date" id="weeklyStart" oninput="onWeeklyStartChange()"/>
+              <div class="fg-hint" id="weeklyStartHint"></div>
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <label>Enddatum (Donnerstag)</label>
+              <input type="date" id="weeklyEnd"/>
+              <div class="fg-hint" id="weeklyEndHint"></div>
+            </div>
+          </div>
+          <div class="date-preview" id="weeklyPreview" style="margin-top:10px;display:none"></div>
+        </div>
+
+        <div class="fg" style="margin-top:16px">
           <label>Einträge <span style="font-size:10px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--text3)">(max. 5 Schritte)</span></label>
           <div class="steps-list" id="stepsList"></div>
           <button class="add-step-btn" id="addStepBtn" onclick="addStep()">＋ Eintrag hinzufügen</button>
-          <div class="fg-hint">z.B. „200x Kies abbauen", dann „300x Kies abgeben"</div>
+          <div class="fg-hint">z.B. "200x Kies abbauen", dann "300x Kies abgeben"</div>
         </div>
 
         <div class="form-grid" style="margin-top:4px">
@@ -517,21 +459,17 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
       <div class="panel-box">
         <h2>🔐 Token-Verwaltung</h2>
         <div class="info-box">
-          <strong>Aktueller Status:</strong> Der GitHub-Token ist AES-256-GCM verschlüsselt
-          als <code>config.enc</code> im Repo gespeichert.<br>
-          Er kann nur mit dem Besitzer-Passwort entschlüsselt werden.
-          Im Repo sieht man nur unlesbaren Chiffretext.<br><br>
-          Um den Token zu erneuern: Neuen Token + Passwort eingeben und neu verschlüsseln.
+          <strong>Aktueller Status:</strong> Der GitHub-Token ist AES-256-GCM verschlüsselt als <code>config.enc</code> im Repo gespeichert.
         </div>
         <div class="fg" style="max-width:500px">
           <label>Neuer GitHub Token</label>
           <input type="password" id="newTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxx"/>
         </div>
         <div class="fg" style="max-width:500px">
-          <label>Neues App-Passwort (zum Verschlüsseln)</label>
+          <label>Neues App-Passwort</label>
           <input type="password" id="newTokenPassword" placeholder="App-Passwort"/>
         </div>
-        <button class="btn btn-secondary" style="max-width:240px" onclick="reencryptToken()">🔐 Token neu verschlüsseln & speichern</button>
+        <button class="btn btn-secondary" style="max-width:240px" onclick="reencryptToken()">🔐 Token neu verschlüsseln</button>
         <div class="success-msg" id="tokenMsg"></div>
       </div>
 
@@ -551,148 +489,100 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
         <div class="success-msg" id="repoMsg"></div>
       </div>
     </div>
-
   </main>
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════════
-   OPSUCHT Quest Admin — von xXLuckyGamer04Xx
-   Version 2.4.1
+/* OPSUCHT Quest Admin — von xXLuckyGamer04Xx — Version 2.5.0 */
 
-   SICHERHEITSARCHITEKTUR:
-   ─────────────────────────────────────────────────────────
-   • Passwörter: SHA-256 Hash (niemals Klartext)
-   • GitHub-Token: AES-256-GCM verschlüsselt
-     - Schlüssel wird aus Passwort + Salt via PBKDF2 abgeleitet
-     - Gespeichert als config.enc im GitHub-Repo
-     - Im Repo / localStorage steht nur Chiffretext
-     - Entschlüsselung nur möglich mit korrektem Passwort
-   ══════════════════════════════════════════════════════════ */
-
-// ── REPO CONFIG (nur nicht-sensible Daten im localStorage) ──
+// ── REPO CONFIG ──
 function getRepoConfig(){
-  return {
-    user: localStorage.getItem('op_gh_user') || '',
-    repo: localStorage.getItem('op_gh_repo') || ''
-  };
+  return { user: localStorage.getItem('op_gh_user')||'', repo: localStorage.getItem('op_gh_repo')||'' };
 }
-function setRepoConfig(user, repo){
-  localStorage.setItem('op_gh_user', user);
-  localStorage.setItem('op_gh_repo', repo);
+function setRepoConfig(user,repo){
+  localStorage.setItem('op_gh_user',user);
+  localStorage.setItem('op_gh_repo',repo);
 }
 function apiBase(){
-  const {user,repo} = getRepoConfig();
+  const {user,repo}=getRepoConfig();
   return `https://api.github.com/repos/${user}/${repo}/contents/`;
 }
 
-// ── RUNTIME (nur in sessionStorage, nur für aktive Session) ──
-function getSessionToken(){ return sessionStorage.getItem('op_rt_token') || ''; }
-function setSessionToken(t){ sessionStorage.setItem('op_rt_token', t); }
+// ── SESSION ──
+function getSessionToken(){ return sessionStorage.getItem('op_rt_token')||''; }
+function setSessionToken(t){ sessionStorage.setItem('op_rt_token',t); }
 function clearSession(){ sessionStorage.clear(); }
 
-/* ══════════════════════════════════════════════════════════
-   KRYPTOGRAFIE — AES-256-GCM + PBKDF2
-   ══════════════════════════════════════════════════════════ */
-
-// Schlüssel aus Passwort ableiten (PBKDF2 mit 200.000 Iterationen)
-async function deriveKey(password, saltBytes){
-  const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
-    'raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']
-  );
+/* ══ KRYPTOGRAFIE ══ */
+async function deriveKey(password,saltBytes){
+  const enc=new TextEncoder();
+  const keyMaterial=await crypto.subtle.importKey('raw',enc.encode(password),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey(
-    { name:'PBKDF2', salt:saltBytes, iterations:200000, hash:'SHA-256' },
-    keyMaterial,
-    { name:'AES-GCM', length:256 },
-    false,
-    ['encrypt','decrypt']
+    {name:'PBKDF2',salt:saltBytes,iterations:200000,hash:'SHA-256'},
+    keyMaterial,{name:'AES-GCM',length:256},false,['encrypt','decrypt']
   );
 }
-
-// Token verschlüsseln → Base64-String (salt:iv:ciphertext)
-async function encryptToken(token, password){
-  const salt = crypto.getRandomValues(new Uint8Array(32));
-  const iv   = crypto.getRandomValues(new Uint8Array(12));
-  const key  = await deriveKey(password, salt);
-  const enc  = new TextEncoder();
-  const cipher = await crypto.subtle.encrypt(
-    { name:'AES-GCM', iv },
-    key,
-    enc.encode(token)
-  );
-  // Alles in einem Base64-String: salt(32) + iv(12) + ciphertext
-  const combined = new Uint8Array(salt.byteLength + iv.byteLength + cipher.byteLength);
-  combined.set(salt, 0);
-  combined.set(iv, 32);
-  combined.set(new Uint8Array(cipher), 44);
+async function encryptToken(token,password){
+  const salt=crypto.getRandomValues(new Uint8Array(32));
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const key=await deriveKey(password,salt);
+  const enc=new TextEncoder();
+  const cipher=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(token));
+  const combined=new Uint8Array(salt.byteLength+iv.byteLength+cipher.byteLength);
+  combined.set(salt,0); combined.set(iv,32); combined.set(new Uint8Array(cipher),44);
   return btoa(String.fromCharCode(...combined));
 }
-
-// Token entschlüsseln → Klartext oder null bei falschem Passwort
-async function decryptToken(encryptedB64, password){
+async function decryptToken(encryptedB64,password){
   try{
-    const combined = Uint8Array.from(atob(encryptedB64), c=>c.charCodeAt(0));
-    const salt     = combined.slice(0, 32);
-    const iv       = combined.slice(32, 44);
-    const cipher   = combined.slice(44);
-    const key      = await deriveKey(password, salt);
-    const plain    = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, cipher);
+    const combined=Uint8Array.from(atob(encryptedB64),c=>c.charCodeAt(0));
+    const salt=combined.slice(0,32);
+    const iv=combined.slice(32,44);
+    const cipher=combined.slice(44);
+    const key=await deriveKey(password,salt);
+    const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,cipher);
     return new TextDecoder().decode(plain);
-  } catch(e){
-    return null; // Falsches Passwort oder beschädigte Daten
-  }
+  }catch(e){ return null; }
 }
-
-// SHA-256 für Passwort-Hashing
 async function sha256(str){
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-/* ══════════════════════════════════════════════════════════
-   GITHUB API
-   ══════════════════════════════════════════════════════════ */
-
-async function ghGet(file, rawToken){
-  const token = rawToken || getSessionToken();
-  const r = await fetch(apiBase() + file, {
-    headers:{ 'Authorization':'Bearer '+token, 'Accept':'application/vnd.github.v3+json' }
-  });
-  if(!r.ok){
-    if(r.status===404) return { content:null, sha:null };
-    throw new Error('GitHub GET '+r.status);
-  }
-  const d = await r.json();
-  const content = d.content ? JSON.parse(atob(d.content.replace(/\n/g,''))) : null;
-  return { content, sha:d.sha, rawContent: d.content ? atob(d.content.replace(/\n/g,'')) : null };
+/* ══ GITHUB API ══ */
+// FIX: safeB64 — korrekte UTF-8 Base64-Kodierung für Umlaute (ä,ö,ü usw.)
+function safeB64Encode(str){
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,(_,p1)=>String.fromCharCode(parseInt(p1,16))));
+}
+function safeB64Decode(b64){
+  return decodeURIComponent(atob(b64).split('').map(c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join(''));
 }
 
-async function ghGetRaw(file, rawToken){
-  const token = rawToken || getSessionToken();
-  const r = await fetch(apiBase() + file, {
-    headers:{ 'Authorization':'Bearer '+token, 'Accept':'application/vnd.github.v3+json' }
+async function ghGet(file,rawToken){
+  const token=rawToken||getSessionToken();
+  const r=await fetch(apiBase()+file,{
+    headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github.v3+json'}
   });
-  if(!r.ok){
-    if(r.status===404) return { content:null, sha:null };
-    throw new Error('GitHub GET '+r.status);
+  if(!r.ok){ if(r.status===404) return {content:null,sha:null}; throw new Error('GitHub GET '+r.status); }
+  const d=await r.json();
+  let content=null;
+  if(d.content){
+    try{ content=JSON.parse(safeB64Decode(d.content.replace(/\n/g,''))); }
+    catch(e){ content=null; }
   }
-  const d = await r.json();
-  return { content: d.content ? atob(d.content.replace(/\n/g,'')) : null, sha: d.sha };
+  return {content,sha:d.sha};
 }
 
-async function ghPut(file, data, sha, rawToken, isRaw=false){
-  const token = rawToken || getSessionToken();
+async function ghPut(file,data,sha,rawToken){
+  const token=rawToken||getSessionToken();
   showSaveIndicator('saving');
-  const content = isRaw
-    ? btoa(unescape(encodeURIComponent(data)))
-    : btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
-  const body = { message:`Update ${file} — xXLuckyGamer04Xx`, content };
-  if(sha) body.sha = sha;
-  const r = await fetch(apiBase() + file, {
+  // FIX: safeB64Encode statt btoa(unescape(encodeURIComponent(...))) für Umlaute
+  const content=safeB64Encode(JSON.stringify(data,null,2));
+  const body={message:`Update ${file} — xXLuckyGamer04Xx`,content};
+  if(sha) body.sha=sha;
+  const r=await fetch(apiBase()+file,{
     method:'PUT',
-    headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json', 'Accept':'application/vnd.github.v3+json' },
-    body: JSON.stringify(body)
+    headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
+    body:JSON.stringify(body)
   });
   if(!r.ok){ showSaveIndicator('error'); throw new Error('GitHub PUT '+r.status); }
   showSaveIndicator('saved');
@@ -700,256 +590,230 @@ async function ghPut(file, data, sha, rawToken, isRaw=false){
 }
 
 function showSaveIndicator(state){
-  const el = document.getElementById('saveIndicator');
+  const el=document.getElementById('saveIndicator');
   if(!el) return;
   el.classList.remove('hidden','saving','saved','error');
   el.classList.add(state);
-  el.textContent = state==='saving'?'⏳ Speichert…':state==='saved'?'✅ Gespeichert':'❌ Fehler';
+  el.textContent=state==='saving'?'⏳ Speichert…':state==='saved'?'✅ Gespeichert':'❌ Fehler';
   if(state!=='saving') setTimeout(()=>el.classList.add('hidden'),3000);
 }
 
-/* ══════════════════════════════════════════════════════════
-   TOKEN — VERSCHLÜSSELT IM REPO (config.enc)
-   ══════════════════════════════════════════════════════════ */
-
-// Prüfen ob config.enc im Repo existiert (ohne Token, öffentlich lesbar wenn Repo public)
-async function fetchEncryptedTokenFromRepo(tempToken){
-  try{
-    // Wir brauchen einen temporären Token nur für diesen Read
-    const r = await fetch(apiBase() + 'config.enc', {
-      headers:{ 'Authorization':'Bearer '+tempToken, 'Accept':'application/vnd.github.v3+json' }
-    });
-    if(!r.ok) return null;
-    const d = await r.json();
-    return d.content ? atob(d.content.replace(/\n/g,'')) : null;
-  }catch(e){ return null; }
-}
-
-// Erster Setup: Token mit App-Secret verschlüsseln und ins Repo pushen
+/* ══ TOKEN SETUP ══ */
 async function setupEncryptedToken(){
-  const token     = document.getElementById('setupToken').value.trim();
-  const appSecret = document.getElementById('setupAppSecret').value;
-  const errEl     = document.getElementById('setupError');
-  errEl.textContent = '';
-  errEl.style.color = 'var(--red)';
-
-  if(!token || !appSecret){ errEl.textContent = 'Bitte alle Felder ausfüllen.'; return; }
-  if(!token.startsWith('ghp_') && !token.startsWith('github_pat_')){
-    errEl.textContent = 'Ungültiges Token-Format (muss mit ghp_ beginnen).'; return;
-  }
-  if(appSecret.length < 6){ errEl.textContent = 'App-Passwort muss mindestens 6 Zeichen haben.'; return; }
-
+  const token=document.getElementById('setupToken').value.trim();
+  const appSecret=document.getElementById('setupAppSecret').value;
+  const errEl=document.getElementById('setupError');
+  errEl.textContent=''; errEl.style.color='var(--red)';
+  if(!token||!appSecret){ errEl.textContent='Bitte alle Felder ausfüllen.'; return; }
+  if(!token.startsWith('ghp_')&&!token.startsWith('github_pat_')){ errEl.textContent='Ungültiges Token-Format.'; return; }
+  if(appSecret.length<6){ errEl.textContent='App-Passwort mind. 6 Zeichen.'; return; }
   try{
-    errEl.style.color = 'var(--text2)';
-    errEl.textContent = '⏳ Verschlüssele und speichere…';
-
-    // Token mit App-Secret verschlüsseln
-    const encrypted = await encryptToken(token, appSecret);
-
-    // SHA-256 des App-Secrets als Verifikationsmarker speichern
-    // (damit wir beim Login prüfen können ob das App-Secret stimmt)
-    const appSecretHash = await sha256(appSecret + '_appsecret_marker');
-    const payload = JSON.stringify({ enc: encrypted, verify: appSecretHash });
-
-    // config.enc ins Repo pushen (mit dem echten Token, einmalig)
-    let sha = null;
+    errEl.style.color='var(--text2)';
+    errEl.textContent='⏳ Verschlüssele und speichere…';
+    const encrypted=await encryptToken(token,appSecret);
+    const appSecretHash=await sha256(appSecret+'_appsecret_marker');
+    const payload=JSON.stringify({enc:encrypted,verify:appSecretHash});
+    let sha=null;
     try{
-      const chk = await fetch(apiBase() + 'config.enc', {
-        headers:{ 'Authorization':'Bearer '+token, 'Accept':'application/vnd.github.v3+json' }
-      });
+      const chk=await fetch(apiBase()+'config.enc',{headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github.v3+json'}});
       if(chk.ok){ const d=await chk.json(); sha=d.sha; }
     }catch(e){}
-
-    const content = btoa(unescape(encodeURIComponent(payload)));
-    const body = { message:'Setup encrypted token config — xXLuckyGamer04Xx', content };
-    if(sha) body.sha = sha;
-
-    const putR = await fetch(apiBase() + 'config.enc', {
+    // FIX: UTF-8 sicheres btoa
+    const content=btoa(unescape(encodeURIComponent(payload)));
+    const body={message:'Setup encrypted token config — xXLuckyGamer04Xx',content};
+    if(sha) body.sha=sha;
+    const putR=await fetch(apiBase()+'config.enc',{
       method:'PUT',
-      headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'application/json', 'Accept':'application/vnd.github.v3+json' },
-      body: JSON.stringify(body)
+      headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
+      body:JSON.stringify(body)
     });
-
-    if(!putR.ok){
-      const err = await putR.json();
-      errEl.style.color='var(--red)';
-      errEl.textContent = '❌ Fehler: ' + (err.message||putR.status);
-      return;
-    }
-
-    // Lokal cachen
-    localStorage.setItem('op_enc_config', payload);
-
-    errEl.style.color = 'var(--green)';
-    errEl.textContent = '✅ Token verschlüsselt gespeichert! Weiterleitung zum Login…';
-    setTimeout(()=>showScreen('login'), 1500);
-
-  }catch(e){
-    errEl.style.color='var(--red)';
-    errEl.textContent = '❌ Fehler: ' + e.message;
-  }
+    if(!putR.ok){ const err=await putR.json(); errEl.style.color='var(--red)'; errEl.textContent='❌ Fehler: '+(err.message||putR.status); return; }
+    localStorage.setItem('op_enc_config',payload);
+    errEl.style.color='var(--green)';
+    errEl.textContent='✅ Token verschlüsselt gespeichert! Weiterleitung zum Login…';
+    setTimeout(()=>showScreen('login'),1500);
+  }catch(e){ errEl.style.color='var(--red)'; errEl.textContent='❌ Fehler: '+e.message; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   SCREEN MANAGEMENT
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ SCREEN MANAGEMENT ══ */
 function showScreen(name){
-  ['bootstrap','setup','login','dashboard'].forEach(s=>{
-    const el = document.getElementById(s+'Screen') || document.getElementById(s);
+  ['bootstrapScreen','setupScreen','loginScreen','dashboard'].forEach(id=>{
+    const el=document.getElementById(id);
     if(el) el.classList.add('hidden');
   });
-  const target = document.getElementById(name+'Screen') || document.getElementById(name);
+  const target=document.getElementById(name==='dashboard'?'dashboard':name+'Screen');
   if(target) target.classList.remove('hidden');
 }
 
-/* ══════════════════════════════════════════════════════════
-   BOOTSTRAP (Repo-Verbindung)
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ BOOTSTRAP ══ */
 async function saveBootstrap(){
-  const user = document.getElementById('bsUser').value.trim();
-  const repo = document.getElementById('bsRepo').value.trim();
-  const err  = document.getElementById('bsError');
+  const user=document.getElementById('bsUser').value.trim();
+  const repo=document.getElementById('bsRepo').value.trim();
+  const err=document.getElementById('bsError');
   if(!user||!repo){ err.textContent='Bitte beide Felder ausfüllen.'; return; }
-  setRepoConfig(user, repo);
+  setRepoConfig(user,repo);
   await boot();
 }
 
-/* ══════════════════════════════════════════════════════════
-   LOGIN
-   ══════════════════════════════════════════════════════════ */
-
-// Für den Login brauchen wir einen "Brücken-Token" — da der echte Token verschlüsselt ist,
-// speichern wir einen minimalen Read-Only Token (ghp_ public read) separat,
-// ODER: Der User gibt beim ersten Login einmalig den Token ein, danach ist er im Repo.
-// Elegante Lösung: Ein öffentlich lesbares Repo braucht gar keinen Token für den Read.
-
+/* ══ LOGIN ══ */
 async function login(){
-  const username  = document.getElementById('loginUsername').value.trim();
-  const password  = document.getElementById('loginPassword').value;
-  const appSecret = document.getElementById('loginAppSecret').value;
-  const errEl     = document.getElementById('loginError');
-  errEl.textContent = '';
-
+  const username=document.getElementById('loginUsername').value.trim();
+  const password=document.getElementById('loginPassword').value;
+  const appSecret=document.getElementById('loginAppSecret').value;
+  const errEl=document.getElementById('loginError');
+  errEl.textContent='';
   if(!username||!password){ errEl.textContent='Bitte alle Felder ausfüllen.'; return; }
-
-  errEl.textContent = '⏳ Authentifiziere…';
-
+  errEl.textContent='⏳ Authentifiziere…';
   try{
-    // 1. Benutzer prüfen (lokal gecachte users.json)
-    let users = JSON.parse(localStorage.getItem('opsucht_users') || '[]');
-    if(!users.length){ errEl.textContent='Keine Benutzerdaten. Bitte Setup wiederholen.'; return; }
-
-    const hash = await sha256(password);
-    const user = users.find(u => u.username===username && u.passwordHash===hash);
+    let users=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
+    if(!users.length){ errEl.textContent='Keine Benutzerdaten. Bitte warte kurz und versuche es erneut.'; return; }
+    const hash=await sha256(password);
+    const user=users.find(u=>u.username===username&&u.passwordHash===hash);
     if(!user){ errEl.textContent='Ungültiger Benutzername oder Passwort.'; return; }
-
-    // 2. Viewer braucht keinen Token
-    if(user.role === 'viewer'){
-      sessionStorage.setItem('currentUser', JSON.stringify({username:user.username, role:user.role}));
-      await showDashboard();
-      return;
+    if(user.role==='viewer'){
+      sessionStorage.setItem('currentUser',JSON.stringify({username:user.username,role:user.role}));
+      await showDashboard(); return;
     }
-
-    // 3. Für Editor/Admin/Owner: App-Secret zum Entschlüsseln des Tokens nötig
-    const cachedPayload = localStorage.getItem('op_enc_config');
-    if(!cachedPayload){ errEl.textContent='Kein verschlüsselter Token. Bitte Setup wiederholen.'; return; }
-
-    // App-Secret aus dem Feld oder aus Session (wenn schon mal eingegeben)
-    let secret = appSecret || sessionStorage.getItem('op_app_secret_session') || '';
-
+    const cachedPayload=localStorage.getItem('op_enc_config');
+    if(!cachedPayload){ errEl.textContent='Kein verschlüsselter Token. Bitte Setup durchführen.'; return; }
+    let secret=appSecret||sessionStorage.getItem('op_app_secret_session')||'';
     if(!secret){
-      // App-Secret Feld einblenden und um Eingabe bitten
-      document.getElementById('appSecretField').style.display = '';
+      document.getElementById('appSecretField').style.display='';
       document.getElementById('loginAppSecret').focus();
-      errEl.textContent = '⬆️ Bitte App-Passwort eingeben (einmalig).';
+      errEl.textContent='⬆️ Bitte App-Passwort eingeben (einmalig).';
       return;
     }
-
-    // 4. App-Secret verifizieren
     let payload;
-    try{ payload = JSON.parse(cachedPayload); }
+    try{ payload=JSON.parse(cachedPayload); }
     catch(e){ errEl.textContent='Ungültige config.enc — bitte Setup wiederholen.'; return; }
-
-    const expectedVerify = await sha256(secret + '_appsecret_marker');
-    if(payload.verify && payload.verify !== expectedVerify){
-      errEl.textContent = '❌ App-Passwort falsch.';
-      document.getElementById('appSecretField').style.display = '';
-      document.getElementById('loginAppSecret').value = '';
+    const expectedVerify=await sha256(secret+'_appsecret_marker');
+    if(payload.verify&&payload.verify!==expectedVerify){
+      errEl.textContent='❌ App-Passwort falsch.';
+      document.getElementById('appSecretField').style.display='';
+      document.getElementById('loginAppSecret').value='';
       document.getElementById('loginAppSecret').focus();
       return;
     }
-
-    // 5. Token entschlüsseln
-    const decryptedToken = await decryptToken(payload.enc, secret);
-    if(!decryptedToken){
-      errEl.textContent = '❌ App-Passwort falsch oder Token beschädigt.';
-      return;
-    }
-
-    // 6. Token + App-Secret für diese Session merken (nur RAM)
+    const decryptedToken=await decryptToken(payload.enc,secret);
+    if(!decryptedToken){ errEl.textContent='❌ App-Passwort falsch oder Token beschädigt.'; return; }
     setSessionToken(decryptedToken);
-    sessionStorage.setItem('op_app_secret_session', secret);
-    sessionStorage.setItem('currentUser', JSON.stringify({username:user.username, role:user.role}));
-
-    // 7. Frische Nutzerliste vom GitHub nachladen
-    try{
-      const {content} = await ghGet('users.json');
-      if(content) localStorage.setItem('opsucht_users', JSON.stringify(content));
-    }catch(e){}
-
+    sessionStorage.setItem('op_app_secret_session',secret);
+    sessionStorage.setItem('currentUser',JSON.stringify({username:user.username,role:user.role}));
+    try{ const {content}=await ghGet('users.json'); if(content) localStorage.setItem('opsucht_users',JSON.stringify(content)); }catch(e){}
     await showDashboard();
+  }catch(e){ errEl.textContent='❌ Fehler: '+e.message; }
+}
 
-  }catch(e){
-    errEl.textContent = '❌ Fehler: ' + e.message;
+function checkShowAppSecret(){
+  const username=document.getElementById('loginUsername').value.trim();
+  const users=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
+  const user=users.find(u=>u.username===username);
+  const needsSecret=user&&user.role!=='viewer';
+  const alreadyInSession=!!sessionStorage.getItem('op_app_secret_session');
+  const field=document.getElementById('appSecretField');
+  if(field) field.style.display=(needsSecret&&!alreadyInSession)?'':'none';
+}
+
+function logout(){ clearSession(); location.reload(); }
+
+/* ══ DATUM UTILS ══ */
+const WOCHENTAGE=['So.','Mo.','Di.','Mi.','Do.','Fr.','Sa.'];
+
+function formatDateShort(dateStr){
+  if(!dateStr) return '';
+  const d=new Date(dateStr+'T12:00:00');
+  const wt=WOCHENTAGE[d.getDay()];
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const yy=String(d.getFullYear()).slice(2);
+  return `${wt} ${dd}.${mm}.${yy}`;
+}
+
+function formatWeeklyRange(startStr,endStr){
+  if(!startStr||!endStr) return '';
+  const s=new Date(startStr+'T12:00:00');
+  const e=new Date(endStr+'T12:00:00');
+  const wtS=WOCHENTAGE[s.getDay()];
+  const wtE=WOCHENTAGE[e.getDay()];
+  const sdStr=`${String(s.getDate()).padStart(2,'0')}.${String(s.getMonth()+1).padStart(2,'0')}.`;
+  const edStr=`${String(e.getDate()).padStart(2,'0')}.${String(e.getMonth()+1).padStart(2,'0')}.${String(e.getFullYear()).slice(2)}`;
+  return `${wtS} ${sdStr} - ${wtE} ${edStr}`;
+}
+
+// Wenn Startdatum gesetzt, Enddatum automatisch auf Donnerstag berechnen
+function getThursdayFrom(fridayStr){
+  if(!fridayStr) return '';
+  const d=new Date(fridayStr+'T12:00:00');
+  d.setDate(d.getDate()+6);
+  return d.toISOString().split('T')[0];
+}
+
+function onTypeChange(){
+  const type=document.getElementById('questType').value;
+  const weeklyBox=document.getElementById('weeklyDatesBox');
+  if(type==='weekly'){
+    weeklyBox.classList.add('visible');
+    // Sync questDate → weeklyStart
+    const qd=document.getElementById('questDate').value;
+    if(qd){ document.getElementById('weeklyStart').value=qd; onWeeklyStartChange(); }
+  } else {
+    weeklyBox.classList.remove('visible');
+  }
+  onDateChange();
+}
+
+function onDateChange(){
+  const type=document.getElementById('questType').value;
+  const val=document.getElementById('questDate').value;
+  const preview=document.getElementById('datePreview');
+  if(val&&type==='daily'){
+    preview.style.display='inline-block';
+    preview.textContent=formatDateShort(val);
+  } else {
+    preview.style.display='none';
+  }
+  if(type==='weekly'){
+    document.getElementById('weeklyStart').value=val;
+    onWeeklyStartChange();
   }
 }
 
-// App-Secret Feld dynamisch einblenden wenn Nutzer seinen Namen eingetippt hat
-function checkShowAppSecret(){
-  const username = document.getElementById('loginUsername').value.trim();
-  const users = JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-  const user = users.find(u=>u.username===username);
-  const needsSecret = user && user.role !== 'viewer';
-  const alreadyInSession = !!sessionStorage.getItem('op_app_secret_session');
-  const field = document.getElementById('appSecretField');
-  if(field) field.style.display = (needsSecret && !alreadyInSession) ? '' : 'none';
+function onWeeklyStartChange(){
+  const startVal=document.getElementById('weeklyStart').value;
+  if(!startVal) return;
+  const endVal=getThursdayFrom(startVal);
+  document.getElementById('weeklyEnd').value=endVal;
+  const hintS=document.getElementById('weeklyStartHint');
+  const hintE=document.getElementById('weeklyEndHint');
+  const preview=document.getElementById('weeklyPreview');
+  if(hintS) hintS.textContent=formatDateShort(startVal);
+  if(hintE) hintE.textContent=formatDateShort(endVal);
+  if(preview){
+    preview.style.display='inline-block';
+    preview.textContent=formatWeeklyRange(startVal,endVal);
+  }
+  document.getElementById('questDate').value=startVal;
 }
 
-function logout(){
-  clearSession();
-  location.reload();
-}
-
-/* ══════════════════════════════════════════════════════════
-   DASHBOARD
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ DASHBOARD ══ */
 async function showDashboard(){
-  const cu = JSON.parse(sessionStorage.getItem('currentUser'));
+  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(!cu) return;
-
   showScreen('dashboard');
-
   const dotColors={owner:'#eab308',admin:'#ef4444',editor:'#00e5c8',viewer:'#4a5568'};
-  document.getElementById('roleDot').style.background = dotColors[cu.role]||'#4a5568';
-  document.getElementById('userChipText').textContent = `${cu.username} · ${getRoleLabel(cu.role)}`;
-
-  const noToken = sessionStorage.getItem('op_no_token');
-  const canManageUsers = cu.role==='owner' || cu.role==='admin';
+  document.getElementById('roleDot').style.background=dotColors[cu.role]||'#4a5568';
+  document.getElementById('userChipText').textContent=`${cu.username} · ${getRoleLabel(cu.role)}`;
+  const canManageUsers=cu.role==='owner'||cu.role==='admin';
   if(!canManageUsers) document.getElementById('tabUsers').disabled=true;
   if(cu.role!=='owner') document.getElementById('tabSettings').disabled=true;
   if(cu.role==='viewer') document.getElementById('questFormBox').classList.add('hidden');
-
-  // Settings vorausfüllen
-  const {user,repo} = getRepoConfig();
-  const si = document.getElementById('settingsUser');
-  const sr = document.getElementById('settingsRepo');
-  if(si) si.value = user;
-  if(sr) sr.value = repo;
-
-  document.getElementById('questDate').valueAsDate = new Date();
+  const {user,repo}=getRepoConfig();
+  const si=document.getElementById('settingsUser');
+  const sr=document.getElementById('settingsRepo');
+  if(si) si.value=user;
+  if(sr) sr.value=repo;
+  document.getElementById('questDate').valueAsDate=new Date();
+  onDateChange();
   initSteps();
   renderTagsInput('haupt');
   renderTagsInput('neben');
@@ -961,145 +825,124 @@ async function showDashboard(){
 
 function getRoleLabel(r){ return {owner:'👑 Besitzer',admin:'🔴 Admin',editor:'🔵 Editor',viewer:'⚫ Viewer'}[r]||r; }
 
-function switchTab(name, btn){
+function switchTab(name,btn){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
   ['quests','users','settings'].forEach(p=>{
-    const el = document.getElementById('panel'+p.charAt(0).toUpperCase()+p.slice(1));
-    if(el) el.classList.toggle('hidden', p!==name);
+    const el=document.getElementById('panel'+p.charAt(0).toUpperCase()+p.slice(1));
+    if(el) el.classList.toggle('hidden',p!==name);
   });
 }
 
-/* ══════════════════════════════════════════════════════════
-   SETTINGS
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ SETTINGS ══ */
 async function reencryptToken(){
-  const token     = document.getElementById('newTokenInput').value.trim();
-  const appSecret = document.getElementById('newTokenPassword').value;
-  const msg       = document.getElementById('tokenMsg');
-  msg.textContent = '';
-
+  const token=document.getElementById('newTokenInput').value.trim();
+  const appSecret=document.getElementById('newTokenPassword').value;
+  const msg=document.getElementById('tokenMsg');
+  msg.textContent='';
   if(!token||!appSecret){ msg.style.color='var(--red)'; msg.textContent='Bitte alle Felder ausfüllen.'; return; }
-  if(appSecret.length<6){ msg.style.color='var(--red)'; msg.textContent='App-Passwort muss mindestens 6 Zeichen haben.'; return; }
-
+  if(appSecret.length<6){ msg.style.color='var(--red)'; msg.textContent='App-Passwort mind. 6 Zeichen.'; return; }
   try{
     msg.style.color='var(--text2)'; msg.textContent='⏳ Verschlüssele…';
-    const encrypted = await encryptToken(token, appSecret);
-    const appSecretHash = await sha256(appSecret + '_appsecret_marker');
-    const payload = JSON.stringify({ enc: encrypted, verify: appSecretHash });
-
-    localStorage.setItem('op_enc_config', payload);
-    sessionStorage.setItem('op_app_secret_session', appSecret);
-
-    // Ins Repo pushen
-    let sha = null;
+    const encrypted=await encryptToken(token,appSecret);
+    const appSecretHash=await sha256(appSecret+'_appsecret_marker');
+    const payload=JSON.stringify({enc:encrypted,verify:appSecretHash});
+    localStorage.setItem('op_enc_config',payload);
+    sessionStorage.setItem('op_app_secret_session',appSecret);
+    let sha=null;
     try{
       const r2=await fetch(apiBase()+'config.enc',{headers:{'Authorization':'Bearer '+getSessionToken(),'Accept':'application/vnd.github.v3+json'}});
       if(r2.ok){ const d=await r2.json(); sha=d.sha; }
     }catch(e){}
-
-    const content = btoa(unescape(encodeURIComponent(payload)));
-    const body = { message:'Re-encrypt token config — xXLuckyGamer04Xx', content };
-    if(sha) body.sha = sha;
-
-    const r = await fetch(apiBase() + 'config.enc', {
-      method:'PUT',
-      headers:{ 'Authorization':'Bearer '+getSessionToken(), 'Content-Type':'application/json', 'Accept':'application/vnd.github.v3+json' },
-      body: JSON.stringify(body)
-    });
+    const content=btoa(unescape(encodeURIComponent(payload)));
+    const body={message:'Re-encrypt token config — xXLuckyGamer04Xx',content};
+    if(sha) body.sha=sha;
+    const r=await fetch(apiBase()+'config.enc',{method:'PUT',headers:{'Authorization':'Bearer '+getSessionToken(),'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
     if(!r.ok) throw new Error('PUT '+r.status);
-
     setSessionToken(token);
-    msg.style.color='var(--green)';
-    msg.textContent='✅ Token neu verschlüsselt und gespeichert!';
+    msg.style.color='var(--green)'; msg.textContent='✅ Token neu verschlüsselt und gespeichert!';
     document.getElementById('newTokenInput').value='';
     document.getElementById('newTokenPassword').value='';
-  }catch(e){
-    msg.style.color='var(--red)';
-    msg.textContent='❌ Fehler: '+e.message;
-  }
+  }catch(e){ msg.style.color='var(--red)'; msg.textContent='❌ Fehler: '+e.message; }
 }
 
 function updateRepoSettings(){
-  const user = document.getElementById('settingsUser').value.trim();
-  const repo = document.getElementById('settingsRepo').value.trim();
-  const msg  = document.getElementById('repoMsg');
+  const user=document.getElementById('settingsUser').value.trim();
+  const repo=document.getElementById('settingsRepo').value.trim();
+  const msg=document.getElementById('repoMsg');
   if(!user||!repo){ msg.style.color='var(--red)'; msg.textContent='Bitte beide Felder ausfüllen.'; return; }
-  setRepoConfig(user, repo);
-  msg.style.color='var(--green)';
-  msg.textContent='✅ Gespeichert!';
-  setTimeout(()=>msg.textContent='', 3000);
+  setRepoConfig(user,repo);
+  msg.style.color='var(--green)'; msg.textContent='✅ Gespeichert!';
+  setTimeout(()=>msg.textContent='',3000);
 }
 
-/* ══════════════════════════════════════════════════════════
-   DATEN — GITHUB SYNC
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ DATEN - GITHUB SYNC ══ */
+// FIX: Direkter raw.githubusercontent.com Aufruf für schnelleres Laden
 async function loadQuestsFromGH(){
   try{
-    const {content} = await ghGet('quests.json');
-    if(content){ localStorage.setItem('opsucht_quests', JSON.stringify(content)); return content; }
+    const {user,repo}=getRepoConfig();
+    const r=await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/quests.json?t=${Date.now()}`);
+    if(r.ok){
+      const data=await r.json();
+      localStorage.setItem('opsucht_quests',JSON.stringify(data));
+      return data;
+    }
   }catch(e){}
   return JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
 }
 
 async function saveQuestsToGH(quests){
   try{
-    localStorage.setItem('opsucht_quests', JSON.stringify(quests));
-    const {sha} = await ghGet('quests.json');
-    await ghPut('quests.json', quests, sha);
-  }catch(e){ console.warn('GitHub save failed:', e); showSaveIndicator('error'); }
+    localStorage.setItem('opsucht_quests',JSON.stringify(quests));
+    const {sha}=await ghGet('quests.json');
+    await ghPut('quests.json',quests,sha);
+  }catch(e){ console.warn('GitHub save failed:',e); showSaveIndicator('error'); }
 }
 
 async function loadUsersFromGH(){
   try{
-    const {content} = await ghGet('users.json');
-    if(content){ localStorage.setItem('opsucht_users', JSON.stringify(content)); return content; }
+    const {content}=await ghGet('users.json');
+    if(content){ localStorage.setItem('opsucht_users',JSON.stringify(content)); return content; }
   }catch(e){}
   return JSON.parse(localStorage.getItem('opsucht_users')||'[]');
 }
 
 async function saveUsersToGH(users){
   try{
-    localStorage.setItem('opsucht_users', JSON.stringify(users));
-    const {sha} = await ghGet('users.json');
-    await ghPut('users.json', users, sha);
-  }catch(e){ console.warn('GitHub save failed:', e); }
+    localStorage.setItem('opsucht_users',JSON.stringify(users));
+    const {sha}=await ghGet('users.json');
+    await ghPut('users.json',users,sha);
+  }catch(e){ console.warn('GitHub save failed:',e); }
 }
 
-/* ══════════════════════════════════════════════════════════
-   TAGS
-   ══════════════════════════════════════════════════════════ */
-
-let currentHaupttags=[], currentNebentags=[];
-const MAX_HAUPT=3, MAX_NEBEN=5;
+/* ══ TAGS ══ */
+let currentHaupttags=[],currentNebentags=[];
+const MAX_HAUPT=3,MAX_NEBEN=5;
 
 function renderTagsInput(type){
-  const isHaupt  = type==='haupt';
-  const tags     = isHaupt?currentHaupttags:currentNebentags;
-  const max      = isHaupt?MAX_HAUPT:MAX_NEBEN;
-  const cId      = isHaupt?'hauptTagsContainer':'nebenTagsContainer';
-  const iId      = isHaupt?'hauptTagInput':'nebenTagInput';
-  const countId  = isHaupt?'haupttagCount':'nebentagCount';
-  const tagClass = isHaupt?'haupt':'neben';
-  const c = document.getElementById(cId);
-  const items = tags.map(t=>`<div class="tag-item ${tagClass}">${esc(t)}<button type="button" onclick="removeTag('${type}','${t.replace(/'/g,"\\'")}')">×</button></div>`).join('');
-  const canAdd = tags.length < max;
-  c.innerHTML = items + (canAdd?`<input class="tag-input" type="text" id="${iId}" placeholder="Tag + Enter"/>`:'');
-  const cnt = document.getElementById(countId);
+  const isHaupt=type==='haupt';
+  const tags=isHaupt?currentHaupttags:currentNebentags;
+  const max=isHaupt?MAX_HAUPT:MAX_NEBEN;
+  const cId=isHaupt?'hauptTagsContainer':'nebenTagsContainer';
+  const iId=isHaupt?'hauptTagInput':'nebenTagInput';
+  const countId=isHaupt?'haupttagCount':'nebentagCount';
+  const tagClass=isHaupt?'haupt':'neben';
+  const c=document.getElementById(cId);
+  const items=tags.map(t=>`<div class="tag-item ${tagClass}">${esc(t)}<button type="button" onclick="removeTag('${type}','${t.replace(/'/g,"\\'")}')">×</button></div>`).join('');
+  const canAdd=tags.length<max;
+  c.innerHTML=items+(canAdd?`<input class="tag-input" type="text" id="${iId}" placeholder="Tag + Enter"/>`:'');
+  const cnt=document.getElementById(countId);
   if(cnt) cnt.textContent=`(${tags.length}/${max})`;
   if(canAdd){
-    const ti = document.getElementById(iId);
+    const ti=document.getElementById(iId);
     if(ti){
-      ti.addEventListener('keydown', e=>{
+      ti.addEventListener('keydown',e=>{
         if(e.key==='Enter'&&ti.value.trim()){ e.preventDefault(); addTag(type,ti.value.trim()); }
         if(e.key==='Backspace'&&ti.value===''&&tags.length>0) removeTag(type,tags[tags.length-1]);
       });
     }
   }
 }
-
 function addTag(type,value){
   const isHaupt=type==='haupt';
   const tags=isHaupt?currentHaupttags:currentNebentags;
@@ -1114,18 +957,14 @@ function removeTag(type,value){
   renderTagsInput(type);
 }
 
-/* ══════════════════════════════════════════════════════════
-   STEPS (Einträge)
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ STEPS ══ */
 let currentSteps=[];
 const MAX_STEPS=5;
 
 function initSteps(){ currentSteps=['']; renderSteps(); }
-
 function renderSteps(){
-  const list = document.getElementById('stepsList');
-  list.innerHTML = currentSteps.map((s,i)=>`
+  const list=document.getElementById('stepsList');
+  list.innerHTML=currentSteps.map((s,i)=>`
     <div class="step-row">
       <span class="step-num">${i+1}</span>
       <input class="step-input" type="text" value="${esc(s)}"
@@ -1136,62 +975,47 @@ function renderSteps(){
         ?`<button class="step-del" onclick="removeStep(${i})" title="Löschen">×</button>`
         :'<span style="width:24px"></span>'}
     </div>`).join('');
-  const btn = document.getElementById('addStepBtn');
-  if(btn){
-    btn.disabled = currentSteps.length>=MAX_STEPS;
-    btn.textContent=`＋ Eintrag hinzufügen (${currentSteps.length}/${MAX_STEPS})`;
-  }
+  const btn=document.getElementById('addStepBtn');
+  if(btn){ btn.disabled=currentSteps.length>=MAX_STEPS; btn.textContent=`＋ Eintrag hinzufügen (${currentSteps.length}/${MAX_STEPS})`; }
 }
-
 function stepKeydown(e,i){
-  if(e.key==='Enter'){
-    e.preventDefault();
-    if(currentSteps.length<MAX_STEPS){
-      currentSteps.splice(i+1,0,''); renderSteps();
-      setTimeout(()=>{ const ins=document.querySelectorAll('.step-input'); if(ins[i+1]) ins[i+1].focus(); },0);
-    }
-  }
+  if(e.key==='Enter'){ e.preventDefault(); if(currentSteps.length<MAX_STEPS){ currentSteps.splice(i+1,0,''); renderSteps(); setTimeout(()=>{ const ins=document.querySelectorAll('.step-input'); if(ins[i+1]) ins[i+1].focus(); },0); } }
 }
-function addStep(){
-  if(currentSteps.length>=MAX_STEPS) return;
-  currentSteps.push(''); renderSteps();
-  setTimeout(()=>{ const ins=document.querySelectorAll('.step-input'); if(ins.length) ins[ins.length-1].focus(); },0);
-}
-function removeStep(i){
-  if(currentSteps.length<=1){ currentSteps[0]=''; renderSteps(); return; }
-  currentSteps.splice(i,1); renderSteps();
-}
+function addStep(){ if(currentSteps.length>=MAX_STEPS) return; currentSteps.push(''); renderSteps(); setTimeout(()=>{ const ins=document.querySelectorAll('.step-input'); if(ins.length) ins[ins.length-1].focus(); },0); }
+function removeStep(i){ if(currentSteps.length<=1){ currentSteps[0]=''; renderSteps(); return; } currentSteps.splice(i,1); renderSteps(); }
 
-/* ══════════════════════════════════════════════════════════
-   WARTESCHLANGE
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ WARTESCHLANGE ══ */
 let questQueue=[];
 
 function addToQueue(){
-  const cu = JSON.parse(sessionStorage.getItem('currentUser'));
+  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(cu.role==='viewer'){ alert('Keine Berechtigung!'); return; }
-
   document.querySelectorAll('.step-input').forEach((el,i)=>{ currentSteps[i]=el.value; });
-  const task   = document.getElementById('questTask').value.trim();
-  const shards = parseInt(document.getElementById('questShards').value);
-  const type   = document.getElementById('questType').value;
-  const date   = document.getElementById('questDate').value;
-  const editId = document.getElementById('editQuestId').value;
-  const steps  = currentSteps.map(s=>s.trim()).filter(s=>s.length>0);
-
+  const task=document.getElementById('questTask').value.trim();
+  const shards=parseInt(document.getElementById('questShards').value);
+  const type=document.getElementById('questType').value;
+  const date=document.getElementById('questDate').value;
+  const editId=document.getElementById('editQuestId').value;
+  const steps=currentSteps.map(s=>s.trim()).filter(s=>s.length>0);
   if(!task||!shards||!date){ alert('Bitte Aufgabe, Shards und Datum ausfüllen.'); return; }
   if(!steps.length){ alert('Bitte mindestens einen Eintrag hinzufügen.'); return; }
 
-  const quest = {
-    id: editId||Date.now().toString(),
-    task, steps, shards, type, date,
+  // Weekly Enddatum
+  let weeklyEnd=null;
+  if(type==='weekly'){
+    weeklyEnd=document.getElementById('weeklyEnd').value;
+    if(!weeklyEnd){ alert('Bitte das Enddatum für die wöchentliche Quest ausfüllen.'); return; }
+  }
+
+  const quest={
+    id:editId||Date.now().toString(),
+    task,steps,shards,type,date,
+    weeklyEnd:weeklyEnd||null,
     haupttags:[...currentHaupttags],
     nebentags:[...currentNebentags],
     tags:[...currentHaupttags],
-    items: steps.join(' · ')
+    items:steps.join(' · ')
   };
-
   if(editId){ pushSingleEdit(quest); return; }
   questQueue.push(quest);
   cancelEdit();
@@ -1199,12 +1023,11 @@ function addToQueue(){
 }
 
 function renderQueue(){
-  const badge    = document.getElementById('queueBadge');
-  const items    = document.getElementById('queueItems');
-  const pushRow  = document.getElementById('queuePushRow');
-  const pushCount= document.getElementById('pushCount');
-  badge.textContent = questQueue.length;
-
+  const badge=document.getElementById('queueBadge');
+  const items=document.getElementById('queueItems');
+  const pushRow=document.getElementById('queuePushRow');
+  const pushCount=document.getElementById('pushCount');
+  badge.textContent=questQueue.length;
   if(!questQueue.length){
     items.className='queue-empty';
     items.textContent='Noch keine Quests in der Warteschlange.';
@@ -1212,7 +1035,7 @@ function renderQueue(){
     return;
   }
   items.className='queue-items';
-  items.innerHTML = questQueue.map((q,idx)=>`
+  items.innerHTML=questQueue.map((q,idx)=>`
     <div class="queue-item">
       <div class="queue-item-info">
         <div class="queue-item-title">${esc(q.task)}</div>
@@ -1220,31 +1043,23 @@ function renderQueue(){
         <div class="queue-item-meta">
           <span class="type-badge ${q.type}">${q.type==='daily'?'Täglich':'Wöchentlich'}</span>
           <span style="font-size:11px;color:var(--cyan)">💎 ${q.shards}</span>
-          <span style="font-size:11px;color:var(--text3);font-family:'Share Tech Mono',monospace">${q.date}</span>
+          <span style="font-size:11px;color:var(--text3);font-family:'Share Tech Mono',monospace">${q.type==='weekly'&&q.weeklyEnd?formatWeeklyRange(q.date,q.weeklyEnd):formatDateShort(q.date)}</span>
         </div>
       </div>
       <button class="btn btn-danger btn-sm" onclick="removeFromQueue(${idx})">×</button>
     </div>`).join('');
-  if(pushRow){
-    pushRow.style.display='flex';
-    pushCount.textContent=`${questQueue.length} Quest${questQueue.length!==1?'s':''} bereit`;
-  }
+  if(pushRow){ pushRow.style.display='flex'; pushCount.textContent=`${questQueue.length} Quest${questQueue.length!==1?'s':''} bereit`; }
 }
 
 function removeFromQueue(idx){ questQueue.splice(idx,1); renderQueue(); }
-
-function clearQueue(){
-  if(!questQueue.length) return;
-  if(!confirm(`Warteschlange mit ${questQueue.length} Quest${questQueue.length!==1?'s':''} wirklich leeren?`)) return;
-  questQueue=[]; renderQueue();
-}
+function clearQueue(){ if(!questQueue.length) return; if(!confirm(`Warteschlange mit ${questQueue.length} Quest${questQueue.length!==1?'s':''} wirklich leeren?`)) return; questQueue=[]; renderQueue(); }
 
 async function pushQueue(){
   if(!questQueue.length) return;
-  const btn = document.querySelector('#queuePushRow .btn-success');
+  const btn=document.querySelector('#queuePushRow .btn-success');
   if(btn){ btn.textContent='⏳ Wird übermittelt…'; btn.disabled=true; }
   try{
-    let quests = await loadQuestsFromGH();
+    let quests=await loadQuestsFromGH();
     questQueue.forEach(q=>quests.push(q));
     await saveQuestsToGH(quests);
     questQueue=[]; renderQueue();
@@ -1255,33 +1070,37 @@ async function pushQueue(){
 
 async function pushSingleEdit(quest){
   try{
-    let quests = await loadQuestsFromGH();
-    const idx = quests.findIndex(q=>q.id===quest.id);
+    let quests=await loadQuestsFromGH();
+    const idx=quests.findIndex(q=>q.id===quest.id);
     if(idx>-1) quests[idx]=quest; else quests.push(quest);
     await saveQuestsToGH(quests);
     cancelEdit(); await renderQuestsTable(); await renderStats();
   }catch(e){ alert('Fehler: '+e.message); }
 }
 
-/* ══════════════════════════════════════════════════════════
-   QUEST CRUD
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ QUEST CRUD ══ */
 function editQuest(id){
   const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(cu.role==='viewer') return;
-  const q = JSON.parse(localStorage.getItem('opsucht_quests')||'[]').find(x=>x.id===id);
+  const q=JSON.parse(localStorage.getItem('opsucht_quests')||'[]').find(x=>x.id===id);
   if(!q) return;
   document.getElementById('editQuestId').value=q.id;
   document.getElementById('questTask').value=q.task;
   document.getElementById('questShards').value=q.shards;
   document.getElementById('questType').value=q.type;
   document.getElementById('questDate').value=q.date;
-  currentSteps = q.steps&&q.steps.length>0?[...q.steps]:(q.items?[q.items]:['']);
+  currentSteps=q.steps&&q.steps.length>0?[...q.steps]:(q.items?[q.items]:['']);
   renderSteps();
   currentHaupttags=[...(q.haupttags||q.tags||[])];
   currentNebentags=[...(q.nebentags||[])];
   renderTagsInput('haupt'); renderTagsInput('neben');
+  onTypeChange();
+  if(q.type==='weekly'&&q.weeklyEnd){
+    document.getElementById('weeklyStart').value=q.date;
+    document.getElementById('weeklyEnd').value=q.weeklyEnd;
+    const preview=document.getElementById('weeklyPreview');
+    if(preview){ preview.style.display='inline-block'; preview.textContent=formatWeeklyRange(q.date,q.weeklyEnd); }
+  }
   document.getElementById('addToQueueBtn').textContent='💾 Aktualisieren & Speichern';
   document.getElementById('cancelEditBtn').classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1291,7 +1110,7 @@ async function deleteQuest(id){
   const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(cu.role==='viewer'){ alert('Keine Berechtigung!'); return; }
   if(!confirm('Quest wirklich löschen?')) return;
-  let q = await loadQuestsFromGH();
+  let q=await loadQuestsFromGH();
   await saveQuestsToGH(q.filter(x=>x.id!==id));
   await renderQuestsTable(); await renderStats();
 }
@@ -1307,14 +1126,16 @@ function cancelEdit(){
   currentSteps=['']; renderSteps();
   document.getElementById('addToQueueBtn').textContent='📥 Zur Warteschlange';
   document.getElementById('cancelEditBtn').classList.add('hidden');
+  document.getElementById('weeklyDatesBox').classList.remove('visible');
+  onDateChange();
 }
 
 async function renderQuestsTable(){
-  const tbody = document.getElementById('questsTableBody');
-  const cu    = JSON.parse(sessionStorage.getItem('currentUser'));
-  const q     = await loadQuestsFromGH();
+  const tbody=document.getElementById('questsTableBody');
+  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
+  const q=await loadQuestsFromGH();
   q.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const canEdit = cu.role!=='viewer';
+  const canEdit=cu.role!=='viewer';
   if(!q.length){
     tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text3)">Noch keine Quests vorhanden</td></tr>';
     return;
@@ -1323,8 +1144,11 @@ async function renderQuestsTable(){
     const ht=quest.haupttags||quest.tags||[];
     const nt=quest.nebentags||[];
     const st=quest.steps&&quest.steps.length>0?quest.steps:(quest.items?[quest.items]:[]);
+    const datumAnzeige=quest.type==='weekly'&&quest.weeklyEnd
+      ?formatWeeklyRange(quest.date,quest.weeklyEnd)
+      :formatDateShort(quest.date);
     return `<tr>
-      <td style="font-family:'Share Tech Mono',monospace;font-size:12px"><span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px">Datum</span>${formatDate(quest.date)}</td>
+      <td style="font-family:'Share Tech Mono',monospace;font-size:12px"><span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px">Datum</span>${datumAnzeige}</td>
       <td><span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px">Typ</span><span class="type-badge ${quest.type}">${quest.type==='daily'?'Täglich':'Wöchentlich'}</span></td>
       <td><span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px">Aufgabe</span><strong>${esc(quest.task)}</strong></td>
       <td><span style="color:var(--text3);font-size:10px;display:block;margin-bottom:2px">Einträge</span><div class="steps-cell">${st.map(s=>`<div class="steps-cell-item">${esc(s)}</div>`).join('')}</div></td>
@@ -1352,10 +1176,7 @@ async function renderStats(){
     <div class="stat-card"><div class="stat-label">Ø Shards</div><div class="stat-value" style="color:var(--green)">${avg}</div></div>`;
 }
 
-/* ══════════════════════════════════════════════════════════
-   USER CRUD
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ USER CRUD ══ */
 async function saveUser(){
   const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(cu.role!=='owner'&&cu.role!=='admin'){ alert('Keine Berechtigung!'); return; }
@@ -1378,7 +1199,7 @@ async function changeOwnPassword(){
   const oldPw=document.getElementById('oldPw').value;
   const newPw=document.getElementById('newPw').value;
   if(!oldPw||!newPw){ alert('Bitte beide Felder ausfüllen.'); return; }
-  if(newPw.length<6){ alert('Neues Passwort muss mindestens 6 Zeichen haben.'); return; }
+  if(newPw.length<6){ alert('Neues Passwort mind. 6 Zeichen.'); return; }
   const oldHash=await sha256(oldPw);
   let users=await loadUsersFromGH();
   const user=users.find(u=>u.username===cu.username&&u.passwordHash===oldHash);
@@ -1397,7 +1218,7 @@ async function changeUserPassword(username){
   if(!target) return;
   if(cu.role==='admin'&&target.role==='owner'){ alert('Admins können den Besitzer nicht bearbeiten!'); return; }
   const newPw=prompt(`Neues Passwort für "${username}":`);
-  if(!newPw||newPw.length<6){ alert('Passwort muss mindestens 6 Zeichen haben.'); return; }
+  if(!newPw||newPw.length<6){ alert('Passwort mind. 6 Zeichen.'); return; }
   target.passwordHash=await sha256(newPw);
   await saveUsersToGH(users);
   alert(`Passwort von "${username}" geändert.`);
@@ -1436,7 +1257,7 @@ async function renderUsers(){
   const canManage=cu.role==='owner'||cu.role==='admin';
   if(!canManage){ tbody.innerHTML='<tr><td colspan="3" style="text-align:center;padding:30px;color:var(--text3)">Keine Berechtigung</td></tr>'; return; }
   tbody.innerHTML=users.map(u=>{
-    const isOwner=u.role==='owner', isMe=u.username===cu.username;
+    const isOwner=u.role==='owner',isMe=u.username===cu.username;
     const canEdit=cu.role==='owner'||(cu.role==='admin'&&!isOwner);
     return `<tr>
       <td><strong>${esc(u.username)}</strong>${isMe?' <span style="color:var(--text3);font-size:11px">(du)</span>':''}</td>
@@ -1450,74 +1271,60 @@ async function renderUsers(){
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════════════
-   UTILS
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ UTILS ══ */
 function esc(t){ const d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
-function formatDate(s){ return new Date(s).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}); }
 
-/* ══════════════════════════════════════════════════════════
-   BOOTSTRAP — STARTUP
-   ══════════════════════════════════════════════════════════ */
-
+/* ══ BOOT ══ */
 async function boot(){
-  const {user,repo} = getRepoConfig();
+  const {user,repo}=getRepoConfig();
+  if(!user||!repo){ setRepoConfig('julius848803','shard-preise'); }
 
-  // Schritt 1: Repo-Config vorhanden?
-  if(!user||!repo){
-    // Versuche Standard-Config
-    setRepoConfig('julius848803','shard-preise');
-    // Falls nicht gewollt → Bootstrap-Screen zeigen
-    // Für jetzt: direkt mit Standard weitermachen
-  }
-
-  // Schritt 2: config.enc lokal vorhanden?
-  const localEnc = localStorage.getItem('op_enc_config');
-
-  // Schritt 3: config.enc vom Repo laden (raw, kein Auth nötig bei public repo)
+  // FIX: config.enc vom Repo laden mit korrektem UTF-8 Decoding
   try{
-    const {user: ghUser, repo: ghRepo} = getRepoConfig();
-    const r = await fetch(`https://raw.githubusercontent.com/${ghUser}/${ghRepo}/main/config.enc`);
+    const {user:ghUser,repo:ghRepo}=getRepoConfig();
+    const r=await fetch(`https://raw.githubusercontent.com/${ghUser}/${ghRepo}/main/config.enc?t=${Date.now()}`);
     if(r.ok){
-      const text = await r.text();
-      if(text && text.trim().length > 0){
-        // Prüfen ob es ein gültiges JSON-Payload ist (neues Format)
-        try{ JSON.parse(text.trim()); }catch(e){
-          // Altes Format (nur verschlüsselter String) — ignorieren, Setup nötig
-          showScreen('setup'); return;
-        }
-        localStorage.setItem('op_enc_config', text.trim());
+      const text=await r.text();
+      if(text&&text.trim().length>0){
+        try{ JSON.parse(text.trim()); }
+        catch(e){ showScreen('setup'); return; }
+        localStorage.setItem('op_enc_config',text.trim());
         showScreen('login');
         return;
       }
     }
   }catch(e){}
 
-  // Schritt 4: Lokal vorhanden aber kein Repo-Read?
+  const localEnc=localStorage.getItem('op_enc_config');
   if(localEnc){
     showScreen('login');
     return;
   }
-
-  // Schritt 5: Noch kein Token → Setup
   showScreen('setup');
 }
 
 async function initializeUsers(){
-  // Nur wenn noch keine Users vorhanden
-  const local = localStorage.getItem('opsucht_users');
-  if(local && JSON.parse(local).length>0) return;
-
-  // Erst-Setup: Standard-Owner anlegen
-  const ownerHash = await sha256('changeme123');
+  const local=localStorage.getItem('opsucht_users');
+  if(local&&JSON.parse(local).length>0) return;
+  // FIX: Versuche zuerst users.json vom Repo zu laden
+  try{
+    const {user,repo}=getRepoConfig();
+    const r=await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/users.json?t=${Date.now()}`);
+    if(r.ok){
+      const data=await r.json();
+      if(data&&data.length>0){ localStorage.setItem('opsucht_users',JSON.stringify(data)); return; }
+    }
+  }catch(e){}
+  // Standard-Owner anlegen
+  const ownerHash=await sha256('changeme123');
   const users=[{username:'xXLuckyGamer04Xx',passwordHash:ownerHash,role:'owner'}];
-  localStorage.setItem('opsucht_users', JSON.stringify(users));
+  localStorage.setItem('opsucht_users',JSON.stringify(users));
 }
 
-window.onload = async function(){
+window.onload=async function(){
+  setRepoConfig('julius848803','shard-preise');
   await initializeUsers();
-  const cu = sessionStorage.getItem('currentUser');
+  const cu=sessionStorage.getItem('currentUser');
   if(cu){ await showDashboard(); return; }
   await boot();
 };

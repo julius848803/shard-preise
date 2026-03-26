@@ -47,21 +47,7 @@ header{background:var(--bg2);border-bottom:1px solid var(--border);position:stic
 
 main{padding:20px;max-width:var(--max-w);margin:0 auto}
 
-/* ── DATE GROUP ── */
-.date-group{margin-bottom:28px}
-/* Trennstrich / Hervorhebung NUR bei Weekly */
-.date-group.weekly{
-  border-left:2px solid rgba(0,229,200,.25);
-  padding-left:12px;
-}
-.date-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.date-label{font-size:13px;font-weight:700;color:var(--text2);font-family:'Share Tech Mono',monospace;letter-spacing:.5px}
-.date-type-badge{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
-.date-type-badge.daily{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
-.date-type-badge.weekly{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
-.date-count{font-size:11px;color:var(--text3);margin-left:auto}
-
-/* ── QUEST GRID — nebeneinander ── */
+/* ── QUEST GRID ── */
 .quests-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
@@ -80,9 +66,20 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .quest-card.daily::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
 .quest-card.weekly::before{background:linear-gradient(90deg,var(--cyan),var(--purple))}
 
+/* Datum-Chip oben auf der Karte */
+.qdate-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Share Tech Mono',monospace;font-size:10px;font-weight:700;
+  color:var(--text3);margin-bottom:8px;
+  background:var(--bg3);border:1px solid var(--border2);
+  border-radius:5px;padding:3px 8px;letter-spacing:.3px;
+  width:fit-content;
+}
+.qdate-chip.daily-chip{color:var(--orange);background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.2)}
+.qdate-chip.weekly-chip{color:var(--cyan);background:var(--cyan-dim);border-color:var(--cyan-glow)}
+
 .qtitle{font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.4}
 
-/* ── STEPS ── */
 .qsteps{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;flex:1}
 .qstep{
   display:flex;align-items:flex-start;gap:8px;
@@ -128,10 +125,8 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
   .qtag{font-size:9px;padding:2px 7px}
   .filter-inner{flex-direction:column;align-items:flex-start;gap:8px;padding:10px 14px}
   .h-title p{display:none}
-  .date-header{flex-wrap:wrap;gap:5px;margin-bottom:10px}
-  .date-label{font-size:11px}
   main{padding:10px 12px}
-  .date-group{margin-bottom:18px}
+  .qdate-chip{font-size:9px;padding:2px 6px}
 }
 @media(max-width:360px){
   .quests-grid{grid-template-columns:1fr 1fr;gap:5px}
@@ -185,24 +180,61 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 const GITHUB_USER='julius848803';
 const GITHUB_REPO='shard-preise';
 const QUESTS_FILE='quests.json';
-const RAW_URL=`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${QUESTS_FILE}`;
 
+// FIX: Schnelles Laden via raw.githubusercontent.com mit Cache-Buster
 async function loadQuests(){
-  try{ const r=await fetch(RAW_URL+'?t='+Date.now()); if(!r.ok) return []; return await r.json(); }
-  catch(e){ return JSON.parse(localStorage.getItem('opsucht_quests')||'[]'); }
+  try{
+    const r=await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/${QUESTS_FILE}?t=${Date.now()}`);
+    if(!r.ok) return JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
+    const data=await r.json();
+    localStorage.setItem('opsucht_quests',JSON.stringify(data));
+    return data;
+  }catch(e){
+    return JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
+  }
 }
 
 let allQuests=[];
 let nebenOpen=false;
+
+/* ══ DATUM UTILS ══ */
+const WOCHENTAGE=['So.','Mo.','Di.','Mi.','Do.','Fr.','Sa.'];
+
+function formatDateShort(dateStr){
+  if(!dateStr) return '';
+  // FIX: T12:00:00 verhindert Timezone-Probleme
+  const d=new Date(dateStr+'T12:00:00');
+  const wt=WOCHENTAGE[d.getDay()];
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const yy=String(d.getFullYear()).slice(2);
+  return `${wt} ${dd}.${mm}.${yy}`;
+}
+
+function formatWeeklyRange(startStr,endStr){
+  if(!startStr) return '';
+  const s=new Date(startStr+'T12:00:00');
+  const wtS=WOCHENTAGE[s.getDay()];
+  const sdStr=`${String(s.getDate()).padStart(2,'0')}.${String(s.getMonth()+1).padStart(2,'0')}.`;
+  if(!endStr){
+    return `${wtS} ${sdStr}`;
+  }
+  const e=new Date(endStr+'T12:00:00');
+  const wtE=WOCHENTAGE[e.getDay()];
+  const edStr=`${String(e.getDate()).padStart(2,'0')}.${String(e.getMonth()+1).padStart(2,'0')}.${String(e.getFullYear()).slice(2)}`;
+  return `${wtS} ${sdStr} - ${wtE} ${edStr}`;
+}
+
+function esc(t){ const d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
 
 function getMainTags(q){ const c={}; q.forEach(x=>(x.haupttags||x.tags||[]).forEach(t=>{c[t]=(c[t]||0)+1;})); return Object.entries(c).sort((a,b)=>b[1]-a[1]).map(([t])=>t); }
 function getNebenTags(q){ const c={}; q.forEach(x=>(x.nebentags||[]).forEach(t=>{c[t]=(c[t]||0)+1;})); return Object.entries(c).sort((a,b)=>b[1]-a[1]).map(([t])=>t); }
 
 function renderTagFilters(){
   document.getElementById('mainTagFilter').innerHTML=getMainTags(allQuests).map(t=>
-    `<button class="tag-btn" data-tag="${t}" data-type="haupt" onclick="toggleTag(this)">${t}</button>`).join('');
+    `<button class="tag-btn" data-tag="${esc(t)}" data-type="haupt" onclick="toggleTag(this)">${esc(t)}</button>`).join('');
   document.getElementById('nebenTagFilter').innerHTML=getNebenTags(allQuests).map(t=>
-    `<button class="tag-btn neben" data-tag="${t}" data-type="neben" onclick="toggleTag(this)">${t}</button>`).join('');
+    `<button class="tag-btn neben" data-tag="${esc(t)}" data-type="neben" onclick="toggleTag(this)">${esc(t)}</button>`).join('');
   const nebenTags=getNebenTags(allQuests);
   document.getElementById('nebenToggle').style.display=nebenTags.length>0?'':'none';
 }
@@ -214,9 +246,6 @@ function toggleNebenTags(){
   document.getElementById('nebenToggleArrow').textContent=nebenOpen?'▴':'▾';
 }
 function toggleTag(btn){ btn.classList.toggle('active'); renderQuests(); }
-
-function esc(t){ const d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
-function formatDate(s){ return new Date(s).toLocaleDateString('de-DE',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'}); }
 
 function renderQuests(){
   const main=document.getElementById('mainContent');
@@ -237,9 +266,11 @@ function renderQuests(){
   else if(sb==='shards-desc') q.sort((a,b)=>b.shards-a.shards);
   else q.sort((a,b)=>a.shards-b.shards);
 
-  if(!q.length){ main.innerHTML=`<div class="empty-state"><h2>Keine Quests gefunden</h2><p>Noch keine Quests eingetragen oder Filter passt nicht.</p></div>`; return; }
+  if(!q.length){
+    main.innerHTML=`<div class="empty-state"><h2>Keine Quests gefunden</h2><p>Noch keine Quests eingetragen oder Filter passt nicht.</p></div>`;
+    return;
+  }
 
-  // Alle Quests einfach nebeneinander im Grid — keine Datums-Gruppierung
   main.innerHTML=`<div class="quests-grid">${q.map(renderQuestCard).join('')}</div>`;
 }
 
@@ -247,8 +278,20 @@ function renderQuestCard(quest){
   const haupttags=quest.haupttags||quest.tags||[];
   const nebentags=quest.nebentags||[];
   const steps=quest.steps&&quest.steps.length>0?quest.steps:(quest.items?[quest.items]:[]);
+
+  // FIX: Datum korrekt anzeigen je nach Typ
+  let datumChip='';
+  if(quest.type==='weekly'){
+    const label=formatWeeklyRange(quest.date,quest.weeklyEnd||null);
+    datumChip=`<div class="qdate-chip weekly-chip">📆 ${label}</div>`;
+  } else {
+    const label=formatDateShort(quest.date);
+    datumChip=label?`<div class="qdate-chip daily-chip">📅 ${label}</div>`:'';
+  }
+
   return `
     <div class="quest-card ${quest.type}">
+      ${datumChip}
       <div class="qtitle">${esc(quest.task)}</div>
       <div class="qsteps">
         ${steps.map((s,i)=>`<div class="qstep"><span class="qstep-num">${i+1}</span><span>${esc(s)}</span></div>`).join('')}
@@ -258,10 +301,10 @@ function renderQuestCard(quest){
         <div class="qtags-wrap">
           ${haupttags.length?`<div class="qtags-main">${haupttags.map(t=>`<span class="qtag haupt">${esc(t)}</span>`).join('')}</div>`:''}
           ${nebentags.length?`
-            <button class="neben-tags-toggle" onclick="toggleCardNeben('${quest.id}')">
-              <span id="neben-lbl-${quest.id}">▾ ${nebentags.length} Neben-Tag${nebentags.length>1?'s':''}</span>
+            <button class="neben-tags-toggle" onclick="toggleCardNeben('${esc(quest.id)}')">
+              <span id="neben-lbl-${esc(quest.id)}">▾ ${nebentags.length} Neben-Tag${nebentags.length>1?'s':''}</span>
             </button>
-            <div class="qtags-neben" id="neben-${quest.id}" style="display:none">
+            <div class="qtags-neben" id="neben-${esc(quest.id)}" style="display:none">
               ${nebentags.map(t=>`<span class="qtag neben">${esc(t)}</span>`).join('')}
             </div>
           `:''}
@@ -273,6 +316,7 @@ function renderQuestCard(quest){
 function toggleCardNeben(id){
   const el=document.getElementById('neben-'+id);
   const lbl=document.getElementById('neben-lbl-'+id);
+  if(!el||!lbl) return;
   const isOpen=el.style.display!=='none';
   el.style.display=isOpen?'none':'flex';
   const quest=allQuests.find(q=>q.id===id);
@@ -283,7 +327,11 @@ function toggleCardNeben(id){
 document.getElementById('typeFilter').addEventListener('change',renderQuests);
 document.getElementById('sortBy').addEventListener('change',renderQuests);
 
-async function init(){ allQuests=await loadQuests(); renderTagFilters(); renderQuests(); }
+async function init(){
+  allQuests=await loadQuests();
+  renderTagFilters();
+  renderQuests();
+}
 init();
 </script>
 </body>
