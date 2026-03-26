@@ -86,13 +86,14 @@
   },
   {
     "id": "1774386198296",
-    "task": "BlÃÂ¶cke abbauen (Schneeblock)",
+    "task": "Blöcke abbauen (Schneeblock)",
     "steps": [
       "10000x Schneeblock abbauen"
     ],
     "shards": 4750,
     "type": "weekly",
     "date": "2026-03-20",
+    "weeklyEnd": "2026-03-26",
     "haupttags": [
       "Items abbauen"
     ],
