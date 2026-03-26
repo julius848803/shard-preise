@@ -3,7 +3,7 @@
     "id": "1774385958225",
     "task": "Items abgeben (Goldblock)",
     "steps": [
-      "16x GoldblÃÂ¶cke abgeben"
+      "16x Goldblöcke abgeben"
     ],
     "shards": 325,
     "type": "daily",
@@ -17,29 +17,29 @@
     "tags": [
       "Items abgeben"
     ],
-    "items": "16x GoldblÃÂ¶cke abgeben"
+    "items": "16x Goldblöcke abgeben"
   },
   {
     "id": "1774386033465",
-    "task": "Custom-Mobs tÃ¶ten (GrÃÂ¼ner Wellensittich)",
+    "task": "Custom-Mobs töten (Grüner Wellensittich)",
     "steps": [
-      "1x GrÃ¼nen Wellensittich tÃ¶ten"
+      "1x GrÃ¼nen Wellensittich töten"
     ],
     "shards": 750,
     "type": "daily",
     "date": "2026-03-23",
     "haupttags": [
-      "Custom-Mobs tÃ¶ten",
-      "Mobs tÃ¶ten"
+      "Custom-Mobs töten",
+      "Mobs töten"
     ],
     "nebentags": [
       "Wellensittich"
     ],
     "tags": [
-      "Custom-Mobs tÃ¶ten",
-      "Mobs tÃ¶ten"
+      "Custom-Mobs töten",
+      "Mobs töten"
     ],
-    "items": "1x GrÃ¼nen Wellensittich tÃ¶ten"
+    "items": "1x Grünen Wellensittich töten"
   },
   {
     "id": "1774386064177",
@@ -82,7 +82,7 @@
       "Items abbauen",
       "Items abgeben"
     ],
-    "items": "2000x Kies abbauen ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· 3000x Kies abgeben"
+    "items": "2000x Kies abbauen · 3000x Kies abgeben"
   },
   {
     "id": "1774386198296",
@@ -127,7 +127,7 @@
   },
   {
     "id": "1774386547160",
-    "task": "BlÃÂ¶cke platzieren (Sandstein)",
+    "task": "Blöcke platzieren (Sandstein)",
     "steps": [
       "?????"
     ],
