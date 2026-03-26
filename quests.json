@@ -204,5 +204,24 @@
       "Zu Fuß reisen"
     ],
     "items": "10000 Blöcke zu Fuß reisen"
+  },
+  {
+    "id": "1774534135452",
+    "task": "Erfahrung sammeln",
+    "steps": [
+      "1200 Erfahrungspunkte"
+    ],
+    "shards": 450,
+    "type": "daily",
+    "date": "2026-03-26",
+    "weeklyEnd": null,
+    "haupttags": [
+      "Erfahrung sammeln"
+    ],
+    "nebentags": [],
+    "tags": [
+      "Erfahrung sammeln"
+    ],
+    "items": "1200 Erfahrungspunkte"
   }
 ]
