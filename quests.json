@@ -223,5 +223,26 @@
       "Erfahrung sammeln"
     ],
     "items": "1200 Erfahrungspunkte"
+  },
+  {
+    "id": "1774574275990",
+    "task": "Items abgeben (Lohenrute)",
+    "steps": [
+      "125 Lohenrute abgeben"
+    ],
+    "shards": 375,
+    "type": "daily",
+    "date": "2026-03-27",
+    "weeklyEnd": null,
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Lohenrute"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "125 Lohenrute abgeben"
   }
 ]
