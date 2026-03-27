@@ -91,9 +91,13 @@
       "10000x Schneeblock abbauen"
     ],
     "shards": 4750,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
     "type": "weekly",
     "date": "2026-03-20",
     "weeklyEnd": "2026-03-26",
+    "location": "farmwelt",
     "haupttags": [
       "Items abbauen"
     ],
@@ -212,9 +216,13 @@
       "1200 Erfahrungspunkte"
     ],
     "shards": 450,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
     "type": "daily",
     "date": "2026-03-26",
     "weeklyEnd": null,
+    "location": "everywhere",
     "haupttags": [
       "Erfahrung sammeln"
     ],
@@ -231,9 +239,13 @@
       "125 Lohenrute abgeben"
     ],
     "shards": 375,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
     "type": "daily",
     "date": "2026-03-27",
     "weeklyEnd": null,
+    "location": "everywhere",
     "haupttags": [
       "Items abgeben"
     ],
