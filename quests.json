@@ -244,5 +244,33 @@
       "Items abgeben"
     ],
     "items": "125 Lohenrute abgeben"
+  },
+  {
+    "id": "1774642358260",
+    "task": "Job Geld/XP verdienen",
+    "steps": [
+      "Verdiene 500000$ in einem beliebigen Job",
+      "Sammle 1500000 XP in einem beliebigen Job"
+    ],
+    "shards": null,
+    "boosterName": "Farmwelt Fly",
+    "boosterHours": 72,
+    "rewardType": "booster",
+    "type": "weekly",
+    "date": "2026-03-27",
+    "weeklyEnd": "2026-04-02",
+    "location": "everywhere",
+    "haupttags": [
+      "Job Geld verdienen",
+      "Job XP sammeln"
+    ],
+    "nebentags": [
+      "Beliebiger Job"
+    ],
+    "tags": [
+      "Job Geld verdienen",
+      "Job XP sammeln"
+    ],
+    "items": "Verdiene 500000$ in einem beliebigen Job · Sammle 1500000 XP in einem beliebigen Job"
   }
 ]
