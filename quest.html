@@ -199,7 +199,16 @@ document.getElementById('typeFilter').addEventListener('change',renderQuests);
 document.getElementById('locFilter').addEventListener('change',renderQuests);
 document.getElementById('rewardFilter').addEventListener('change',renderQuests);
 document.getElementById('sortBy').addEventListener('change',renderQuests);
-async function init(){allQuests=await loadQuests();renderTagFilters();renderQuests();}
+async function init(){
+  // Show cached instantly
+  const cached=JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
+  if(cached.length){ allQuests=cached; renderTagFilters(); renderQuests(); }
+  // Then load fresh from GH
+  const fresh=await loadQuests();
+  if(JSON.stringify(fresh)!==JSON.stringify(allQuests)){
+    allQuests=fresh; renderTagFilters(); renderQuests();
+  }
+}
 init();
 </script>
 </body>

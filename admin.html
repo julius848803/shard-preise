@@ -163,6 +163,16 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .save-indicator.saving{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.2)}
 .save-indicator.saved{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 .save-indicator.error{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+/* Queue Tabs */
+.queue-tabs{display:flex;gap:0;border-bottom:1px solid var(--border2);margin-bottom:14px}
+.queue-tab-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--text3);padding:8px 16px;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px}
+.queue-tab-btn:hover{color:var(--text)}
+.queue-tab-btn.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+.queue-tab-btn.edit-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.queue-tab-count{font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px}
+.queue-tab-btn.active .queue-tab-count{background:var(--cyan-dim);color:var(--cyan)}
+.queue-tab-btn.edit-tab.active .queue-tab-count{background:rgba(249,115,22,.15);color:var(--orange)}
+.edit-item{border-left:2px solid var(--orange)!important}
 @media(max-width:768px){.stats-bar{grid-template-columns:1fr 1fr};main{padding:12px};.panel-box{padding:16px}}
 @media(max-width:500px){.stats-bar{grid-template-columns:1fr 1fr;gap:8px};main{padding:10px 12px};.nav-tab{padding:10px 10px;font-size:11px};.streak-grid{grid-template-columns:1fr}}
 </style>
@@ -274,11 +284,15 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
         </div>
         <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap">
           <button class="btn btn-orange" style="max-width:220px" id="addToQueueBtn" onclick="addToQueue()">📥 Zur Warteschlange</button>
-          <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Abbrechen</button>
+          <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">✕ Abbrechen</button>
         </div>
       </div>
-      <div class="queue-wrap">
+      <div class="queue-wrap" id="queueWrap" style="display:none">
         <div class="queue-header"><h2>📥 Warteschlange <span class="queue-badge" id="queueBadge">0</span></h2><button class="btn btn-danger btn-sm" onclick="clearQueue()">🗑️ Leeren</button></div>
+        <div class="queue-tabs" id="queueTabs">
+          <button class="queue-tab-btn active" id="queueTabNew" onclick="switchQueueTab('new')">✨ Erstellt <span class="queue-tab-count" id="queueTabNewCount">0</span></button>
+          <button class="queue-tab-btn edit-tab" id="queueTabEdit" onclick="switchQueueTab('edit')" style="display:none">✏️ Bearbeitet <span class="queue-tab-count" id="queueTabEditCount">0</span></button>
+        </div>
         <div id="queueItems" class="queue-empty">Noch keine Quests.</div>
         <div class="queue-push-row" id="queuePushRow" style="display:none">
           <button class="btn btn-success" style="max-width:260px" onclick="pushQueue()">🚀 Alle übermitteln</button>
@@ -663,7 +677,10 @@ function stepKD(e,i){if(e.key==='Enter'){e.preventDefault();if(curSteps.length<5
 function addStep(){if(curSteps.length>=5)return;curSteps.push('');renderSteps();setTimeout(()=>{const ins=document.querySelectorAll('.step-input');if(ins.length)ins[ins.length-1].focus();},0);}
 function remStep(i){if(curSteps.length<=1){curSteps[0]='';renderSteps();return;}curSteps.splice(i,1);renderSteps();}
 
+// questQueue: [{...quest, _queueType: 'new'|'edit'}]
 let questQueue=[];
+let curQueueTab='new';
+
 function addToQueue(){
   const cu=JSON.parse(sessionStorage.getItem('currentUser'));
   if(cu.role==='viewer'){alert('Keine Berechtigung!');return;}
@@ -673,7 +690,6 @@ function addToQueue(){
   const date=document.getElementById('questDate').value;
   const editId=document.getElementById('editQuestId').value;
   const steps=curSteps.map(s=>s.trim()).filter(s=>s.length>0);
-  // Reward
   let shards=null,boosterName=null,boosterHours=null;
   if(curRewardType==='shards'){
     shards=parseInt(document.getElementById('questShards').value);
@@ -687,31 +703,119 @@ function addToQueue(){
   if(!steps.length){alert('Mind. einen Eintrag hinzufügen.');return;}
   let weeklyEnd=null;
   if(type==='weekly'){weeklyEnd=document.getElementById('weeklyEnd').value;if(!weeklyEnd){alert('Enddatum für Weekly ausfüllen.');return;}}
-  const quest={id:editId||Date.now().toString(),task,steps,shards,boosterName,boosterHours,rewardType:curRewardType,type,date,weeklyEnd,location:curLoc,haupttags:[...curHT],nebentags:[...curNT],tags:[...curHT],items:steps.join(' · ')};
-  if(editId){pushSingleEdit(quest);return;}
-  questQueue.push(quest);cancelEdit();renderQueue();
+  const quest={
+    id:editId||Date.now().toString(),task,steps,shards,boosterName,boosterHours,
+    rewardType:curRewardType,type,date,weeklyEnd,location:curLoc,
+    haupttags:[...curHT],nebentags:[...curNT],tags:[...curHT],items:steps.join(' · '),
+    _queueType:editId?'edit':'new'
+  };
+  // Remove existing entry for same id if re-adding
+  questQueue=questQueue.filter(x=>x.id!==quest.id);
+  questQueue.push(quest);
+  cancelEdit();
+  // Auto-switch to matching tab
+  curQueueTab=quest._queueType;
+  renderQueue();
 }
+
+function switchQueueTab(tab){
+  curQueueTab=tab;
+  document.getElementById('queueTabNew').className='queue-tab-btn'+(tab==='new'?' active':'');
+  document.getElementById('queueTabEdit').className='queue-tab-btn edit-tab'+(tab==='edit'?' active':'');
+  renderQueueItems();
+}
+
 function renderQueue(){
-  const badge=document.getElementById('queueBadge'),items=document.getElementById('queueItems'),pr=document.getElementById('queuePushRow'),pc=document.getElementById('pushCount');
-  badge.textContent=questQueue.length;
-  if(!questQueue.length){items.className='queue-empty';items.textContent='Noch keine Quests.';if(pr)pr.style.display='none';return;}
-  items.className='queue-items';
-  items.innerHTML=questQueue.map((q,i)=>`<div class="queue-item"><div class="queue-item-info"><div class="queue-item-title">${esc(q.task)}</div><div class="queue-item-steps">${q.steps.map(s=>`<span>→ ${esc(s)}</span>`).join('')}</div><div class="queue-item-meta"><span class="type-badge ${q.type}">${q.type==='daily'?'Täglich':'Wöchentlich'}</span>${q.rewardType==='booster'?`<span class="booster-badge">⚡ BOOSTER <span class="sep">|</span> ${esc(q.boosterName)} · ${q.boosterHours}h</span>`:`<span style="font-size:11px;color:var(--cyan)">💎 ${q.shards}</span>`}<span style="font-size:11px;color:var(--text3)">${q.type==='weekly'&&q.weeklyEnd?fmtW(q.date,q.weeklyEnd):fmtD(q.date)}</span>${q.location?`<span class="loc-badge ${q.location}">${q.location==='everywhere'?'🌍 Überall':'🌾 Farmwelt'}</span>`:''}</div></div><button class="btn btn-danger btn-sm" onclick="remFromQueue(${i})">×</button></div>`).join('');
-  if(pr){pr.style.display='flex';pc.textContent=`${questQueue.length} bereit`;}
+  const newItems=questQueue.filter(q=>q._queueType==='new');
+  const editItems=questQueue.filter(q=>q._queueType==='edit');
+  const total=questQueue.length;
+  const badge=document.getElementById('queueBadge');
+  const wrap=document.getElementById('queueWrap');
+  const pr=document.getElementById('queuePushRow');
+  const pc=document.getElementById('pushCount');
+  const tabNew=document.getElementById('queueTabNew');
+  const tabEdit=document.getElementById('queueTabEdit');
+  const tabNewCount=document.getElementById('queueTabNewCount');
+  const tabEditCount=document.getElementById('queueTabEditCount');
+
+  badge.textContent=total;
+
+  // Show/hide wrap
+  if(!total){
+    if(wrap) wrap.style.display='none';
+    if(pr) pr.style.display='none';
+    return;
+  }
+  if(wrap) wrap.style.display='block';
+
+  // Tab counts
+  tabNewCount.textContent=newItems.length;
+  tabEditCount.textContent=editItems.length;
+
+  // Show edit tab only if there are edits
+  if(tabEdit) tabEdit.style.display=editItems.length?'':'none';
+  if(tabNew) tabNew.style.display=newItems.length?'':'none';
+
+  // If current tab is empty switch to other
+  if(curQueueTab==='edit'&&!editItems.length) curQueueTab='new';
+  if(curQueueTab==='new'&&!newItems.length) curQueueTab='edit';
+
+  // Active tab styling
+  tabNew.className='queue-tab-btn'+(curQueueTab==='new'?' active':'');
+  tabEdit.className='queue-tab-btn edit-tab'+(curQueueTab==='edit'?' active':'');
+
+  renderQueueItems();
+
+  if(pr){pr.style.display='flex';pc.textContent=`${total} Quest${total!==1?'s':''} bereit`;}
 }
+
+function renderQueueItems(){
+  const items=document.getElementById('queueItems');
+  const filtered=questQueue.filter(q=>q._queueType===curQueueTab);
+  if(!filtered.length){items.className='queue-empty';items.textContent='Keine Einträge in diesem Reiter.';return;}
+  items.className='queue-items';
+  items.innerHTML=filtered.map(q=>{
+    const realIdx=questQueue.indexOf(q);
+    const isEdit=q._queueType==='edit';
+    return `<div class="queue-item${isEdit?' edit-item':''}">
+      <div class="queue-item-info">
+        <div class="queue-item-title">${isEdit?'<span style="font-size:10px;color:var(--orange);font-weight:700;margin-right:4px">✏️ EDIT</span>':''}${esc(q.task)}</div>
+        <div class="queue-item-steps">${q.steps.map(s=>`<span>→ ${esc(s)}</span>`).join('')}</div>
+        <div class="queue-item-meta">
+          <span class="type-badge ${q.type}">${q.type==='daily'?'Täglich':'Wöchentlich'}</span>
+          ${q.rewardType==='booster'?`<span class="booster-badge">⚡ BOOSTER <span class="sep">|</span> ${esc(q.boosterName)} · ${q.boosterHours}h</span>`:`<span style="font-size:11px;color:var(--cyan)">💎 ${q.shards}</span>`}
+          <span style="font-size:11px;color:var(--text3)">${q.type==='weekly'&&q.weeklyEnd?fmtW(q.date,q.weeklyEnd):fmtD(q.date)}</span>
+          ${q.location?`<span class="loc-badge ${q.location}">${q.location==='everywhere'?'🌍 Überall':'🌾 Farmwelt'}</span>`:''}
+        </div>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="remFromQueue(${realIdx})">×</button>
+    </div>`;
+  }).join('');
+}
+
 function remFromQueue(i){questQueue.splice(i,1);renderQueue();}
 function clearQueue(){if(!questQueue.length)return;if(!confirm('Warteschlange leeren?'))return;questQueue=[];renderQueue();}
+
 async function pushQueue(){
   if(!questQueue.length)return;
   const btn=document.querySelector('#queuePushRow .btn-success');
-  if(btn){btn.textContent='⏳…';btn.disabled=true;}
-  try{let q=await loadQ();questQueue.forEach(x=>q.push(x));await saveQ(q);questQueue=[];renderQueue();await renderQuestsTable();await renderStats();}
+  if(btn){btn.textContent='⏳ Übermittle…';btn.disabled=true;}
+  try{
+    let allQuests=await loadQ();
+    for(const q of questQueue){
+      const {_queueType,...questData}=q;
+      if(_queueType==='edit'){
+        const idx=allQuests.findIndex(x=>x.id===questData.id);
+        if(idx>-1) allQuests[idx]=questData; else allQuests.push(questData);
+      } else {
+        allQuests.push(questData);
+      }
+    }
+    await saveQ(allQuests);
+    questQueue=[];renderQueue();await renderQuestsTable();await renderStats();
+  }
   catch(e){alert('Fehler: '+e.message);}
   finally{if(btn){btn.textContent='🚀 Alle übermitteln';btn.disabled=false;}}
-}
-async function pushSingleEdit(quest){
-  try{let q=await loadQ();const i=q.findIndex(x=>x.id===quest.id);if(i>-1)q[i]=quest;else q.push(quest);await saveQ(q);cancelEdit();await renderQuestsTable();await renderStats();}
-  catch(e){alert('Fehler: '+e.message);}
 }
 
 function editQuest(id){
@@ -733,7 +837,7 @@ function editQuest(id){
   document.getElementById('locFarmwelt').className='loc-btn'+(curLoc==='farmwelt'?' active farmwelt':'');
   onTypeChange();
   if(q.type==='weekly'&&q.weeklyEnd){document.getElementById('weeklyStart').value=q.date;document.getElementById('weeklyEnd').value=q.weeklyEnd;const prev=document.getElementById('weeklyPreview');if(prev){prev.style.display='inline-block';prev.textContent=fmtW(q.date,q.weeklyEnd);}}
-  document.getElementById('addToQueueBtn').textContent='💾 Aktualisieren & Speichern';
+  document.getElementById('addToQueueBtn').textContent='📥 Als Bearbeitung einreihen';
   document.getElementById('cancelEditBtn').classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -751,7 +855,14 @@ function cancelEdit(){
 }
 async function renderQuestsTable(){
   const tbody=document.getElementById('questsTableBody'),cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  const q=await loadQ();q.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  // Show cached data instantly, then refresh from GH
+  const cached=JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
+  if(cached.length) _renderQuestsTableData(tbody, cached, cu);
+  const q=await loadQ();
+  _renderQuestsTableData(tbody, q, cu);
+}
+function _renderQuestsTableData(tbody, q, cu){
+  q.sort((a,b)=>new Date(b.date)-new Date(a.date));
   const canEdit=cu.role!=='viewer';
   if(!q.length){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text3)">Keine Quests</td></tr>';return;}
   tbody.innerHTML=q.map(quest=>{
@@ -771,10 +882,16 @@ async function renderQuestsTable(){
   }).join('');
 }
 async function renderStats(){
+  const cached=JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
+  if(cached.length) _renderStatsData(cached);
   const q=await loadQ();
+  _renderStatsData(q);
+}
+function _renderStatsData(q){
   const d=q.filter(x=>x.type==='daily').length,w=q.filter(x=>x.type==='weekly').length,avg=q.length?Math.round(q.reduce((a,b)=>a+b.shards,0)/q.length):0;
   document.getElementById('statsBar').innerHTML=`<div class="stat-card"><div class="stat-label">Gesamt</div><div class="stat-value" style="color:var(--cyan)">${q.length}</div></div><div class="stat-card"><div class="stat-label">Täglich</div><div class="stat-value" style="color:var(--orange)">${d}</div></div><div class="stat-card"><div class="stat-label">Wöchentlich</div><div class="stat-value" style="color:var(--purple)">${w}</div></div><div class="stat-card"><div class="stat-label">Ø Shards</div><div class="stat-value" style="color:var(--green)">${avg}</div></div>`;
 }
+
 
 function getFriends(){return JSON.parse(localStorage.getItem('op_friends')||'[]');}
 function saveFriends(f){localStorage.setItem('op_friends',JSON.stringify(f));}
