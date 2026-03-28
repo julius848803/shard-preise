@@ -284,5 +284,33 @@
       "Job XP sammeln"
     ],
     "items": "Verdiene 500000$ in einem beliebigen Job · Sammle 1500000 XP in einem beliebigen Job"
+  },
+  {
+    "id": "1774658568556",
+    "task": "Blöcke abbauen/abgeben (Wirrstiel)",
+    "steps": [
+      "Baue 500 Wirrstiel ab",
+      "Bringe 750 Wirrsteil"
+    ],
+    "shards": 495,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-03-28",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Items abgeben",
+      "Items abbauen"
+    ],
+    "nebentags": [
+      "Wirrstiel"
+    ],
+    "tags": [
+      "Items abgeben",
+      "Items abbauen"
+    ],
+    "items": "Baue 500 Wirrstiel ab · Bringe 750 Wirrsteil"
   }
 ]
