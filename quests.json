@@ -340,5 +340,30 @@
       "Items abbauen"
     ],
     "items": "Baue 300 Akazienstamm ab · Bringe 500 Akazienstamm"
+  },
+  {
+    "id": "1774824429048",
+    "task": "Mobs töten (Pferd)",
+    "steps": [
+      "Töte 50 Pferd"
+    ],
+    "shards": 350,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-03-30",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Mobs töten"
+    ],
+    "nebentags": [
+      "Pferd"
+    ],
+    "tags": [
+      "Mobs töten"
+    ],
+    "items": "Töte 50 Pferd"
   }
 ]
