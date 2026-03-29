@@ -312,5 +312,33 @@
       "Items abbauen"
     ],
     "items": "Baue 500 Wirrstiel ab · Bringe 750 Wirrsteil"
+  },
+  {
+    "id": "1774810804204",
+    "task": "Blöcke abbauen/abgeben (Akazienstamm)",
+    "steps": [
+      "Baue 300 Akazienstamm ab",
+      "Bringe 500 Akazienstamm"
+    ],
+    "shards": 465,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-03-29",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Items abgeben",
+      "Items abbauen"
+    ],
+    "nebentags": [
+      "Akazienstamm"
+    ],
+    "tags": [
+      "Items abgeben",
+      "Items abbauen"
+    ],
+    "items": "Baue 300 Akazienstamm ab · Bringe 500 Akazienstamm"
   }
 ]
