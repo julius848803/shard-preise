@@ -393,24 +393,5 @@
       "Items abbauen"
     ],
     "items": "Baue 125 Melone ab · Bringe 250 Melone"
-  },
-  {
-    "id": "1775770086316",
-    "task": "Test",
-    "steps": [
-      "1"
-    ],
-    "shards": 100,
-    "boosterName": null,
-    "boosterHours": null,
-    "rewardType": "shards",
-    "type": "daily",
-    "date": "2026-04-09",
-    "weeklyEnd": null,
-    "location": "everywhere",
-    "haupttags": [],
-    "nebentags": [],
-    "tags": [],
-    "items": "1"
   }
 ]
