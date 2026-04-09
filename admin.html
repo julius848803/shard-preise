@@ -11,206 +11,101 @@
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
 .screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .card{width:100%;max-width:440px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.card-wide{max-width:560px}
 .card-icon{width:52px;height:52px;background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 20px}
 .card h1{text-align:center;font-size:20px;font-weight:700;margin-bottom:4px}
 .card-sub{text-align:center;font-size:12px;color:var(--text3);margin-bottom:28px}
-.info-box{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:14px;margin-bottom:20px;font-size:12px;color:var(--text2);line-height:1.7}
-.info-box strong{color:var(--text)}
-.info-box code{background:var(--bg4);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--cyan)}
-.info-box a{color:var(--cyan);text-decoration:none}
 .enc-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--green);margin-bottom:16px}
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
-.fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.fg input,.fg select{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
 .fg input:focus,.fg select:focus{border-color:var(--cyan)}
-.fg select option{background:var(--bg3)}
-.fg-hint{font-size:10px;color:var(--text3);margin-top:5px;line-height:1.5}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
 .btn-primary{background:linear-gradient(135deg,var(--cyan) 0%,#0bc5a8 100%);color:#0e1117;width:100%}
-.btn-primary:hover{opacity:.9}
 .btn-secondary{background:var(--bg3);border:1px solid var(--border2);color:var(--text2)}
 .btn-secondary:hover{border-color:var(--cyan);color:var(--cyan)}
-.btn-danger{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--red)}
-.btn-danger:hover{background:rgba(239,68,68,.25)}
 .btn-success{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:var(--green)}
-.btn-success:hover{background:rgba(34,197,94,.25)}
-.btn-orange{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
 .btn-sm{padding:6px 12px;font-size:11px}
-.error-msg{font-size:12px;color:var(--red);text-align:center;margin-top:10px;min-height:18px}
-.success-msg{font-size:12px;color:var(--green);margin-top:10px;min-height:18px}
+.error-msg{font-size:12px;color:var(--red);text-align:center;margin-top:10px}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .header-inner{max-width:var(--max-w);margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px}
-.h-icon{width:36px;height:36px;background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.h-icon{width:36px;height:36px;background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .h-title{font-size:15px;font-weight:700}
 .h-user{margin-left:auto;display:flex;align-items:center;gap:10px}
 .user-chip{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:5px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px}
-.role-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.role-dot{width:7px;height:7px;border-radius:50%}
+.save-indicator{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 10px;border-radius:6px;transition:all .3s}
+.save-indicator.saving{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.2)}
+.save-indicator.saved{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 nav{background:var(--bg2);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 20px;display:flex;overflow-x:auto}
-.nav-tab{background:none;border:none;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:12px 18px;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 20px;display:flex}
+.nav-tab{background:none;border:none;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:12px 18px;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .nav-tab:hover{color:var(--text)}
 .nav-tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
-.nav-tab:disabled{opacity:.3;cursor:not-allowed}
 main{padding:20px;max-width:var(--max-w);margin:0 auto}
 .panel-box{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
-.panel-box h2{font-size:15px;font-weight:700;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
-.location-toggle{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.loc-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s}
-.loc-btn.active.everywhere{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.4);color:var(--green)}
-.loc-btn.active.farmwelt{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.4);color:var(--orange)}
-.loc-icon{width:16px;height:16px;border:2px solid currentColor;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
-.loc-btn.active .loc-icon::after{content:'✓'}
-.weekly-dates{background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:10px;padding:14px;margin-top:8px;display:none}
-.weekly-dates.visible{display:block}
-.weekly-dates-label{font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:10px}
-/* Reward Toggle */
-.reward-toggle{display:flex;gap:0;margin-bottom:16px;border-radius:8px;overflow:hidden;border:1px solid var(--border2)}
-.reward-btn{flex:1;padding:10px 14px;background:var(--bg3);border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:var(--text3);transition:all .2s;letter-spacing:.5px;text-transform:uppercase}
-.reward-btn.active.shards{background:var(--cyan-dim);color:var(--cyan);border-bottom:2px solid var(--cyan)}
-.reward-btn.active.booster{background:rgba(168,85,247,.15);color:var(--purple);border-bottom:2px solid var(--purple)}
-/* Booster badge in table/queue */
-.booster-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:var(--purple);font-family:'Share Tech Mono',monospace;letter-spacing:.3px}
-.booster-badge .sep{color:rgba(168,85,247,.4);margin:0 2px}
-.date-preview{font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--cyan-glow);border-radius:6px;padding:4px 10px;margin-top:6px;display:inline-block}
-.steps-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
-.step-row{display:flex;gap:8px;align-items:center}
-.step-num{width:24px;height:24px;background:var(--bg4);border:1px solid var(--border2);border-radius:6px;font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Share Tech Mono',monospace}
-.step-input{flex:1;padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
-.step-input:focus{border-color:var(--cyan)}
-.step-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0 4px;line-height:1;transition:color .15s;flex-shrink:0}
-.step-del:hover{color:var(--red)}
-.add-step-btn{background:var(--bg3);border:1px dashed var(--border2);border-radius:8px;color:var(--text3);font-size:12px;font-weight:500;padding:8px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;width:100%}
-.add-step-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-.add-step-btn:disabled{opacity:.3;cursor:not-allowed}
-.queue-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
-.queue-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.queue-header h2{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-.queue-badge{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange);border-radius:99px;font-size:11px;font-weight:700;padding:2px 9px}
-.queue-empty{text-align:center;padding:24px;color:var(--text3);font-size:13px}
-.queue-items{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-.queue-item{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px}
-.queue-item-info{flex:1;min-width:0}
-.queue-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
-.queue-item-steps{font-size:11px;color:var(--text2);display:flex;flex-direction:column;gap:2px}
-.queue-item-meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center}
-.queue-push-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.push-count{font-size:12px;color:var(--text3)}
-.data-table{width:100%;border-collapse:collapse;font-size:13px}
-.data-table th{background:var(--bg3);color:var(--text3);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border2)}
-.data-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
-.data-table tr:last-child td{border-bottom:none}
-.data-table tr:hover td{background:var(--bg3)}
-.data-table td strong{color:var(--text)}
-.steps-cell{display:flex;flex-direction:column;gap:3px}
-.steps-cell-item{font-size:11px;color:var(--text2)}
-.steps-cell-item::before{content:'→ '}
-.type-badge{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
-.type-badge.daily{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange)}
-.type-badge.weekly{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
-.role-badge{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
-.role-badge.owner{background:rgba(234,179,8,.15);border:1px solid rgba(234,179,8,.3);color:var(--yellow)}
-.role-badge.admin{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--red)}
-.role-badge.editor{background:var(--cyan-dim);border:1px solid var(--cyan-glow);color:var(--cyan)}
-.role-badge.viewer{background:var(--bg3);border:1px solid var(--border2);color:var(--text3)}
-.tag-pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;margin:2px}
-.tag-pill.haupt{background:var(--purple-dim);border:1px solid rgba(168,85,247,.25);color:var(--purple)}
-.tag-pill.neben{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2);color:var(--text3)}
-.tags-section-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
-.tags-wrap{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:8px;min-height:44px;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;transition:border-color .2s;cursor:text}
-.tags-wrap:focus-within{border-color:var(--cyan)}
-.tag-item{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:600}
-.tag-item.haupt{background:var(--purple-dim);border:1px solid rgba(168,85,247,.25);color:var(--purple)}
-.tag-item.neben{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2);color:var(--text2)}
-.tag-item button{background:none;border:none;cursor:pointer;font-size:14px;line-height:1;padding:0;opacity:.7}
-.tag-item.haupt button{color:var(--purple)}
-.tag-item.neben button{color:var(--text3)}
-.tag-input{background:none;border:none;outline:none;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;min-width:100px;flex:1;padding:2px 4px}
-.tag-input::placeholder{color:var(--text3)}
-.loc-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap}
-.loc-badge.everywhere{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);color:var(--green)}
-.loc-badge.farmwelt{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);color:var(--orange)}
-/* Streak */
-.streak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.streak-card{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:16px}
-.streak-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px}
-.streak-quest-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
-.streak-quest-date{font-size:10px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-top:2px}
-.streak-players{display:flex;flex-direction:column;gap:6px}
-.streak-player-row{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg4);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;user-select:none}
-.streak-player-row.done{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3)}
-.streak-player-row.done .streak-player-name{color:var(--green)}
-.streak-checkbox{width:18px;height:18px;border:2px solid var(--border2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;transition:all .2s;color:transparent}
-.streak-player-row.done .streak-checkbox{background:var(--green);border-color:var(--green);color:#0e1117}
-.streak-player-name{font-size:13px;font-weight:500;color:var(--text2);flex:1}
-.streak-player-streak{font-size:11px;font-weight:700;color:var(--orange);font-family:'Share Tech Mono',monospace}
-.friends-manager{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:14px;margin-bottom:16px}
-.friends-manager h3{font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px}
-.friends-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;min-height:32px}
+.panel-box h2{font-size:15px;font-weight:700;margin-bottom:20px}
+.shard-accounts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:20px}
+.account-card{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:18px;position:relative;overflow:hidden}
+.account-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.account-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.account-name{font-size:15px;font-weight:700}
+.account-balance{font-size:28px;font-weight:700;color:var(--cyan);margin-bottom:4px}
+.account-balance small{font-size:14px;color:var(--text2);margin-left:4px}
+.account-goal{font-size:12px;color:var(--text3);margin-bottom:10px}
+.progress-bar{height:8px;background:var(--bg4);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:99px;transition:width .5s}
+.account-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat-item{background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.stat-label{font-size:10px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.stat-value{font-size:14px;font-weight:700}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:14px}
+.calc-item{background:var(--bg4);border:1px solid var(--border2);border-radius:10px;padding:12px}
+.calc-item-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.calc-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.calc-name{font-size:12px;font-weight:600;color:var(--text2)}
+.calc-amount{font-size:20px;font-weight:700;margin-bottom:3px}
+.calc-price{font-size:11px;color:var(--text3)}
+.transaction-log{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:14px;max-height:400px;overflow-y:auto}
+.transaction-item{padding:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.transaction-item:last-child{border-bottom:none}
+.transaction-icon{width:32px;height:32px;background:var(--bg4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.transaction-info{flex:1}
+.transaction-title{font-size:12px;font-weight:600;margin-bottom:2px}
+.transaction-meta{font-size:11px;color:var(--text3)}
+.transaction-amount{font-size:14px;font-weight:700}
+.transaction-amount.positive{color:var(--green)}
+.transaction-amount.negative{color:var(--red)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;max-width:500px;width:100%}
+.modal h3{font-size:16px;font-weight:700;margin-bottom:20px}
 .friend-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg4);border:1px solid var(--border2);border-radius:99px;padding:4px 10px;font-size:12px;color:var(--text2)}
-.friend-chip button{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:0;line-height:1}
+.friend-chip button{background:none;border:none;cursor:pointer;color:var(--text3);font-size:14px;padding:0}
 .friend-chip button:hover{color:var(--red)}
-.friend-add-row{display:flex;gap:8px}
-.action-row{display:flex;gap:8px}
-.hidden{display:none!important}
 .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
 .stat-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
 .stat-value{font-size:22px;font-weight:700}
-.save-indicator{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 10px;border-radius:6px;transition:all .3s}
-.save-indicator.saving{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.2)}
-.save-indicator.saved{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
-.save-indicator.error{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
-/* Queue Tabs */
-.queue-tabs{display:flex;gap:0;border-bottom:1px solid var(--border2);margin-bottom:14px}
-.queue-tab-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--text3);padding:8px 16px;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px}
-.queue-tab-btn:hover{color:var(--text)}
-.queue-tab-btn.active{color:var(--cyan);border-bottom-color:var(--cyan)}
-.queue-tab-btn.edit-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
-.queue-tab-count{font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px}
-.queue-tab-btn.active .queue-tab-count{background:var(--cyan-dim);color:var(--cyan)}
-.queue-tab-btn.edit-tab.active .queue-tab-count{background:rgba(249,115,22,.15);color:var(--orange)}
-.edit-item{border-left:2px solid var(--orange)!important}
-@media(max-width:768px){.stats-bar{grid-template-columns:1fr 1fr};main{padding:12px};.panel-box{padding:16px}}
-@media(max-width:500px){.stats-bar{grid-template-columns:1fr 1fr;gap:8px};main{padding:10px 12px};.nav-tab{padding:10px 10px;font-size:11px};.streak-grid{grid-template-columns:1fr}}
+.hidden{display:none!important}
+.pending-badge{background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:var(--orange);border-radius:99px;font-size:11px;font-weight:700;padding:2px 9px}
+@media(max-width:768px){
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .shard-accounts-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div id="setupScreen" class="screen hidden">
-  <div class="card card-wide">
-    <div class="card-icon">⚙️</div>
-    <h1>Ersteinrichtung</h1>
-    <p class="card-sub">GitHub Token verschlüsselt speichern</p>
-    <div class="info-box">
-      <strong>1.</strong> <a href="https://github.com/settings/tokens/new" target="_blank">GitHub Token erstellen</a> (Scope: <code>repo</code>)<br>
-      <strong>2.</strong> Token + App-Passwort eingeben<br>
-      <strong>3.</strong> App-Passwort an alle Admins weitergeben
-    </div>
-    <div class="fg"><label>GitHub Token</label><input type="password" id="setupToken" placeholder="ghp_xxxxxxxxxx"/></div>
-    <div class="fg"><label>App-Passwort (mind. 6 Zeichen)</label><input type="password" id="setupAppSecret" placeholder="z.B. opsucht2025"/></div>
-    <button class="btn btn-primary" onclick="setupEncryptedToken()">🔐 Verschlüsseln &amp; Speichern</button>
-    <div class="error-msg" id="setupError"></div>
-  </div>
-</div>
 
-<div id="loginScreen" class="screen hidden">
+<div id="loginScreen" class="screen">
   <div class="card">
     <div class="card-icon">🔐</div>
     <h1>Quest Admin</h1>
     <p class="card-sub">OPSUCHT Verwaltung</p>
-    <div class="enc-badge">🔒 Token gespeichert</div>
-    <div class="fg"><label>Benutzername</label><input type="text" id="loginUsername" placeholder="Benutzername" autocomplete="username" oninput="checkShowAppSecret()"/></div>
-    <div class="fg"><label>Passwort</label><input type="password" id="loginPassword" placeholder="Passwort" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"/></div>
-    <div class="fg" id="appSecretField" style="display:none">
-      <label>App-Passwort <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--orange)">(einmalig pro Session)</span></label>
-      <input type="password" id="loginAppSecret" placeholder="App-Passwort" autocomplete="off" onkeydown="if(event.key==='Enter')login()"/>
-    </div>
+    <div class="enc-badge">🔒 GitHub verbunden</div>
+    <div class="fg"><label>Benutzername</label><input type="text" id="loginUsername" placeholder="xXLuckyGamer04Xx"/></div>
+    <div class="fg"><label>Passwort</label><input type="password" id="loginPassword" onkeydown="if(event.key==='Enter')login()"/></div>
+    <div class="fg" id="appSecretField" style="display:none"><label>App-Passwort</label><input type="password" id="loginAppSecret" placeholder="App-Passwort" onkeydown="if(event.key==='Enter')login()"/></div>
     <button class="btn btn-primary" onclick="login()">Anmelden</button>
     <div class="error-msg" id="loginError"></div>
-    <div id="loginDebug" style="margin-top:10px;font-size:10px;color:var(--text3);line-height:1.7;display:none;background:var(--bg3);border-radius:8px;padding:10px"></div>
-    <button onclick="toggleDebug()" style="background:none;border:none;color:var(--text3);font-size:10px;cursor:pointer;margin-top:8px;text-decoration:underline">🔧 Debug anzeigen</button>
   </div>
 </div>
 
@@ -227,815 +122,779 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
       </div>
     </div>
   </header>
+  
   <nav>
     <div class="nav-inner">
-      <button class="nav-tab active" id="tabQuests" onclick="switchTab('quests',this)">📋 Quests</button>
-      <button class="nav-tab" id="tabStreak" onclick="switchTab('streak',this)">🔥 Streaks</button>
-      <button class="nav-tab" id="tabUsers" onclick="switchTab('users',this)">👥 Benutzer</button>
-      <button class="nav-tab" id="tabSettings" onclick="switchTab('settings',this)">⚙️ Einstellungen</button>
+      <button class="nav-tab active" id="tabStreak" onclick="switchTab('streak',this)">🔥 Streaks</button>
+      <button class="nav-tab" id="tabShards" onclick="switchTab('shards',this)">💎 Shard-Konten</button>
     </div>
   </nav>
+  
   <main>
-    <div id="panelQuests">
-      <div class="stats-bar" id="statsBar"></div>
-      <div class="panel-box" id="questFormBox">
-        <h2>➕ Quest erstellen / bearbeiten</h2>
-        <input type="hidden" id="editQuestId"/>
-        <div class="form-grid">
-          <div class="fg"><label>Aufgabe / Titel *</label><input type="text" id="questTask" placeholder="z.B. Sammle Ressourcen"/></div>
-          <div class="fg" style="grid-column:1/-1">
-            <label>Belohnung *</label>
-            <div class="reward-toggle">
-              <button type="button" class="reward-btn active shards" id="rewardBtnShards" onclick="setRewardType('shards')">💎 Shards</button>
-              <button type="button" class="reward-btn booster" id="rewardBtnBooster" onclick="setRewardType('booster')">⚡ Booster</button>
-            </div>
-            <div id="shardsField"><input type="number" id="questShards" placeholder="z.B. 150" min="0" style="width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:Inter,sans-serif;font-size:13px;outline:none"/></div>
-            <div id="boosterField" style="display:none;flex-direction:column;gap:8px">
-              <input type="text" id="boosterName" placeholder="z.B. Farmwelt Fly" style="width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:Inter,sans-serif;font-size:13px;outline:none;margin-bottom:8px"/>
-              <div style="display:flex;gap:8px;align-items:center"><input type="number" id="boosterHours" placeholder="z.B. 72" min="1" style="flex:1;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:Inter,sans-serif;font-size:13px;outline:none"/><span style="font-size:12px;color:var(--text3);white-space:nowrap">Stunden</span></div>
-            </div>
-          </div>
-          <div class="fg"><label>Zeitraum *</label><select id="questType" onchange="onTypeChange()"><option value="daily">📅 Täglich</option><option value="weekly">📆 Wöchentlich</option></select></div>
-          <div class="fg"><label>Startdatum *</label><input type="date" id="questDate" oninput="onDateChange()"/><div class="date-preview" id="datePreview" style="display:none"></div></div>
-        </div>
-        <div class="weekly-dates" id="weeklyDatesBox">
-          <div class="weekly-dates-label">📆 Wöchentlicher Zeitraum</div>
-          <div class="form-grid">
-            <div class="fg" style="margin-bottom:0"><label>Start (Freitag)</label><input type="date" id="weeklyStart" oninput="onWeeklyStartChange()"/><div class="fg-hint" id="weeklyStartHint"></div></div>
-            <div class="fg" style="margin-bottom:0"><label>Ende (Donnerstag)</label><input type="date" id="weeklyEnd"/><div class="fg-hint" id="weeklyEndHint"></div></div>
-          </div>
-          <div class="date-preview" id="weeklyPreview" style="margin-top:10px;display:none"></div>
-        </div>
-        <div class="fg" style="margin-top:14px">
-          <label>Wo erledigbar</label>
-          <div class="location-toggle">
-            <button type="button" class="loc-btn" id="locEverywhere" onclick="toggleLocation('everywhere')"><span class="loc-icon"></span>🌍 Überall erledigbar</button>
-            <button type="button" class="loc-btn" id="locFarmwelt" onclick="toggleLocation('farmwelt')"><span class="loc-icon"></span>🌾 Farmwelt Aufgabe</button>
-          </div>
-        </div>
-        <div class="fg">
-          <label>Einträge <span style="font-size:10px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--text3)">(max. 5)</span></label>
-          <div class="steps-list" id="stepsList"></div>
-          <button class="add-step-btn" id="addStepBtn" onclick="addStep()">＋ Eintrag hinzufügen</button>
-        </div>
-        <div class="form-grid" style="margin-top:4px">
-          <div class="fg"><div class="tags-section-label">Haupt-Tags <span id="haupttagCount">(0/3)</span></div><div class="tags-wrap" id="hauptTagsContainer" onclick="document.getElementById('hauptTagInput').focus()"><input class="tag-input" type="text" id="hauptTagInput" placeholder="Tag + Enter (max 3)"/></div></div>
-          <div class="fg"><div class="tags-section-label">Neben-Tags <span id="nebentagCount">(0/5)</span></div><div class="tags-wrap" id="nebenTagsContainer" onclick="document.getElementById('nebenTagInput').focus()"><input class="tag-input" type="text" id="nebenTagInput" placeholder="Tag + Enter (max 5)"/></div></div>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap">
-          <button class="btn btn-orange" style="max-width:220px" id="addToQueueBtn" onclick="addToQueue()">📥 Zur Warteschlange</button>
-          <button class="btn btn-secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">✕ Abbrechen</button>
-        </div>
-      </div>
-      <div class="queue-wrap" id="queueWrap" style="display:none">
-        <div class="queue-header"><h2>📥 Warteschlange <span class="queue-badge" id="queueBadge">0</span></h2><button class="btn btn-danger btn-sm" onclick="clearQueue()">🗑️ Leeren</button></div>
-        <div class="queue-tabs" id="queueTabs">
-          <button class="queue-tab-btn active" id="queueTabNew" onclick="switchQueueTab('new')">✨ Erstellt <span class="queue-tab-count" id="queueTabNewCount">0</span></button>
-          <button class="queue-tab-btn edit-tab" id="queueTabEdit" onclick="switchQueueTab('edit')" style="display:none">✏️ Bearbeitet <span class="queue-tab-count" id="queueTabEditCount">0</span></button>
-        </div>
-        <div id="queueItems" class="queue-empty">Noch keine Quests.</div>
-        <div class="queue-push-row" id="queuePushRow" style="display:none">
-          <button class="btn btn-success" style="max-width:260px" onclick="pushQueue()">🚀 Alle übermitteln</button>
-          <span class="push-count" id="pushCount"></span>
-        </div>
-      </div>
-      <div class="panel-box">
-        <h2>📋 Alle gespeicherten Quests</h2>
-        <table class="data-table">
-          <thead><tr><th>Datum</th><th>Typ</th><th>Aufgabe</th><th>Ort</th><th>Einträge</th><th>Belohnung</th><th>Tags</th><th>Aktionen</th></tr></thead>
-          <tbody id="questsTableBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="panelStreak" class="hidden">
+    <div id="panelStreak">
       <div class="panel-box">
         <h2>👥 Freunde verwalten</h2>
-        <div class="friends-manager">
-          <h3>Freundesliste</h3>
-          <div class="friends-list" id="friendsList"></div>
-          <div class="friend-add-row">
-            <input class="step-input" type="text" id="friendNameInput" placeholder="Spielername" onkeydown="if(event.key==='Enter')addFriend()"/>
-            <button class="btn btn-secondary btn-sm" onclick="addFriend()">➕ Hinzufügen</button>
-          </div>
+        <div class="friends-list" id="friendsList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;min-height:32px"></div>
+        <div style="display:flex;gap:8px">
+          <input style="flex:1;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:13px" type="text" id="friendNameInput" placeholder="Spielername" onkeydown="if(event.key==='Enter')addFriend()"/>
+          <button class="btn btn-secondary" onclick="addFriend()">➕ Hinzufügen</button>
         </div>
       </div>
+      
       <div class="panel-box">
-        <h2>🔥 Quest-Streaks — Heute</h2>
-        <div class="fg-hint" style="margin-bottom:16px;color:var(--text2)">Hake ab wer die Quest erledigt hat. Streaks zählen automatisch mit.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+          <h2 style="margin:0">🔥 Quest-Streaks — Heute</h2>
+          <button class="btn btn-success btn-sm" id="pushChangesBtn" onclick="pushAllChanges()" style="display:none">🚀 Änderungen speichern <span class="pending-badge" id="pendingCount">0</span></button>
+        </div>
+        <div style="margin-bottom:16px;color:var(--text2);font-size:12px">Hake ab wer die Quest erledigt hat. Shards werden automatisch gutgeschrieben. Klicke "Änderungen speichern" um zu GitHub zu pushen.</div>
         <div id="streakContent"><div style="text-align:center;padding:30px;color:var(--text3)">⏳ Lade…</div></div>
       </div>
     </div>
 
-    <div id="panelUsers" class="hidden">
-      <div class="panel-box">
-        <h2>➕ Benutzer erstellen</h2>
-        <div class="form-grid">
-          <div class="fg"><label>Benutzername *</label><input type="text" id="newUsername" placeholder="Benutzername"/></div>
-          <div class="fg"><label>Passwort *</label><input type="password" id="newPassword" placeholder="Passwort"/></div>
-          <div class="fg"><label>Rolle *</label><select id="newRole"><option value="admin">🔴 Admin</option><option value="editor">🔵 Editor</option><option value="viewer">⚫ Viewer</option></select></div>
-        </div>
-        <button class="btn btn-primary" style="max-width:200px;margin-top:6px" onclick="saveUser()">👤 Erstellen</button>
+    <div id="panelShards" class="hidden">
+      <div class="stats-bar">
+        <div class="stat-card"><div class="stat-label">Gesamt Shards</div><div class="stat-value" style="color:var(--cyan)" id="totalShards">0</div></div>
+        <div class="stat-card"><div class="stat-label">Gesamt Ziel</div><div class="stat-value" style="color:var(--purple)" id="totalGoal">0</div></div>
+        <div class="stat-card"><div class="stat-label">Noch benötigt</div><div class="stat-value" style="color:var(--orange)" id="totalNeeded">0</div></div>
+        <div class="stat-card"><div class="stat-label">Fortschritt</div><div class="stat-value" style="color:var(--green)" id="totalProgress">0%</div></div>
       </div>
-      <div class="panel-box">
-        <h2>🔑 Eigenes Passwort ändern</h2>
-        <div class="form-grid">
-          <div class="fg"><label>Altes Passwort</label><input type="password" id="oldPw" placeholder="Aktuell"/></div>
-          <div class="fg"><label>Neues Passwort</label><input type="password" id="newPw" placeholder="Neu"/></div>
-        </div>
-        <button class="btn btn-secondary" style="max-width:200px;margin-top:6px" onclick="changeOwnPassword()">🔒 Ändern</button>
-      </div>
-      <div class="panel-box">
-        <h2>👥 Alle Benutzer</h2>
-        <table class="data-table"><thead><tr><th>Benutzername</th><th>Rolle</th><th>Aktionen</th></tr></thead><tbody id="usersTableBody"></tbody></table>
-      </div>
-    </div>
 
-    <div id="panelSettings" class="hidden">
       <div class="panel-box">
-        <h2>🔐 Token erneuern</h2>
-        <div class="fg" style="max-width:500px"><label>Neuer GitHub Token</label><input type="password" id="newTokenInput" placeholder="ghp_xxxxxxxxxx"/></div>
-        <div class="fg" style="max-width:500px"><label>Neues App-Passwort</label><input type="password" id="newTokenPassword" placeholder="App-Passwort"/></div>
-        <button class="btn btn-secondary" style="max-width:240px" onclick="reencryptToken()">🔐 Token neu verschlüsseln</button>
-        <div class="success-msg" id="tokenMsg"></div>
+        <h2>💎 Shard-Konten</h2>
+        <div id="shardAccountsGrid" class="shard-accounts-grid"></div>
       </div>
+
       <div class="panel-box">
-        <h2>🔗 Repo-Verbindung</h2>
-        <div class="form-grid">
-          <div class="fg"><label>GitHub User</label><input type="text" id="settingsUser"/></div>
-          <div class="fg"><label>Repo-Name</label><input type="text" id="settingsRepo"/></div>
+        <h2>📊 Transaktionen</h2>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <select id="transactionFilter" style="padding:8px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:12px" onchange="renderTransactions()">
+            <option value="all">Alle Personen</option>
+          </select>
+          <button class="btn btn-secondary btn-sm" onclick="showAddTransactionModal()">➕ Manuelle Transaktion</button>
         </div>
-        <button class="btn btn-secondary" style="max-width:200px;margin-top:4px" onclick="updateRepoSettings()">💾 Speichern</button>
-        <div class="success-msg" id="repoMsg"></div>
+        <div id="transactionLog" class="transaction-log"></div>
       </div>
     </div>
   </main>
 </div>
 
+<div id="editAccountModal" class="modal-overlay hidden" onclick="if(event.target===this)closeModal('editAccountModal')">
+  <div class="modal">
+    <h3>💎 Konto bearbeiten</h3>
+    <input type="hidden" id="editAccountName">
+    <div class="fg"><label>Aktuelles Guthaben (Shards)</label><input type="number" id="editAccountBalance" min="0"/></div>
+    <div class="fg"><label>Ziel (Shards)</label><input type="number" id="editAccountGoal" min="0"/></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-primary" style="flex:1" onclick="saveAccountEdit()">💾 Speichern</button>
+      <button class="btn btn-secondary" onclick="closeModal('editAccountModal')">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
+<div id="addTransactionModal" class="modal-overlay hidden" onclick="if(event.target===this)closeModal('addTransactionModal')">
+  <div class="modal">
+    <h3>➕ Manuelle Transaktion</h3>
+    <div class="fg"><label>Person</label><select id="transactionPerson"></select></div>
+    <div class="fg"><label>Shards</label><input type="number" id="transactionAmount" placeholder="Positiv = Hinzufügen, Negativ = Abziehen"/></div>
+    <div class="fg"><label>Beschreibung</label><input type="text" id="transactionDesc" placeholder="z.B. Event-Bonus"/></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-success" style="flex:1" onclick="saveManualTransaction()">💾 Hinzufügen</button>
+      <button class="btn btn-secondary" onclick="closeModal('addTransactionModal')">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* OPSUCHT Quest Admin — von xXLuckyGamer04Xx — v2.6.1 */
-const REPO_USER='julius848803',REPO_NAME='shard-preise';
+/* OPSUCHT Quest Admin — von xXLuckyGamer04Xx — v3.0.0 — GitHub Shard Integration */
 
-function getRC(){ return {user:localStorage.getItem('op_gh_user')||REPO_USER,repo:localStorage.getItem('op_gh_repo')||REPO_NAME}; }
-function setRC(u,r){ localStorage.setItem('op_gh_user',u); localStorage.setItem('op_gh_repo',r); }
-function apiBase(){ const c=getRC(); return `https://api.github.com/repos/${c.user}/${c.repo}/contents/`; }
-function getST(){ return sessionStorage.getItem('op_rt_token')||''; }
-function setST(t){ sessionStorage.setItem('op_rt_token',t); }
+const REPO_USER = 'julius848803';
+const REPO_NAME = 'shard-preise';
+const ITEMS = [
+  { key:'diamond_block', label:'Diamond Block', icon:'💎', color:'#00e5c8' },
+  { key:'netherite_ingot', label:'Netherite Ingot', icon:'⬛', color:'#a855f7' },
+  { key:'grave_mix', label:'Gräbergemisch', icon:'💀', color:'#818cf8' },
+  { key:'wood_bundle', label:'Holzbündel', icon:'🪵', color:'#f97316' },
+  { key:'stone_slab', label:'Steinplatten', icon:'🪨', color:'#94a3b8' }
+];
 
-async function deriveKey(pw,salt){
-  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
-  return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+let currentPrices = {};
+let pendingChanges = false;
+
+// ═══ CRYPTO & GITHUB API ═══
+function apiBase() { return `https://api.github.com/repos/${REPO_USER}/${REPO_NAME}/contents/`; }
+function getST() { return sessionStorage.getItem('op_rt_token') || ''; }
+function setST(t) { sessionStorage.setItem('op_rt_token', t); }
+
+async function deriveKey(pw, salt) {
+  const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 200000, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
 }
-async function encryptToken(tok,pw){
-  const salt=crypto.getRandomValues(new Uint8Array(32)),iv=crypto.getRandomValues(new Uint8Array(12));
-  const k=await deriveKey(pw,salt),c=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(tok));
-  const out=new Uint8Array(salt.byteLength+iv.byteLength+c.byteLength);
-  out.set(salt,0);out.set(iv,32);out.set(new Uint8Array(c),44);
-  return btoa(String.fromCharCode(...out));
-}
-async function decryptToken(e64,pw){
-  try{
-    const b=Uint8Array.from(atob(e64),c=>c.charCodeAt(0));
-    const k=await deriveKey(pw,b.slice(0,32));
-    const p=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.slice(32,44)},k,b.slice(44));
+
+async function decryptToken(e64, pw) {
+  try {
+    const b = Uint8Array.from(atob(e64), c => c.charCodeAt(0));
+    const k = await deriveKey(pw, b.slice(0, 32));
+    const p = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b.slice(32, 44) }, k, b.slice(44));
     return new TextDecoder().decode(p);
-  }catch(e){return null;}
+  } catch (e) { return null; }
 }
-async function sha256(s){
-  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
-  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
-}
-function b64e(s){ return btoa(encodeURIComponent(s).replace(/%([0-9A-F]{2})/g,(_,p)=>String.fromCharCode(parseInt(p,16)))); }
-function b64d(s){ return decodeURIComponent(atob(s).split('').map(c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join('')); }
 
-async function rawLoad(f){
-  const c=getRC();
-  try{ const r=await fetch(`https://raw.githubusercontent.com/${c.user}/${c.repo}/main/${f}?t=${Date.now()}`); if(!r.ok) return null; return await r.json(); }catch(e){return null;}
+async function sha256(s) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
 }
-async function ghGet(f,tok){
-  const t=tok||getST();
-  const r=await fetch(apiBase()+f,{headers:{'Authorization':'Bearer '+t,'Accept':'application/vnd.github.v3+json'}});
-  if(!r.ok){if(r.status===404) return {content:null,sha:null}; throw new Error('GET '+r.status);}
-  const d=await r.json();
-  let content=null;
-  if(d.content){try{content=JSON.parse(b64d(d.content.replace(/\n/g,'')));}catch(e){}}
-  return {content,sha:d.sha};
+
+function b64e(s) { return btoa(encodeURIComponent(s).replace(/%([0-9A-F]{2})/g, (_, p) => String.fromCharCode(parseInt(p, 16)))); }
+function b64d(s) { return decodeURIComponent(atob(s).split('').map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0')).join('')); }
+
+async function rawLoad(f) {
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${REPO_USER}/${REPO_NAME}/main/${f}?t=${Date.now()}`);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
 }
-async function ghPut(f,data,sha,tok){
-  const t=tok||getST();
+
+async function ghGet(f, tok) {
+  const t = tok || getST();
+  const r = await fetch(apiBase() + f, { headers: { 'Authorization': 'Bearer ' + t, 'Accept': 'application/vnd.github.v3+json' } });
+  if (!r.ok) {
+    if (r.status === 404) return { content: null, sha: null };
+    throw new Error('GET ' + r.status);
+  }
+  const d = await r.json();
+  let content = null;
+  if (d.content) {
+    try { content = JSON.parse(b64d(d.content.replace(/\n/g, ''))); } catch (e) { }
+  }
+  return { content, sha: d.sha };
+}
+
+async function ghPut(f, data, sha, tok) {
+  const t = tok || getST();
   showSI('saving');
-  const body={message:`Update ${f} — xXLuckyGamer04Xx`,content:b64e(JSON.stringify(data,null,2))};
-  if(sha) body.sha=sha;
-  const r=await fetch(apiBase()+f,{method:'PUT',headers:{'Authorization':'Bearer '+t,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
-  if(!r.ok){showSI('error');throw new Error('PUT '+r.status);}
-  showSI('saved'); return r.json();
-}
-function showSI(s){
-  const el=document.getElementById('saveIndicator'); if(!el) return;
-  el.classList.remove('hidden','saving','saved','error'); el.classList.add(s);
-  el.textContent=s==='saving'?'⏳ Speichert…':s==='saved'?'✅ Gespeichert':'❌ Fehler';
-  if(s!=='saving') setTimeout(()=>el.classList.add('hidden'),3000);
-}
-
-async function setupEncryptedToken(){
-  const tok=document.getElementById('setupToken').value.trim();
-  const sec=document.getElementById('setupAppSecret').value;
-  const errEl=document.getElementById('setupError');
-  errEl.textContent=''; errEl.style.color='var(--red)';
-  if(!tok||!sec){errEl.textContent='Bitte alle Felder ausfüllen.';return;}
-  if(sec.length<6){errEl.textContent='App-Passwort mind. 6 Zeichen.';return;}
-  try{
-    errEl.style.color='var(--text2)'; errEl.textContent='⏳ Verschlüssele…';
-    const enc=await encryptToken(tok,sec);
-    const verify=await sha256(sec+'_appsecret_marker');
-    const payload=JSON.stringify({enc,verify});
-    let sha=null;
-    try{const chk=await fetch(apiBase()+'config.enc',{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github.v3+json'}});if(chk.ok){const d=await chk.json();sha=d.sha;}}catch(e){}
-    const content=btoa(unescape(encodeURIComponent(payload)));
-    const body={message:'Setup token — xXLuckyGamer04Xx',content}; if(sha) body.sha=sha;
-    const pr=await fetch(apiBase()+'config.enc',{method:'PUT',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
-    if(!pr.ok){const e=await pr.json();errEl.style.color='var(--red)';errEl.textContent='❌ '+(e.message||pr.status);return;}
-    localStorage.setItem('op_enc_config',payload);
-    errEl.style.color='var(--green)'; errEl.textContent='✅ Gespeichert! Weiterleitung…';
-    setTimeout(()=>showScreen('login'),1500);
-  }catch(e){errEl.style.color='var(--red)';errEl.textContent='❌ '+e.message;}
+  const body = { message: `Update ${f} — xXLuckyGamer04Xx`, content: b64e(JSON.stringify(data, null, 2)) };
+  if (sha) body.sha = sha;
+  const r = await fetch(apiBase() + f, {
+    method: 'PUT',
+    headers: { 'Authorization': 'Bearer ' + t, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { showSI('error'); throw new Error('PUT ' + r.status); }
+  showSI('saved');
+  return r.json();
 }
 
-function showScreen(n){
-  ['setupScreen','loginScreen','dashboard'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('hidden');});
-  const t=document.getElementById(n==='dashboard'?'dashboard':n+'Screen');
-  if(t)t.classList.remove('hidden');
+function showSI(s) {
+  const el = document.getElementById('saveIndicator');
+  if (!el) return;
+  el.classList.remove('hidden', 'saving', 'saved', 'error');
+  el.classList.add(s);
+  el.textContent = s === 'saving' ? '⏳ Speichert…' : s === 'saved' ? '✅ Gespeichert' : '❌ Fehler';
+  if (s !== 'saving') setTimeout(() => el.classList.add('hidden'), 3000);
 }
 
-async function login(){
-  const uname=document.getElementById('loginUsername').value.trim();
-  const pw=document.getElementById('loginPassword').value;
-  const sec=document.getElementById('loginAppSecret').value;
-  const errEl=document.getElementById('loginError');
-  errEl.textContent='';
-  if(!uname||!pw){errEl.textContent='Bitte alle Felder ausfüllen.';return;}
-  errEl.textContent='⏳ Anmelden…';
-  try{
-    // Users laden: zuerst remote, dann lokal
-    let users=await rawLoad('users.json');
-    if(!users||!users.length) users=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-    if(users&&users.length) localStorage.setItem('opsucht_users',JSON.stringify(users));
-    if(!users.length){errEl.textContent='Keine Benutzer gefunden.';return;}
-
-    const hash=await sha256(pw);
-    const user=users.find(u=>u.username===uname&&u.passwordHash===hash);
-    if(!user){errEl.textContent='Ungültiger Benutzername oder Passwort.';return;}
-
-    if(user.role==='viewer'){
-      sessionStorage.setItem('currentUser',JSON.stringify({username:user.username,role:user.role}));
-      await showDashboard(); return;
+// ═══ LOGIN ═══
+async function login() {
+  const uname = document.getElementById('loginUsername').value.trim();
+  const pw = document.getElementById('loginPassword').value;
+  const sec = document.getElementById('loginAppSecret').value;
+  const errEl = document.getElementById('loginError');
+  
+  errEl.textContent = '';
+  if (!uname || !pw) { errEl.textContent = 'Bitte alle Felder ausfüllen.'; return; }
+  
+  errEl.textContent = '⏳ Anmelden…';
+  
+  try {
+    let users = await rawLoad('users.json');
+    if (!users || !users.length) { errEl.textContent = 'Keine Benutzer gefunden.'; return; }
+    
+    const hash = await sha256(pw);
+    const user = users.find(u => u.username === uname && u.passwordHash === hash);
+    if (!user) { errEl.textContent = 'Ungültiger Benutzername oder Passwort.'; return; }
+    
+    if (user.role === 'viewer') {
+      sessionStorage.setItem('currentUser', JSON.stringify({ username: user.username, role: user.role }));
+      await showDashboard();
+      return;
     }
-
+    
     // Token laden
-    let epStr=localStorage.getItem('op_enc_config');
-    if(!epStr){
-      const c=getRC();
-      try{const r=await fetch(`https://raw.githubusercontent.com/${c.user}/${c.repo}/main/config.enc?t=${Date.now()}`);if(r.ok){epStr=await r.text();if(epStr)localStorage.setItem('op_enc_config',epStr.trim());}}catch(e){}
+    let epStr = localStorage.getItem('op_enc_config');
+    if (!epStr) {
+      try {
+        const r = await fetch(`https://raw.githubusercontent.com/${REPO_USER}/${REPO_NAME}/main/config.enc?t=${Date.now()}`);
+        if (r.ok) {
+          epStr = await r.text();
+          if (epStr) localStorage.setItem('op_enc_config', epStr.trim());
+        }
+      } catch (e) { }
     }
-    if(!epStr){errEl.textContent='Kein Token. Setup durchführen.';return;}
-
-    let secret=sec||sessionStorage.getItem('op_app_secret_session')||'';
-    if(!secret){
-      document.getElementById('appSecretField').style.display='';
+    if (!epStr) { errEl.textContent = 'Kein Token gefunden.'; return; }
+    
+    let secret = sec || sessionStorage.getItem('op_app_secret_session') || '';
+    if (!secret) {
+      document.getElementById('appSecretField').style.display = '';
       document.getElementById('loginAppSecret').focus();
-      errEl.textContent='⬆️ App-Passwort eingeben.'; return;
+      errEl.textContent = '⬆️ App-Passwort eingeben.';
+      return;
     }
-
+    
     let payload;
-    try{payload=JSON.parse(epStr.trim());}catch(e){errEl.textContent='config.enc ungültig.';return;}
-
-    if(payload.verify){
-      const ev=await sha256(secret+'_appsecret_marker');
-      if(payload.verify!==ev){
-        errEl.textContent='❌ App-Passwort falsch.';
-        document.getElementById('appSecretField').style.display='';
-        document.getElementById('loginAppSecret').value=''; return;
+    try { payload = JSON.parse(epStr.trim()); } catch (e) { errEl.textContent = 'config.enc ungültig.'; return; }
+    
+    if (payload.verify) {
+      const ev = await sha256(secret + '_appsecret_marker');
+      if (payload.verify !== ev) {
+        errEl.textContent = '❌ App-Passwort falsch.';
+        document.getElementById('appSecretField').style.display = '';
+        document.getElementById('loginAppSecret').value = '';
+        return;
       }
     }
-    const decTok=await decryptToken(payload.enc,secret);
-    if(!decTok){errEl.textContent='❌ App-Passwort falsch.';return;}
-
+    
+    const decTok = await decryptToken(payload.enc, secret);
+    if (!decTok) { errEl.textContent = '❌ App-Passwort falsch.'; return; }
+    
     setST(decTok);
-    sessionStorage.setItem('op_app_secret_session',secret);
-    sessionStorage.setItem('currentUser',JSON.stringify({username:user.username,role:user.role}));
+    sessionStorage.setItem('op_app_secret_session', secret);
+    sessionStorage.setItem('currentUser', JSON.stringify({ username: user.username, role: user.role }));
     await showDashboard();
-  }catch(e){errEl.textContent='❌ '+e.message;console.error(e);}
-}
-
-function checkShowAppSecret(){
-  const uname=document.getElementById('loginUsername').value.trim();
-  const users=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-  const user=users.find(u=>u.username===uname);
-  const needs=user&&user.role!=='viewer';
-  const inSess=!!sessionStorage.getItem('op_app_secret_session');
-  const f=document.getElementById('appSecretField');
-  if(f) f.style.display=(needs&&!inSess)?'':'none';
-}
-
-let debugVisible=false;
-async function toggleDebug(){
-  const dbg=document.getElementById('loginDebug');
-  debugVisible=!debugVisible;
-  if(!debugVisible){dbg.style.display='none';return;}
-  dbg.style.display='block';
-  const c=getRC();
-  const localUsers=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-  const remoteUsers=await rawLoad('users.json');
-  const enc=localStorage.getItem('op_enc_config');
-  const h123=await sha256('changeme123');
-  dbg.innerHTML=`<b>Repo:</b> ${c.user}/${c.repo}<br><b>Lokale User:</b> ${localUsers.map(u=>u.username+'('+u.role+')').join(', ')||'keine'}<br><b>Remote User:</b> ${remoteUsers?remoteUsers.map(u=>u.username+'('+u.role+')').join(', '):'nicht erreichbar'}<br><b>config.enc:</b> ${enc?'vorhanden':'FEHLT'}<br><b>Hash changeme123:</b> ${h123.slice(0,20)}...`;
-}
-
-function logout(){sessionStorage.clear();location.reload();}
-
-const WT=['So.','Mo.','Di.','Mi.','Do.','Fr.','Sa.'];
-function fmtD(s){if(!s)return '';const d=new Date(s+'T12:00:00');return `${WT[d.getDay()]} ${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getFullYear()).slice(2)}`;}
-function fmtW(s,e){if(!s)return '';const sd=new Date(s+'T12:00:00'),ed=new Date((e||s)+'T12:00:00');return `${WT[sd.getDay()]} ${String(sd.getDate()).padStart(2,'0')}.${String(sd.getMonth()+1).padStart(2,'0')}. - ${WT[ed.getDay()]} ${String(ed.getDate()).padStart(2,'0')}.${String(ed.getMonth()+1).padStart(2,'0')}.${String(ed.getFullYear()).slice(2)}`;}
-function thuFromFri(f){if(!f)return '';const d=new Date(f+'T12:00:00');d.setDate(d.getDate()+6);return d.toISOString().split('T')[0];}
-
-let curRewardType='shards';
-function setRewardType(type){
-  curRewardType=type;
-  const sf=document.getElementById('shardsField'),bf=document.getElementById('boosterField');
-  const bs=document.getElementById('rewardBtnShards'),bb=document.getElementById('rewardBtnBooster');
-  if(type==='shards'){
-    sf.style.display='block';bf.style.display='none';
-    bs.className='reward-btn active shards';bb.className='reward-btn booster';
-  } else {
-    sf.style.display='none';bf.style.display='flex';
-    bs.className='reward-btn shards';bb.className='reward-btn active booster';
+  } catch (e) {
+    errEl.textContent = '❌ ' + e.message;
+    console.error(e);
   }
 }
-function onTypeChange(){
-  const t=document.getElementById('questType').value,wb=document.getElementById('weeklyDatesBox');
-  if(t==='weekly'){wb.classList.add('visible');const qd=document.getElementById('questDate').value;if(qd){document.getElementById('weeklyStart').value=qd;onWeeklyStartChange();}}
-  else wb.classList.remove('visible');
-  onDateChange();
-}
-function onDateChange(){
-  const t=document.getElementById('questType').value,v=document.getElementById('questDate').value,prev=document.getElementById('datePreview');
-  if(v&&t==='daily'){prev.style.display='inline-block';prev.textContent=fmtD(v);}else prev.style.display='none';
-  if(t==='weekly'){document.getElementById('weeklyStart').value=v;onWeeklyStartChange();}
-}
-function onWeeklyStartChange(){
-  const sv=document.getElementById('weeklyStart').value;if(!sv)return;
-  const ev=thuFromFri(sv);
-  document.getElementById('weeklyEnd').value=ev;
-  document.getElementById('weeklyStartHint').textContent=fmtD(sv);
-  document.getElementById('weeklyEndHint').textContent=fmtD(ev);
-  const prev=document.getElementById('weeklyPreview');
-  prev.style.display='inline-block';prev.textContent=fmtW(sv,ev);
-  document.getElementById('questDate').value=sv;
+
+function logout() {
+  sessionStorage.clear();
+  location.reload();
 }
 
-let curLoc=null;
-function toggleLocation(loc){
-  curLoc=curLoc===loc?null:loc;
-  document.getElementById('locEverywhere').className='loc-btn'+(curLoc==='everywhere'?' active everywhere':'');
-  document.getElementById('locFarmwelt').className='loc-btn'+(curLoc==='farmwelt'?' active farmwelt':'');
+async function showDashboard() {
+  const user = JSON.parse(sessionStorage.getItem('currentUser'));
+  if (!user) return;
+  
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  
+  const roleColors = { admin: '#ef4444', editor: '#00e5c8', viewer: '#4a5568', owner: '#eab308' };
+  document.getElementById('roleDot').style.background = roleColors[user.role] || '#4a5568';
+  document.getElementById('userChipText').textContent = `${user.username} · ${user.role}`;
+  
+  await loadPrices();
+  await loadAllData();
+  renderFriends();
+  renderStreakPanel();
+  renderShardAccounts();
+  renderTransactions();
 }
 
-async function showDashboard(){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));if(!cu)return;
-  showScreen('dashboard');
-  const dc={owner:'#eab308',admin:'#ef4444',editor:'#00e5c8',viewer:'#4a5568'};
-  document.getElementById('roleDot').style.background=dc[cu.role]||'#4a5568';
-  document.getElementById('userChipText').textContent=`${cu.username} · ${rl(cu.role)}`;
-  if(cu.role!=='owner'&&cu.role!=='admin') document.getElementById('tabUsers').disabled=true;
-  if(cu.role!=='owner') document.getElementById('tabSettings').disabled=true;
-  if(cu.role==='viewer') document.getElementById('questFormBox').classList.add('hidden');
-  const c=getRC();
-  const si=document.getElementById('settingsUser');if(si)si.value=c.user;
-  const sr=document.getElementById('settingsRepo');if(sr)sr.value=c.repo;
-  document.getElementById('questDate').valueAsDate=new Date();
-  onDateChange();initSteps();renderTagsInput('haupt');renderTagsInput('neben');
-  renderQueue();await renderStats();await renderQuestsTable();renderFriends();
-}
-function rl(r){return {owner:'👑 Besitzer',admin:'🔴 Admin',editor:'🔵 Editor',viewer:'⚫ Viewer'}[r]||r;}
-function switchTab(n,btn){
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
-  ['quests','streak','users','settings'].forEach(p=>{
-    const el=document.getElementById('panel'+p.charAt(0).toUpperCase()+p.slice(1));
-    if(el)el.classList.toggle('hidden',p!==n);
+function switchTab(name, btn) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  
+  ['Streak', 'Shards'].forEach(p => {
+    const el = document.getElementById('panel' + p);
+    if (el) el.classList.toggle('hidden', p.toLowerCase() !== name);
   });
-  if(n==='streak')renderStreakPanel();
-}
-
-async function reencryptToken(){
-  const tok=document.getElementById('newTokenInput').value.trim(),sec=document.getElementById('newTokenPassword').value,msg=document.getElementById('tokenMsg');
-  if(!tok||!sec){msg.style.color='var(--red)';msg.textContent='Bitte alle Felder.';return;}
-  try{
-    msg.style.color='var(--text2)';msg.textContent='⏳…';
-    const enc=await encryptToken(tok,sec),verify=await sha256(sec+'_appsecret_marker');
-    const payload=JSON.stringify({enc,verify});
-    localStorage.setItem('op_enc_config',payload);sessionStorage.setItem('op_app_secret_session',sec);
-    let sha=null;
-    try{const r=await fetch(apiBase()+'config.enc',{headers:{'Authorization':'Bearer '+getST(),'Accept':'application/vnd.github.v3+json'}});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}
-    const content=btoa(unescape(encodeURIComponent(payload)));
-    const body={message:'Re-encrypt — xXLuckyGamer04Xx',content};if(sha)body.sha=sha;
-    const r=await fetch(apiBase()+'config.enc',{method:'PUT',headers:{'Authorization':'Bearer '+getST(),'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
-    if(!r.ok)throw new Error('PUT '+r.status);
-    setST(tok);msg.style.color='var(--green)';msg.textContent='✅ Gespeichert!';
-    document.getElementById('newTokenInput').value='';document.getElementById('newTokenPassword').value='';
-  }catch(e){msg.style.color='var(--red)';msg.textContent='❌ '+e.message;}
-}
-function updateRepoSettings(){
-  const u=document.getElementById('settingsUser').value.trim(),r=document.getElementById('settingsRepo').value.trim(),msg=document.getElementById('repoMsg');
-  if(!u||!r){msg.style.color='var(--red)';msg.textContent='Bitte beide Felder.';return;}
-  setRC(u,r);msg.style.color='var(--green)';msg.textContent='✅ Gespeichert!';setTimeout(()=>msg.textContent='',3000);
-}
-
-async function loadQ(){const d=await rawLoad('quests.json');if(d){localStorage.setItem('opsucht_quests',JSON.stringify(d));return d;}return JSON.parse(localStorage.getItem('opsucht_quests')||'[]');}
-async function saveQ(q){localStorage.setItem('opsucht_quests',JSON.stringify(q));try{const {sha}=await ghGet('quests.json');await ghPut('quests.json',q,sha);}catch(e){console.warn(e);showSI('error');}}
-async function loadU(){try{const {content}=await ghGet('users.json');if(content){localStorage.setItem('opsucht_users',JSON.stringify(content));return content;}}catch(e){}return JSON.parse(localStorage.getItem('opsucht_users')||'[]');}
-async function saveU(u){localStorage.setItem('opsucht_users',JSON.stringify(u));try{const {sha}=await ghGet('users.json');await ghPut('users.json',u,sha);}catch(e){console.warn(e);}}
-
-let curHT=[],curNT=[];
-function renderTagsInput(type){
-  const isH=type==='haupt',tags=isH?curHT:curNT,max=isH?3:5;
-  const cId=isH?'hauptTagsContainer':'nebenTagsContainer',iId=isH?'hauptTagInput':'nebenTagInput',cntId=isH?'haupttagCount':'nebentagCount',tc=isH?'haupt':'neben';
-  const c=document.getElementById(cId);
-  c.innerHTML=tags.map(t=>`<div class="tag-item ${tc}">${esc(t)}<button type="button" onclick="removeTag('${type}','${t.replace(/'/g,"\\'")}')">×</button></div>`).join('')+(tags.length<max?`<input class="tag-input" type="text" id="${iId}" placeholder="Tag + Enter"/>`:'');
-  const cnt=document.getElementById(cntId);if(cnt)cnt.textContent=`(${tags.length}/${max})`;
-  if(tags.length<max){const ti=document.getElementById(iId);if(ti){ti.addEventListener('keydown',e=>{if(e.key==='Enter'&&ti.value.trim()){e.preventDefault();addTag(type,ti.value.trim());}if(e.key==='Backspace'&&ti.value===''&&tags.length>0)removeTag(type,tags[tags.length-1]);});}}
-}
-function addTag(type,v){const isH=type==='haupt',tags=isH?curHT:curNT,max=isH?3:5;if(tags.length>=max||tags.includes(v))return;if(isH)curHT.push(v);else curNT.push(v);renderTagsInput(type);}
-function removeTag(type,v){if(type==='haupt')curHT=curHT.filter(t=>t!==v);else curNT=curNT.filter(t=>t!==v);renderTagsInput(type);}
-
-let curSteps=[];
-function initSteps(){curSteps=[''];renderSteps();}
-function renderSteps(){
-  document.getElementById('stepsList').innerHTML=curSteps.map((s,i)=>`<div class="step-row"><span class="step-num">${i+1}</span><input class="step-input" type="text" value="${esc(s)}" placeholder="z.B. 200x Kies abbauen" oninput="curSteps[${i}]=this.value" onkeydown="stepKD(event,${i})"/>${curSteps.length>1?`<button class="step-del" onclick="remStep(${i})">×</button>`:'<span style="width:24px"></span>'}</div>`).join('');
-  const btn=document.getElementById('addStepBtn');if(btn){btn.disabled=curSteps.length>=5;btn.textContent=`＋ Eintrag hinzufügen (${curSteps.length}/5)`;}
-}
-function stepKD(e,i){if(e.key==='Enter'){e.preventDefault();if(curSteps.length<5){curSteps.splice(i+1,0,'');renderSteps();setTimeout(()=>{const ins=document.querySelectorAll('.step-input');if(ins[i+1])ins[i+1].focus();},0);}}}
-function addStep(){if(curSteps.length>=5)return;curSteps.push('');renderSteps();setTimeout(()=>{const ins=document.querySelectorAll('.step-input');if(ins.length)ins[ins.length-1].focus();},0);}
-function remStep(i){if(curSteps.length<=1){curSteps[0]='';renderSteps();return;}curSteps.splice(i,1);renderSteps();}
-
-// questQueue: [{...quest, _queueType: 'new'|'edit'}]
-let questQueue=[];
-let curQueueTab='new';
-
-function addToQueue(){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  if(cu.role==='viewer'){alert('Keine Berechtigung!');return;}
-  document.querySelectorAll('.step-input').forEach((el,i)=>{curSteps[i]=el.value;});
-  const task=document.getElementById('questTask').value.trim();
-  const type=document.getElementById('questType').value;
-  const date=document.getElementById('questDate').value;
-  const editId=document.getElementById('editQuestId').value;
-  const steps=curSteps.map(s=>s.trim()).filter(s=>s.length>0);
-  let shards=null,boosterName=null,boosterHours=null;
-  if(curRewardType==='shards'){
-    shards=parseInt(document.getElementById('questShards').value);
-    if(!shards){alert('Shards ausfüllen.');return;}
-  } else {
-    boosterName=document.getElementById('boosterName').value.trim();
-    boosterHours=parseInt(document.getElementById('boosterHours').value);
-    if(!boosterName||!boosterHours){alert('Booster-Name und Stunden ausfüllen.');return;}
+  
+  if (name === 'shards') {
+    renderShardAccounts();
+    renderTransactions();
   }
-  if(!task||!date){alert('Aufgabe und Datum ausfüllen.');return;}
-  if(!steps.length){alert('Mind. einen Eintrag hinzufügen.');return;}
-  let weeklyEnd=null;
-  if(type==='weekly'){weeklyEnd=document.getElementById('weeklyEnd').value;if(!weeklyEnd){alert('Enddatum für Weekly ausfüllen.');return;}}
-  const quest={
-    id:editId||Date.now().toString(),task,steps,shards,boosterName,boosterHours,
-    rewardType:curRewardType,type,date,weeklyEnd,location:curLoc,
-    haupttags:[...curHT],nebentags:[...curNT],tags:[...curHT],items:steps.join(' · '),
-    _queueType:editId?'edit':'new'
-  };
-  // Remove existing entry for same id if re-adding
-  questQueue=questQueue.filter(x=>x.id!==quest.id);
-  questQueue.push(quest);
-  cancelEdit();
-  // Auto-switch to matching tab
-  curQueueTab=quest._queueType;
-  renderQueue();
+  if (name === 'streak') {
+    renderStreakPanel();
+  }
 }
 
-function switchQueueTab(tab){
-  curQueueTab=tab;
-  document.getElementById('queueTabNew').className='queue-tab-btn'+(tab==='new'?' active':'');
-  document.getElementById('queueTabEdit').className='queue-tab-btn edit-tab'+(tab==='edit'?' active':'');
-  renderQueueItems();
+// ═══ LOAD PRICES ═══
+async function loadPrices() {
+  try {
+    const data = await rawLoad('history.json');
+    if (data && data.length > 0) {
+      const latest = data[data.length - 1];
+      for (const item of latest.data) {
+        const key = item.source.toLowerCase().replace(/ /g, '_');
+        currentPrices[key] = item.exchangeRate || 0;
+      }
+    }
+  } catch (e) {
+    currentPrices = { diamond_block: 2.5, netherite_ingot: 4.2, grave_mix: 1.8, wood_bundle: 1.2, stone_slab: 0.9 };
+  }
 }
 
-function renderQueue(){
-  const newItems=questQueue.filter(q=>q._queueType==='new');
-  const editItems=questQueue.filter(q=>q._queueType==='edit');
-  const total=questQueue.length;
-  const badge=document.getElementById('queueBadge');
-  const wrap=document.getElementById('queueWrap');
-  const pr=document.getElementById('queuePushRow');
-  const pc=document.getElementById('pushCount');
-  const tabNew=document.getElementById('queueTabNew');
-  const tabEdit=document.getElementById('queueTabEdit');
-  const tabNewCount=document.getElementById('queueTabNewCount');
-  const tabEditCount=document.getElementById('queueTabEditCount');
+// ═══ DATA LOADING ═══
+async function loadAllData() {
+  try {
+    // Friends
+    const friends = await rawLoad('friends.json');
+    if (friends) localStorage.setItem('opsucht_friends', JSON.stringify(friends));
+    
+    // Shard Accounts
+    const accounts = await rawLoad('shard-accounts.json');
+    if (accounts) localStorage.setItem('opsucht_shard_accounts', JSON.stringify(accounts));
+    
+    // Transactions
+    const transactions = await rawLoad('transactions.json');
+    if (transactions) localStorage.setItem('opsucht_transactions', JSON.stringify(transactions));
+    
+    // Quests
+    const quests = await rawLoad('quests.json');
+    if (quests) localStorage.setItem('opsucht_quests', JSON.stringify(quests));
+    
+    // Quest Checks (nur lokal)
+    // localStorage.getItem('opsucht_quest_checks')
+    
+  } catch (e) {
+    console.warn('Fehler beim Laden:', e);
+  }
+}
 
-  badge.textContent=total;
+// ═══ FRIENDS ═══
+function getFriends() {
+  return JSON.parse(localStorage.getItem('opsucht_friends') || '[]');
+}
 
-  // Show/hide wrap
-  if(!total){
-    if(wrap) wrap.style.display='none';
-    if(pr) pr.style.display='none';
+function saveFriends(friends) {
+  localStorage.setItem('opsucht_friends', JSON.stringify(friends));
+  markPendingChanges();
+}
+
+function renderFriends() {
+  const friends = getFriends();
+  const list = document.getElementById('friendsList');
+  if (!list) return;
+  
+  list.innerHTML = friends.length
+    ? friends.map(f => `<div class="friend-chip">👤 ${esc(f)}<button onclick="removeFriend('${f.replace(/'/g, "\\'")}')">×</button></div>`).join('')
+    : '<span style="color:var(--text3);font-size:12px">Noch keine Freunde</span>';
+}
+
+function addFriend() {
+  const input = document.getElementById('friendNameInput');
+  if (!input) return;
+  
+  const name = input.value.trim();
+  if (!name) return;
+  
+  const friends = getFriends();
+  if (friends.includes(name)) {
+    alert('Dieser Freund existiert bereits!');
     return;
   }
-  if(wrap) wrap.style.display='block';
-
-  // Tab counts
-  tabNewCount.textContent=newItems.length;
-  tabEditCount.textContent=editItems.length;
-
-  // Show edit tab only if there are edits
-  if(tabEdit) tabEdit.style.display=editItems.length?'':'none';
-  if(tabNew) tabNew.style.display=newItems.length?'':'none';
-
-  // If current tab is empty switch to other
-  if(curQueueTab==='edit'&&!editItems.length) curQueueTab='new';
-  if(curQueueTab==='new'&&!newItems.length) curQueueTab='edit';
-
-  // Active tab styling
-  tabNew.className='queue-tab-btn'+(curQueueTab==='new'?' active':'');
-  tabEdit.className='queue-tab-btn edit-tab'+(curQueueTab==='edit'?' active':'');
-
-  renderQueueItems();
-
-  if(pr){pr.style.display='flex';pc.textContent=`${total} Quest${total!==1?'s':''} bereit`;}
-}
-
-function renderQueueItems(){
-  const items=document.getElementById('queueItems');
-  const filtered=questQueue.filter(q=>q._queueType===curQueueTab);
-  if(!filtered.length){items.className='queue-empty';items.textContent='Keine Einträge in diesem Reiter.';return;}
-  items.className='queue-items';
-  items.innerHTML=filtered.map(q=>{
-    const realIdx=questQueue.indexOf(q);
-    const isEdit=q._queueType==='edit';
-    return `<div class="queue-item${isEdit?' edit-item':''}">
-      <div class="queue-item-info">
-        <div class="queue-item-title">${isEdit?'<span style="font-size:10px;color:var(--orange);font-weight:700;margin-right:4px">✏️ EDIT</span>':''}${esc(q.task)}</div>
-        <div class="queue-item-steps">${q.steps.map(s=>`<span>→ ${esc(s)}</span>`).join('')}</div>
-        <div class="queue-item-meta">
-          <span class="type-badge ${q.type}">${q.type==='daily'?'Täglich':'Wöchentlich'}</span>
-          ${q.rewardType==='booster'?`<span class="booster-badge">⚡ BOOSTER <span class="sep">|</span> ${esc(q.boosterName)} · ${q.boosterHours}h</span>`:`<span style="font-size:11px;color:var(--cyan)">💎 ${q.shards}</span>`}
-          <span style="font-size:11px;color:var(--text3)">${q.type==='weekly'&&q.weeklyEnd?fmtW(q.date,q.weeklyEnd):fmtD(q.date)}</span>
-          ${q.location?`<span class="loc-badge ${q.location}">${q.location==='everywhere'?'🌍 Überall':'🌾 Farmwelt'}</span>`:''}
-        </div>
-      </div>
-      <button class="btn btn-danger btn-sm" onclick="remFromQueue(${realIdx})">×</button>
-    </div>`;
-  }).join('');
-}
-
-function remFromQueue(i){questQueue.splice(i,1);renderQueue();}
-function clearQueue(){if(!questQueue.length)return;if(!confirm('Warteschlange leeren?'))return;questQueue=[];renderQueue();}
-
-async function pushQueue(){
-  if(!questQueue.length)return;
-  const btn=document.querySelector('#queuePushRow .btn-success');
-  if(btn){btn.textContent='⏳ Übermittle…';btn.disabled=true;}
-  try{
-    let allQuests=await loadQ();
-    for(const q of questQueue){
-      const {_queueType,...questData}=q;
-      if(_queueType==='edit'){
-        const idx=allQuests.findIndex(x=>x.id===questData.id);
-        if(idx>-1) allQuests[idx]=questData; else allQuests.push(questData);
-      } else {
-        allQuests.push(questData);
-      }
-    }
-    await saveQ(allQuests);
-    questQueue=[];renderQueue();await renderQuestsTable();await renderStats();
+  
+  friends.push(name);
+  saveFriends(friends);
+  
+  // Initialize shard account
+  const accounts = getShardAccounts();
+  if (!accounts[name]) {
+    accounts[name] = { balance: 0, goal: 5000 };
+    saveShardAccounts(accounts);
   }
-  catch(e){alert('Fehler: '+e.message);}
-  finally{if(btn){btn.textContent='🚀 Alle übermitteln';btn.disabled=false;}}
+  
+  input.value = '';
+  renderFriends();
+  renderStreakPanel();
+  renderShardAccounts();
 }
 
-function editQuest(id){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));if(cu.role==='viewer')return;
-  const q=JSON.parse(localStorage.getItem('opsucht_quests')||'[]').find(x=>x.id===id);if(!q)return;
-  document.getElementById('editQuestId').value=q.id;
-  document.getElementById('questTask').value=q.task;
-  curRewardType=q.rewardType||'shards';
-  setRewardType(curRewardType);
-  if(curRewardType==='shards'){document.getElementById('questShards').value=q.shards||'';}
-  else{document.getElementById('boosterName').value=q.boosterName||'';document.getElementById('boosterHours').value=q.boosterHours||'';}
-  document.getElementById('questType').value=q.type;
-  document.getElementById('questDate').value=q.date;
-  curSteps=q.steps&&q.steps.length?[...q.steps]:(q.items?[q.items]:['']);renderSteps();
-  curHT=[...(q.haupttags||q.tags||[])];curNT=[...(q.nebentags||[])];
-  renderTagsInput('haupt');renderTagsInput('neben');
-  curLoc=q.location||null;
-  document.getElementById('locEverywhere').className='loc-btn'+(curLoc==='everywhere'?' active everywhere':'');
-  document.getElementById('locFarmwelt').className='loc-btn'+(curLoc==='farmwelt'?' active farmwelt':'');
-  onTypeChange();
-  if(q.type==='weekly'&&q.weeklyEnd){document.getElementById('weeklyStart').value=q.date;document.getElementById('weeklyEnd').value=q.weeklyEnd;const prev=document.getElementById('weeklyPreview');if(prev){prev.style.display='inline-block';prev.textContent=fmtW(q.date,q.weeklyEnd);}}
-  document.getElementById('addToQueueBtn').textContent='📥 Als Bearbeitung einreihen';
-  document.getElementById('cancelEditBtn').classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
+function removeFriend(name) {
+  if (!confirm(`Freund "${name}" wirklich entfernen? Shard-Konto bleibt erhalten.`)) return;
+  
+  const friends = getFriends().filter(f => f !== name);
+  saveFriends(friends);
+  renderFriends();
+  renderStreakPanel();
 }
-async function deleteQuest(id){
-  if(!confirm('Quest löschen?'))return;
-  let q=await loadQ();await saveQ(q.filter(x=>x.id!==id));await renderQuestsTable();await renderStats();
+
+// ═══ SHARD ACCOUNTS ═══
+function getShardAccounts() {
+  return JSON.parse(localStorage.getItem('opsucht_shard_accounts') || '{}');
 }
-function cancelEdit(){
-  document.getElementById('editQuestId').value='';document.getElementById('questTask').value='';document.getElementById('questShards').value='';document.getElementById('boosterName').value='';document.getElementById('boosterHours').value='';document.getElementById('questType').value='daily';document.getElementById('questDate').valueAsDate=new Date();curRewardType='shards';setRewardType('shards');
-  curHT=[];curNT=[];renderTagsInput('haupt');renderTagsInput('neben');
-  curSteps=[''];renderSteps();curLoc=null;
-  document.getElementById('locEverywhere').className='loc-btn';document.getElementById('locFarmwelt').className='loc-btn';
-  document.getElementById('addToQueueBtn').textContent='📥 Zur Warteschlange';document.getElementById('cancelEditBtn').classList.add('hidden');
-  document.getElementById('weeklyDatesBox').classList.remove('visible');onDateChange();
+
+function saveShardAccounts(accounts) {
+  localStorage.setItem('opsucht_shard_accounts', JSON.stringify(accounts));
+  markPendingChanges();
 }
-async function renderQuestsTable(){
-  const tbody=document.getElementById('questsTableBody'),cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  // Show cached data instantly, then refresh from GH
-  const cached=JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
-  if(cached.length) _renderQuestsTableData(tbody, cached, cu);
-  const q=await loadQ();
-  _renderQuestsTableData(tbody, q, cu);
+
+function getTransactions() {
+  return JSON.parse(localStorage.getItem('opsucht_transactions') || '[]');
 }
-function _renderQuestsTableData(tbody, q, cu){
-  q.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const canEdit=cu.role!=='viewer';
-  if(!q.length){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text3)">Keine Quests</td></tr>';return;}
-  tbody.innerHTML=q.map(quest=>{
-    const ht=quest.haupttags||quest.tags||[],nt=quest.nebentags||[],st=quest.steps&&quest.steps.length?quest.steps:(quest.items?[quest.items]:[]);
-    const da=quest.type==='weekly'&&quest.weeklyEnd?fmtW(quest.date,quest.weeklyEnd):fmtD(quest.date);
-    const lb=quest.location?`<span class="loc-badge ${quest.location}">${quest.location==='everywhere'?'🌍 Überall':'🌾 Farmwelt'}</span>`:'—';
-    return `<tr>
-      <td style="font-family:'Share Tech Mono',monospace;font-size:11px">${da}</td>
-      <td><span class="type-badge ${quest.type}">${quest.type==='daily'?'Täglich':'Wöchentlich'}</span></td>
-      <td><strong>${esc(quest.task)}</strong></td>
-      <td>${lb}</td>
-      <td><div class="steps-cell">${st.map(s=>`<div class="steps-cell-item">${esc(s)}</div>`).join('')}</div></td>
-      <td>${quest.rewardType==='booster'?`<span class="booster-badge">⚡ BOOSTER <span class="sep">|</span> ${esc(quest.boosterName)}<br><span style="font-size:10px;opacity:.7">${quest.boosterHours}h</span></span>`:`<span style="color:var(--cyan);font-weight:700">${quest.shards}💎</span>`}</td>
-      <td>${ht.map(t=>`<span class="tag-pill haupt">${esc(t)}</span>`).join('')}${nt.map(t=>`<span class="tag-pill neben">${esc(t)}</span>`).join('')}</td>
-      <td><div class="action-row">${canEdit?`<button class="btn btn-secondary btn-sm" onclick="editQuest('${quest.id}')">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteQuest('${quest.id}')">🗑️</button>`:'—'}</div></td>
-    </tr>`;
+
+function saveTransactions(transactions) {
+  localStorage.setItem('opsucht_transactions', JSON.stringify(transactions));
+  markPendingChanges();
+}
+
+function addTransaction(person, amount, description, type = 'manual') {
+  const transactions = getTransactions();
+  transactions.push({
+    id: Date.now().toString(),
+    person,
+    amount,
+    description,
+    type,
+    date: new Date().toISOString()
+  });
+  saveTransactions(transactions);
+  
+  // Update balance
+  const accounts = getShardAccounts();
+  if (!accounts[person]) {
+    accounts[person] = { balance: 0, goal: 5000 };
+  }
+  accounts[person].balance += amount;
+  saveShardAccounts(accounts);
+}
+
+function markPendingChanges() {
+  pendingChanges = true;
+  updatePendingBadge();
+}
+
+function updatePendingBadge() {
+  const btn = document.getElementById('pushChangesBtn');
+  const badge = document.getElementById('pendingCount');
+  
+  if (pendingChanges) {
+    if (btn) btn.style.display = 'flex';
+    if (badge) badge.textContent = '●';
+  } else {
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+async function pushAllChanges() {
+  const btn = document.getElementById('pushChangesBtn');
+  if (btn) {
+    btn.textContent = '⏳ Speichert…';
+    btn.disabled = true;
+  }
+  
+  try {
+    // Push friends.json
+    const friends = getFriends();
+    const { sha: friendsSha } = await ghGet('friends.json');
+    await ghPut('friends.json', friends, friendsSha);
+    
+    // Push shard-accounts.json
+    const accounts = getShardAccounts();
+    const { sha: accountsSha } = await ghGet('shard-accounts.json');
+    await ghPut('shard-accounts.json', accounts, accountsSha);
+    
+    // Push transactions.json
+    const transactions = getTransactions();
+    const { sha: transactionsSha } = await ghGet('transactions.json');
+    await ghPut('transactions.json', transactions, transactionsSha);
+    
+    pendingChanges = false;
+    updatePendingBadge();
+    alert('✅ Alle Änderungen erfolgreich zu GitHub gepusht!');
+  } catch (e) {
+    alert('❌ Fehler beim Speichern: ' + e.message);
+  } finally {
+    if (btn) {
+      btn.textContent = '🚀 Änderungen speichern';
+      btn.disabled = false;
+    }
+  }
+}
+
+function renderShardAccounts() {
+  const friends = getFriends();
+  const accounts = getShardAccounts();
+  const grid = document.getElementById('shardAccountsGrid');
+  
+  if (!grid) return;
+  
+  // Initialize accounts for all friends
+  friends.forEach(friend => {
+    if (!accounts[friend]) {
+      accounts[friend] = { balance: 0, goal: 5000 };
+    }
+  });
+  saveShardAccounts(accounts);
+  
+  if (friends.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">⬆️ Erst Freunde hinzufügen</div>';
+    return;
+  }
+  
+  let totalShards = 0, totalGoal = 0;
+  
+  grid.innerHTML = friends.map(friend => {
+    const account = accounts[friend] || { balance: 0, goal: 5000 };
+    const progress = account.goal > 0 ? Math.min(100, (account.balance / account.goal) * 100) : 0;
+    const remaining = Math.max(0, account.goal - account.balance);
+    
+    totalShards += account.balance;
+    totalGoal += account.goal;
+    
+    const diaNeeded = currentPrices.diamond_block ? Math.ceil(remaining / currentPrices.diamond_block) : 0;
+    const nethNeeded = currentPrices.netherite_ingot ? Math.ceil(remaining / currentPrices.netherite_ingot) : 0;
+    
+    return `
+      <div class="account-card">
+        <div class="account-header">
+          <div class="account-name">👤 ${esc(friend)}</div>
+          <div class="account-actions">
+            <button class="btn btn-secondary btn-sm" onclick="editAccount('${friend.replace(/'/g, "\\'")}')">✏️</button>
+          </div>
+        </div>
+        <div class="account-balance">${account.balance.toLocaleString()}<small>Shards</small></div>
+        <div class="account-goal">Ziel: ${account.goal.toLocaleString()} Shards</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+        <div class="account-stats">
+          <div class="stat-item">
+            <div class="stat-label">Noch benötigt</div>
+            <div class="stat-value" style="color:var(--orange)">${remaining.toLocaleString()}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Fortschritt</div>
+            <div class="stat-value" style="color:var(--green)">${progress.toFixed(0)}%</div>
+          </div>
+        </div>
+        ${remaining > 0 ? `
+        <div class="calc-grid">
+          <div class="calc-item">
+            <div class="calc-item-header">
+              <div class="calc-icon" style="background:#00e5c820;color:#00e5c8">💎</div>
+              <div class="calc-name">Diamond Block</div>
+            </div>
+            <div class="calc-amount" style="color:#00e5c8">${diaNeeded}x</div>
+            <div class="calc-price">@${currentPrices.diamond_block?.toFixed(2) || '?'} Sh/Block</div>
+          </div>
+          <div class="calc-item">
+            <div class="calc-item-header">
+              <div class="calc-icon" style="background:#a855f720;color:#a855f7">⬛</div>
+              <div class="calc-name">Netherite</div>
+            </div>
+            <div class="calc-amount" style="color:#a855f7">${nethNeeded}x</div>
+            <div class="calc-price">@${currentPrices.netherite_ingot?.toFixed(2) || '?'} Sh/Ingot</div>
+          </div>
+        </div>
+        ` : '<div style="text-align:center;padding:10px;color:var(--green);font-weight:600">🎯 Ziel erreicht!</div>'}
+      </div>
+    `;
+  }).join('');
+  
+  const totalNeeded = Math.max(0, totalGoal - totalShards);
+  const totalProgressPct = totalGoal > 0 ? ((totalShards / totalGoal) * 100) : 0;
+  
+  document.getElementById('totalShards').textContent = totalShards.toLocaleString();
+  document.getElementById('totalGoal').textContent = totalGoal.toLocaleString();
+  document.getElementById('totalNeeded').textContent = totalNeeded.toLocaleString();
+  document.getElementById('totalProgress').textContent = totalProgressPct.toFixed(0) + '%';
+}
+
+function editAccount(name) {
+  const accounts = getShardAccounts();
+  const account = accounts[name] || { balance: 0, goal: 5000 };
+  
+  document.getElementById('editAccountName').value = name;
+  document.getElementById('editAccountBalance').value = account.balance;
+  document.getElementById('editAccountGoal').value = account.goal;
+  document.getElementById('editAccountModal').classList.remove('hidden');
+}
+
+function saveAccountEdit() {
+  const name = document.getElementById('editAccountName').value;
+  const balance = parseInt(document.getElementById('editAccountBalance').value) || 0;
+  const goal = parseInt(document.getElementById('editAccountGoal').value) || 0;
+  
+  const accounts = getShardAccounts();
+  const oldBalance = accounts[name]?.balance || 0;
+  
+  accounts[name] = { balance, goal };
+  saveShardAccounts(accounts);
+  
+  if (balance !== oldBalance) {
+    const diff = balance - oldBalance;
+    addTransaction(name, diff, `Manuell angepasst (${diff > 0 ? '+' : ''}${diff})`, 'adjustment');
+  }
+  
+  closeModal('editAccountModal');
+  renderShardAccounts();
+  renderTransactions();
+}
+
+function showAddTransactionModal() {
+  const friends = getFriends();
+  const select = document.getElementById('transactionPerson');
+  select.innerHTML = friends.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+  document.getElementById('addTransactionModal').classList.remove('hidden');
+}
+
+function saveManualTransaction() {
+  const person = document.getElementById('transactionPerson').value;
+  const amount = parseInt(document.getElementById('transactionAmount').value) || 0;
+  const desc = document.getElementById('transactionDesc').value.trim() || 'Manuelle Transaktion';
+  
+  if (amount === 0) {
+    alert('Bitte einen Betrag eingeben!');
+    return;
+  }
+  
+  addTransaction(person, amount, desc, 'manual');
+  
+  document.getElementById('transactionAmount').value = '';
+  document.getElementById('transactionDesc').value = '';
+  closeModal('addTransactionModal');
+  renderShardAccounts();
+  renderTransactions();
+}
+
+function renderTransactions() {
+  const transactions = getTransactions();
+  const filter = document.getElementById('transactionFilter')?.value || 'all';
+  const log = document.getElementById('transactionLog');
+  const filterSelect = document.getElementById('transactionFilter');
+  
+  if (!log) return;
+  
+  if (filterSelect) {
+    const friends = getFriends();
+    const currentValue = filterSelect.value;
+    filterSelect.innerHTML = '<option value="all">Alle Personen</option>' +
+      friends.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+    filterSelect.value = currentValue;
+  }
+  
+  const filtered = filter === 'all' ? transactions : transactions.filter(t => t.person === filter);
+  const sorted = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+  if (sorted.length === 0) {
+    log.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)">Noch keine Transaktionen</div>';
+    return;
+  }
+  
+  log.innerHTML = sorted.map(t => {
+    const date = new Date(t.date);
+    const dateStr = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+    const icon = t.type === 'quest' ? '🎯' : t.type === 'adjustment' ? '⚙️' : '✏️';
+    const amountClass = t.amount >= 0 ? 'positive' : 'negative';
+    const amountSign = t.amount >= 0 ? '+' : '';
+    
+    return `
+      <div class="transaction-item">
+        <div class="transaction-icon">${icon}</div>
+        <div class="transaction-info">
+          <div class="transaction-title">${esc(t.description)}</div>
+          <div class="transaction-meta">👤 ${esc(t.person)} · ${dateStr}</div>
+        </div>
+        <div class="transaction-amount ${amountClass}">${amountSign}${t.amount.toLocaleString()}</div>
+      </div>
+    `;
   }).join('');
 }
-async function renderStats(){
-  const cached=JSON.parse(localStorage.getItem('opsucht_quests')||'[]');
-  if(cached.length) _renderStatsData(cached);
-  const q=await loadQ();
-  _renderStatsData(q);
-}
-function _renderStatsData(q){
-  const d=q.filter(x=>x.type==='daily').length,w=q.filter(x=>x.type==='weekly').length,avg=q.length?Math.round(q.reduce((a,b)=>a+b.shards,0)/q.length):0;
-  document.getElementById('statsBar').innerHTML=`<div class="stat-card"><div class="stat-label">Gesamt</div><div class="stat-value" style="color:var(--cyan)">${q.length}</div></div><div class="stat-card"><div class="stat-label">Täglich</div><div class="stat-value" style="color:var(--orange)">${d}</div></div><div class="stat-card"><div class="stat-label">Wöchentlich</div><div class="stat-value" style="color:var(--purple)">${w}</div></div><div class="stat-card"><div class="stat-label">Ø Shards</div><div class="stat-value" style="color:var(--green)">${avg}</div></div>`;
+
+function closeModal(id) {
+  document.getElementById(id).classList.add('hidden');
 }
 
-
-function getFriends(){return JSON.parse(localStorage.getItem('op_friends')||'[]');}
-function saveFriends(f){localStorage.setItem('op_friends',JSON.stringify(f));}
-function getStreaks(){return JSON.parse(localStorage.getItem('op_streaks')||'{}');}
-function saveStreaks(s){localStorage.setItem('op_streaks',JSON.stringify(s));}
-function getChecks(){return JSON.parse(localStorage.getItem('op_checks')||'{}');}
-function saveChecks(c){localStorage.setItem('op_checks',JSON.stringify(c));}
-
-function renderFriends(){
-  const friends=getFriends(),list=document.getElementById('friendsList');if(!list)return;
-  list.innerHTML=friends.length?friends.map(f=>`<div class="friend-chip">👤 ${esc(f)}<button onclick="removeFriend('${f.replace(/'/g,"\\'")}')">×</button></div>`).join(''):'<span style="color:var(--text3);font-size:12px">Noch keine Freunde</span>';
-}
-function addFriend(){
-  const inp=document.getElementById('friendNameInput');if(!inp)return;
-  const name=inp.value.trim();if(!name)return;
-  const friends=getFriends();if(friends.includes(name))return;
-  friends.push(name);saveFriends(friends);inp.value='';renderFriends();
-  if(!document.getElementById('panelStreak').classList.contains('hidden'))renderStreakPanel();
-}
-function removeFriend(name){
-  saveFriends(getFriends().filter(f=>f!==name));renderFriends();
-  if(!document.getElementById('panelStreak').classList.contains('hidden'))renderStreakPanel();
-}
-
-async function renderStreakPanel(){
-  const content=document.getElementById('streakContent');if(!content)return;
-  const quests=await loadQ();
-  const friends=getFriends();
-  const today=new Date().toISOString().split('T')[0];
-  const rel=quests.filter(q=>{
-    if(q.type==='daily')return q.date===today;
-    if(q.type==='weekly')return q.date<=today&&(q.weeklyEnd||q.date)>=today;
+// ═══ STREAK PANEL ═══
+async function renderStreakPanel() {
+  const content = document.getElementById('streakContent');
+  if (!content) return;
+  
+  const quests = JSON.parse(localStorage.getItem('opsucht_quests') || '[]');
+  const friends = getFriends();
+  const today = new Date().toISOString().split('T')[0];
+  
+  const relevantQuests = quests.filter(q => {
+    if (q.type === 'daily') return q.date === today;
+    if (q.type === 'weekly') {
+      const start = q.date;
+      const end = q.weeklyEnd || q.date;
+      return start <= today && end >= today;
+    }
     return false;
   });
-  if(!friends.length){content.innerHTML='<div style="text-align:center;padding:30px;color:var(--text3)">⬆️ Erst Freunde hinzufügen</div>';return;}
-  if(!rel.length){content.innerHTML='<div style="text-align:center;padding:30px;color:var(--text3)">Heute keine aktiven Quests</div>';return;}
-  const checks=getChecks(),streaks=getStreaks();
-  content.innerHTML=`<div class="streak-grid">${rel.map(quest=>`
-    <div class="streak-card">
-      <div class="streak-card-header">
-        <div><div class="streak-quest-title">${esc(quest.task)}</div><div class="streak-quest-date">${quest.type==='weekly'&&quest.weeklyEnd?fmtW(quest.date,quest.weeklyEnd):fmtD(quest.date)} ${quest.rewardType==='booster'?`· ⚡ ${esc(quest.boosterName)} ${quest.boosterHours}h`:`· 💎${quest.shards}`}</div></div>
-        <span class="type-badge ${quest.type}">${quest.type==='daily'?'Daily':'Weekly'}</span>
-      </div>
-      <div class="streak-players">
-        ${friends.map(fr=>{
-          const key=`${quest.id}_${fr}_${today}`,done=!!(checks[key]),streak=streaks[`${quest.id}_${fr}`]||0;
-          return `<div class="streak-player-row${done?' done':''}" onclick="toggleCheck('${quest.id}','${fr.replace(/'/g,"\\'")}','${today}')">
-            <div class="streak-checkbox">${done?'✓':''}</div>
-            <span class="streak-player-name">${esc(fr)}</span>
-            <span class="streak-player-streak">🔥 ${streak}</span>
-          </div>`;
-        }).join('')}
-      </div>
-    </div>`).join('')}</div>`;
-}
-
-function toggleCheck(qid,friend,date){
-  const checks=getChecks(),streaks=getStreaks();
-  const key=`${qid}_${friend}_${date}`,sk=`${qid}_${friend}`;
-  if(checks[key]){delete checks[key];streaks[sk]=Math.max(0,(streaks[sk]||1)-1);}
-  else{checks[key]=true;streaks[sk]=(streaks[sk]||0)+1;}
-  saveChecks(checks);saveStreaks(streaks);renderStreakPanel();
-}
-
-async function saveUser(){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  if(cu.role!=='owner'&&cu.role!=='admin'){alert('Keine Berechtigung!');return;}
-  const uname=document.getElementById('newUsername').value.trim(),pw=document.getElementById('newPassword').value,role=document.getElementById('newRole').value;
-  if(!uname||!pw){alert('Bitte alle Felder.');return;}
-  let users=await loadU();
-  if(users.find(u=>u.username===uname)){alert('Benutzername existiert!');return;}
-  users.push({username:uname,passwordHash:await sha256(pw),role});
-  await saveU(users);document.getElementById('newUsername').value='';document.getElementById('newPassword').value='';
-  renderUsers();alert('Benutzer erstellt!');
-}
-async function changeOwnPassword(){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  const op=document.getElementById('oldPw').value,np=document.getElementById('newPw').value;
-  if(!op||!np){alert('Bitte beide Felder.');return;}
-  const oh=await sha256(op);let users=await loadU();
-  const user=users.find(u=>u.username===cu.username&&u.passwordHash===oh);
-  if(!user){alert('Altes Passwort falsch!');return;}
-  user.passwordHash=await sha256(np);await saveU(users);
-  document.getElementById('oldPw').value='';document.getElementById('newPw').value='';alert('Passwort geändert!');
-}
-async function changePW(uname){
-  const np=prompt(`Neues Passwort für "${uname}":`);if(!np||np.length<6){alert('Mind. 6 Zeichen.');return;}
-  let users=await loadU();const t=users.find(u=>u.username===uname);if(!t)return;
-  t.passwordHash=await sha256(np);await saveU(users);alert('Passwort geändert.');
-}
-async function changeRole(uname){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  const allowed=cu.role==='owner'?['owner','admin','editor','viewer']:['admin','editor','viewer'];
-  const nr=prompt(`Neue Rolle für "${uname}":\n${allowed.join(', ')}`);
-  if(!nr||!allowed.includes(nr)){alert('Ungültige Rolle.');return;}
-  let users=await loadU();const t=users.find(u=>u.username===uname);if(!t)return;
-  t.role=nr;await saveU(users);renderUsers();
-}
-async function delUser(uname){
-  const cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  if(uname===cu.username){alert('Eigenen Account nicht löschen!');return;}
-  if(!confirm(`"${uname}" löschen?`))return;
-  let users=await loadU();await saveU(users.filter(u=>u.username!==uname));renderUsers();
-}
-async function renderUsers(){
-  const tbody=document.getElementById('usersTableBody'),cu=JSON.parse(sessionStorage.getItem('currentUser'));
-  const users=await loadU();const canManage=cu.role==='owner'||cu.role==='admin';
-  if(!canManage){tbody.innerHTML='<tr><td colspan="3" style="text-align:center;padding:30px;color:var(--text3)">Keine Berechtigung</td></tr>';return;}
-  tbody.innerHTML=users.map(u=>{
-    const iO=u.role==='owner',iM=u.username===cu.username,cE=cu.role==='owner'||(cu.role==='admin'&&!iO);
-    return `<tr><td><strong>${esc(u.username)}</strong>${iM?' <span style="color:var(--text3);font-size:11px">(du)</span>':''}</td><td><span class="role-badge ${u.role}">${rl(u.role)}</span></td><td><div class="action-row">${cE&&!iM?`<button class="btn btn-secondary btn-sm" onclick="changeRole('${u.username}')">🎭</button>`:''} ${cE?`<button class="btn btn-secondary btn-sm" onclick="changePW('${u.username}')">🔑</button>`:''} ${cE&&!iM?`<button class="btn btn-danger btn-sm" onclick="delUser('${u.username}')">🗑️</button>`:''}</div></td></tr>`;
-  }).join('');
-}
-
-function esc(t){const d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
-
-async function boot(){
-  setRC(getRC().user||REPO_USER,getRC().repo||REPO_NAME);
-  let epStr=localStorage.getItem('op_enc_config');
-  if(!epStr){
-    const c=getRC();
-    try{const r=await fetch(`https://raw.githubusercontent.com/${c.user}/${c.repo}/main/config.enc?t=${Date.now()}`);if(r.ok){epStr=await r.text();if(epStr&&epStr.trim())localStorage.setItem('op_enc_config',epStr.trim());}}catch(e){}
+  
+  if (friends.length === 0) {
+    content.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)">⬆️ Erst Freunde hinzufügen</div>';
+    return;
   }
-  let hasConfig=false;
-  if(epStr){try{const p=JSON.parse(epStr.trim());hasConfig=!!(p.enc);}catch(e){}}
-  if(!hasConfig){showScreen('setup');return;}
-  showScreen('login');
+  
+  if (relevantQuests.length === 0) {
+    content.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)">Heute keine aktiven Quests</div>';
+    return;
+  }
+  
+  const checks = JSON.parse(localStorage.getItem('opsucht_quest_checks') || '{}');
+  
+  content.innerHTML = `<div style="display:grid;gap:14px">${relevantQuests.map(quest => {
+    const questShards = quest.shards || 0;
+    const dateStr = formatDate(quest.date);
+    
+    return `
+      <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:16px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px">${esc(quest.task)}</div>
+            <div style="font-size:11px;color:var(--text3)">${dateStr} · 💎 ${questShards} Shards</div>
+          </div>
+          <span style="font-size:10px;padding:3px 9px;border-radius:99px;background:${quest.type === 'daily' ? 'rgba(249,115,22,.15)' : 'var(--cyan-dim)'};color:${quest.type === 'daily' ? 'var(--orange)' : 'var(--cyan)'}">${quest.type === 'daily' ? 'TÄGLICH' : 'WÖCHENTLICH'}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${friends.map(friend => {
+            const key = `${quest.id}_${friend}_${today}`;
+            const done = !!checks[key];
+            
+            return `
+              <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg4);border:1px solid ${done ? 'rgba(34,197,94,.3)' : 'var(--border)'};border-radius:8px;cursor:pointer;${done ? 'background:rgba(34,197,94,.08)' : ''}" onclick="toggleQuestCheck('${quest.id}', '${friend.replace(/'/g, "\\'")}', '${today}', ${questShards})">
+                <div style="width:18px;height:18px;border:2px solid ${done ? 'var(--green)' : 'var(--border2)'};border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;${done ? 'background:var(--green);color:#0e1117' : ''}">
+                  ${done ? '✓' : ''}
+                </div>
+                <span style="font-size:13px;font-weight:500;color:${done ? 'var(--green)' : 'var(--text2)'};flex:1">${esc(friend)}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }).join('')}</div>`;
 }
 
-async function initUsers(){
-  const remote=await rawLoad('users.json');
-  if(remote&&remote.length){localStorage.setItem('opsucht_users',JSON.stringify(remote));return;}
-  const local=JSON.parse(localStorage.getItem('opsucht_users')||'[]');
-  if(local.length)return;
-  const h=await sha256('changeme123');
-  localStorage.setItem('opsucht_users',JSON.stringify([{username:'xXLuckyGamer04Xx',passwordHash:h,role:'owner'},{username:'Kr3pp1',passwordHash:h,role:'admin'}]));
+function toggleQuestCheck(questId, friend, date, shards) {
+  const checks = JSON.parse(localStorage.getItem('opsucht_quest_checks') || '{}');
+  const key = `${questId}_${friend}_${date}`;
+  
+  if (checks[key]) {
+    delete checks[key];
+    addTransaction(friend, -shards, `Quest-Shards entfernt`, 'quest');
+  } else {
+    checks[key] = true;
+    addTransaction(friend, shards, `Quest abgeschlossen (${shards} Shards)`, 'quest');
+  }
+  
+  localStorage.setItem('opsucht_quest_checks', JSON.stringify(checks));
+  renderStreakPanel();
+  renderShardAccounts();
+  renderTransactions();
 }
 
-window.onload=async function(){
-  setRC(REPO_USER,REPO_NAME);
-  await initUsers();
-  const cu=sessionStorage.getItem('currentUser');
-  if(cu){await showDashboard();return;}
-  await boot();
+function formatDate(dateString) {
+  const date = new Date(dateString + 'T12:00:00');
+  const weekdays = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'];
+  return `${weekdays[date.getDay()]} ${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getFullYear()).slice(2)}`;
+}
+
+function esc(text) {
+  const div = document.createElement('div');
+  div.textContent = text || '';
+  return div.innerHTML;
+}
+
+// ═══ INIT ═══
+window.onload = async function() {
+  const user = sessionStorage.getItem('currentUser');
+  if (user) {
+    await showDashboard();
+  }
 };
 </script>
 </body>
