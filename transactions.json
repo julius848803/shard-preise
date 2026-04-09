@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "1775763658529",
+    "person": "Ravarino07",
+    "amount": 15408,
+    "description": "Manuell angepasst (+15408)",
+    "type": "adjustment",
+    "date": "2026-04-09T19:40:58.529Z"
+  },
+  {
+    "id": "1775763692567",
+    "person": "Esta25",
+    "amount": 97210,
+    "description": "Manuell angepasst (+97210)",
+    "type": "adjustment",
+    "date": "2026-04-09T19:41:32.567Z"
+  },
+  {
+    "id": "1775763729460",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 50756,
+    "description": "Manuell angepasst (+50756)",
+    "type": "adjustment",
+    "date": "2026-04-09T19:42:09.460Z"
+  }
+]
