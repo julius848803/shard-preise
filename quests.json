@@ -393,5 +393,78 @@
       "Items abbauen"
     ],
     "items": "Baue 125 Melone ab · Bringe 250 Melone"
+  },
+  {
+    "id": "1775770086316",
+    "task": "Test",
+    "steps": [
+      "1"
+    ],
+    "shards": 100,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-09",
+    "weeklyEnd": null,
+    "location": "everywhere",
+    "haupttags": [],
+    "nebentags": [],
+    "tags": [],
+    "items": "1"
+  },
+  {
+    "id": "1775772464432",
+    "task": "Job XP sammeln / Blöcke abbauen (Blasseichenstamm)",
+    "steps": [
+      "Sammle 100000 XP in einem beliebigen Job",
+      "Baue 10000 Blasseichenstamm ab"
+    ],
+    "shards": 7500,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "weekly",
+    "date": "2026-04-10",
+    "weeklyEnd": "2026-04-16",
+    "location": "farmwelt",
+    "haupttags": [
+      "Items abbauen",
+      "Job XP sammeln"
+    ],
+    "nebentags": [
+      "Beliebiger Job",
+      "Blasseichenstamm"
+    ],
+    "tags": [
+      "Items abbauen",
+      "Job XP sammeln"
+    ],
+    "items": "Sammle 100000 XP in einem beliebigen Job · Baue 10000 Blasseichenstamm ab"
+  },
+  {
+    "id": "1775772524326",
+    "task": "Items abgeben (Goldbarren)",
+    "steps": [
+      "Bringe 650 Goldbarren"
+    ],
+    "shards": 425,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-10",
+    "weeklyEnd": null,
+    "location": "everywhere",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Goldbarren"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "Bringe 650 Goldbarren"
   }
 ]
