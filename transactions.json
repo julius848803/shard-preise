@@ -22,5 +22,21 @@
     "description": "Manuell angepasst (+50756)",
     "type": "adjustment",
     "date": "2026-04-09T19:42:09.460Z"
+  },
+  {
+    "id": "1775770208637",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 100,
+    "description": "Quest abgeschlossen (100 Shards)",
+    "type": "quest",
+    "date": "2026-04-09T21:30:08.638Z"
+  },
+  {
+    "id": "1775770214750",
+    "person": "xXLuckyGamer04Xx",
+    "amount": -100,
+    "description": "Quest-Shards entfernt",
+    "type": "quest",
+    "date": "2026-04-09T21:30:14.750Z"
   }
 ]
