@@ -441,11 +441,36 @@
       "Items abgeben"
     ],
     "nebentags": [
-      "Goldbarren"
+      "Gold"
     ],
     "tags": [
       "Items abgeben"
     ],
     "items": "Bringe 650 Goldbarren"
+  },
+  {
+    "id": "1775858476196",
+    "task": "Mobs töten (Spinne)",
+    "steps": [
+      "Töte 200 Spinne"
+    ],
+    "shards": 475,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-11",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Mobs töten"
+    ],
+    "nebentags": [
+      "Spinne"
+    ],
+    "tags": [
+      "Mobs töten"
+    ],
+    "items": "Töte 200 Spinne"
   }
 ]
