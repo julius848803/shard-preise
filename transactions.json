@@ -38,5 +38,29 @@
     "description": "Quest-Shards entfernt",
     "type": "quest",
     "date": "2026-04-09T21:30:14.750Z"
+  },
+  {
+    "id": "1775850283581",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 425,
+    "description": "Quest abgeschlossen (425 Shards)",
+    "type": "quest",
+    "date": "2026-04-10T19:44:43.581Z"
+  },
+  {
+    "id": "1775850283883",
+    "person": "Esta25",
+    "amount": 425,
+    "description": "Quest abgeschlossen (425 Shards)",
+    "type": "quest",
+    "date": "2026-04-10T19:44:43.883Z"
+  },
+  {
+    "id": "1775850284163",
+    "person": "Ravarino07",
+    "amount": 425,
+    "description": "Quest abgeschlossen (425 Shards)",
+    "type": "quest",
+    "date": "2026-04-10T19:44:44.163Z"
   }
 ]
