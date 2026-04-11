@@ -62,5 +62,21 @@
     "description": "Quest abgeschlossen (425 Shards)",
     "type": "quest",
     "date": "2026-04-10T19:44:44.163Z"
+  },
+  {
+    "id": "1775939745060",
+    "person": "Ravarino07",
+    "amount": 475,
+    "description": "Quest abgeschlossen (475 Shards)",
+    "type": "quest",
+    "date": "2026-04-11T20:35:45.060Z"
+  },
+  {
+    "id": "1775939745303",
+    "person": "Esta25",
+    "amount": 475,
+    "description": "Quest abgeschlossen (475 Shards)",
+    "type": "quest",
+    "date": "2026-04-11T20:35:45.303Z"
   }
 ]
