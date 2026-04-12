@@ -472,5 +472,30 @@
       "Mobs töten"
     ],
     "items": "Töte 200 Spinne"
+  },
+  {
+    "id": "1776008930031",
+    "task": "Blöcke abbauen (Bemooster Bruchstein)",
+    "steps": [
+      "Baue 20 Bemooster Bruchstein ab"
+    ],
+    "shards": 275,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-12",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Items abbauen"
+    ],
+    "nebentags": [
+      "Bemooster Bruchstein"
+    ],
+    "tags": [
+      "Items abbauen"
+    ],
+    "items": "Baue 20 Bemooster Bruchstein ab"
   }
 ]
