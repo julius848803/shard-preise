@@ -497,5 +497,28 @@
       "Items abbauen"
     ],
     "items": "Baue 20 Bemooster Bruchstein ab"
+  },
+  {
+    "id": "1776106608221",
+    "task": "Custom-Mobs töten (Nilpferd)",
+    "steps": [
+      "Töte 2 Nilpferd"
+    ],
+    "shards": 750,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-13",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Custom-Mobs töten"
+    ],
+    "nebentags": [],
+    "tags": [
+      "Custom-Mobs töten"
+    ],
+    "items": "Töte 2 Nilpferd"
   }
 ]
