@@ -520,5 +520,34 @@
       "Custom-Mobs töten"
     ],
     "items": "Töte 2 Nilpferd"
+  },
+  {
+    "id": "1776201513717",
+    "task": "Job XP sammeln/Blöcke platzieren (Hellblaues Glas)",
+    "steps": [
+      "Sammle 1500 XP in einem beliebigen Job",
+      "Platziere 128 Hellblaues Glas"
+    ],
+    "shards": 600,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-14",
+    "weeklyEnd": null,
+    "location": "everywhere",
+    "haupttags": [
+      "Job XP sammeln",
+      "Items platzieren"
+    ],
+    "nebentags": [
+      "Glas",
+      "Beliebiger Job"
+    ],
+    "tags": [
+      "Job XP sammeln",
+      "Items platzieren"
+    ],
+    "items": "Sammle 1500 XP in einem beliebigen Job · Platziere 128 Hellblaues Glas"
   }
 ]
