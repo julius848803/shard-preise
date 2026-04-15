@@ -549,5 +549,33 @@
       "Items platzieren"
     ],
     "items": "Sammle 1500 XP in einem beliebigen Job · Platziere 128 Hellblaues Glas"
+  },
+  {
+    "id": "1776281390467",
+    "task": "Blöcke abbauen/Blöcke Abgeben (Eichenstamm)",
+    "steps": [
+      "Baue 500 Eichenstamm ab",
+      "Bringe 750 Eichenstamm"
+    ],
+    "shards": 490,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-15",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Items abbauen",
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Eichenstamm"
+    ],
+    "tags": [
+      "Items abbauen",
+      "Items abgeben"
+    ],
+    "items": "Baue 500 Eichenstamm ab · Bringe 750 Eichenstamm"
   }
 ]
