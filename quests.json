@@ -577,5 +577,30 @@
       "Items abgeben"
     ],
     "items": "Baue 500 Eichenstamm ab · Bringe 750 Eichenstamm"
+  },
+  {
+    "id": "1776376107160",
+    "task": "Items abgeben (Karotte)",
+    "steps": [
+      "Bringe 500 mal Karotte"
+    ],
+    "shards": 125,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-16",
+    "weeklyEnd": null,
+    "location": "everywhere",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Karotte"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "Bringe 500 mal Karotte"
   }
 ]
