@@ -602,5 +602,56 @@
       "Items abgeben"
     ],
     "items": "Bringe 500 mal Karotte"
+  },
+  {
+    "id": "1776456911260",
+    "task": "Items abgeben (Eisenbarren)",
+    "steps": [
+      "Bringe 64 Eisenbarren"
+    ],
+    "shards": 375,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-17",
+    "weeklyEnd": null,
+    "location": "everywhere",
+    "haupttags": [
+      "Items abgeben"
+    ],
+    "nebentags": [
+      "Eisen"
+    ],
+    "tags": [
+      "Items abgeben"
+    ],
+    "items": "Bringe 64 Eisenbarren"
+  },
+  {
+    "id": "1776456997543",
+    "task": "Spielzeit sammeln/Mobs töten (Nautilus)",
+    "steps": [
+      "Spiele 420 Minuten",
+      "Töte 50 Nautilus"
+    ],
+    "shards": 5000,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "weekly",
+    "date": "2026-04-17",
+    "weeklyEnd": "2026-04-23",
+    "location": "farmwelt",
+    "haupttags": [
+      "Spielzeit sammeln"
+    ],
+    "nebentags": [
+      "Mobs töten"
+    ],
+    "tags": [
+      "Spielzeit sammeln"
+    ],
+    "items": "Spiele 420 Minuten · Töte 50 Nautilus"
   }
 ]
