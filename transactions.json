@@ -230,5 +230,117 @@
     "description": "Quest abgeschlossen (7500 Shards)",
     "type": "quest",
     "date": "2026-04-16T21:52:54.351Z"
+  },
+  {
+    "id": "1776457161070",
+    "person": "Ravarino07",
+    "amount": 5000,
+    "description": "Quest abgeschlossen (5000 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:21.070Z"
+  },
+  {
+    "id": "1776457161344",
+    "person": "Esta25",
+    "amount": 5000,
+    "description": "Quest abgeschlossen (5000 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:21.344Z"
+  },
+  {
+    "id": "1776457161648",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 5000,
+    "description": "Quest abgeschlossen (5000 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:21.648Z"
+  },
+  {
+    "id": "1776457169967",
+    "person": "Ravarino07",
+    "amount": -5000,
+    "description": "Quest-Shards entfernt",
+    "type": "quest",
+    "date": "2026-04-17T20:19:29.967Z"
+  },
+  {
+    "id": "1776457170196",
+    "person": "Esta25",
+    "amount": -5000,
+    "description": "Quest-Shards entfernt",
+    "type": "quest",
+    "date": "2026-04-17T20:19:30.196Z"
+  },
+  {
+    "id": "1776457170459",
+    "person": "xXLuckyGamer04Xx",
+    "amount": -5000,
+    "description": "Quest-Shards entfernt",
+    "type": "quest",
+    "date": "2026-04-17T20:19:30.459Z"
+  },
+  {
+    "id": "1776457170817",
+    "person": "Ravarino07",
+    "amount": 375,
+    "description": "Quest abgeschlossen (375 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:30.817Z"
+  },
+  {
+    "id": "1776457171041",
+    "person": "Esta25",
+    "amount": 375,
+    "description": "Quest abgeschlossen (375 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:31.041Z"
+  },
+  {
+    "id": "1776457171296",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 375,
+    "description": "Quest abgeschlossen (375 Shards)",
+    "type": "quest",
+    "date": "2026-04-17T20:19:31.296Z"
+  },
+  {
+    "id": "1776457188751",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 500,
+    "description": "Daily Quest Belohnung",
+    "type": "manual",
+    "date": "2026-04-17T20:19:48.751Z"
+  },
+  {
+    "id": "1776457243507",
+    "person": "xXLuckyGamer04Xx",
+    "amount": 550,
+    "description": "Manuelle Transaktion",
+    "type": "manual",
+    "date": "2026-04-17T20:20:43.507Z"
+  },
+  {
+    "id": "1776457251537",
+    "person": "xXLuckyGamer04Xx",
+    "amount": -550,
+    "description": "Manuelle Transaktion",
+    "type": "manual",
+    "date": "2026-04-17T20:20:51.537Z"
+  },
+  {
+    "id": "1776457255677",
+    "person": "Esta25",
+    "amount": 550,
+    "description": "Manuelle Transaktion",
+    "type": "manual",
+    "date": "2026-04-17T20:20:55.677Z"
+  },
+  {
+    "id": "1776457311876",
+    "person": "Ravarino07",
+    "amount": 15514,
+    "description": "Manuelle Transaktion",
+    "type": "manual",
+    "date": "2026-04-17T20:21:51.876Z"
   }
 ]
