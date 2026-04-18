@@ -653,5 +653,30 @@
       "Spielzeit sammeln"
     ],
     "items": "Spiele 420 Minuten · Töte 50 Nautilus"
+  },
+  {
+    "id": "1776549344336",
+    "task": "Mobs töten (Lohe)",
+    "steps": [
+      "Töte 75 Lohe"
+    ],
+    "shards": 400,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-04-18",
+    "weeklyEnd": null,
+    "location": "farmwelt",
+    "haupttags": [
+      "Mobs töten"
+    ],
+    "nebentags": [
+      "Lohe"
+    ],
+    "tags": [
+      "Mobs töten"
+    ],
+    "items": "Töte 75 Lohe"
   }
 ]
