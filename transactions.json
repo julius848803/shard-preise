@@ -358,5 +358,13 @@
     "description": "Quest abgeschlossen (400 Shards)",
     "type": "quest",
     "date": "2026-04-18T21:59:07.853Z"
+  },
+  {
+    "id": "1777246369831",
+    "person": "Ravarino07",
+    "amount": 16506,
+    "description": "Manuelle Transaktion",
+    "type": "manual",
+    "date": "2026-04-26T23:32:49.831Z"
   }
 ]
