@@ -155,7 +155,7 @@ main{padding:20px;max-width:var(--max-w);margin:0 auto}
       <h1>OPSUCHT Shards Kurs</h1>
       <p>Aktuelle Merchant-Wechselkurse zu OpShards</p>
     </div>
-    <div class="h-badge">🕕 <strong>6:00 Uhr</strong> <small id="nxtUpd"></small></div>
+    <div class="h-badge">🕕 <strong>8:00 Uhr</strong> <small id="nxtUpd"></small></div>
   </div>
 </header>
 
@@ -284,7 +284,7 @@ let hists={}, prices={}, selChart='diamond_block', selRange=30, chart=null, rMat
 
 function tickBadge(){
   const now=new Date(),nx=new Date();
-  nx.setHours(6,0,0,0);
+  nx.setHours(8,0,0,0);
   if(now>=nx) nx.setDate(nx.getDate()+1);
   const d=nx-now,h=Math.floor(d/3600000),m=Math.floor((d%3600000)/60000);
   document.getElementById('nxtUpd').textContent=`· in ${h}h ${m}m`;
