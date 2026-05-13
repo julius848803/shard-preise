@@ -2977,7 +2977,7 @@
         "source": "redstone_ore",
         "target": "opshards",
         "base": 2,
-        "exchangeRate": 2
+        "exchangeRate": 2.21
       }
     ]
   },
@@ -3018,7 +3018,7 @@
         "source": "redstone_ore",
         "target": "opshards",
         "base": 2,
-        "exchangeRate": 2.21
+        "exchangeRate": 1.85
       }
     ]
   }
