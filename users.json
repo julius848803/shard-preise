@@ -3,5 +3,10 @@
     "username": "xXLuckyGamer04Xx",
     "passwordHash": "cb9f618c88711ad3ea1a524706b91515e4a7eb20b46d34e21c1ff69a153693f4",
     "role": "owner"
+  },
+  {
+    "username": "Bagon",
+    "passwordHash": "b79ea17b7c5ca8fe9cccd8cdba6e8f8ed0b3c948f9f709ed0f47d2fd47fcba82",
+    "role": "editor"
   }
 ]
