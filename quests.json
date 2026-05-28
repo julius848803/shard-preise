@@ -678,5 +678,24 @@
       "Mobs töten"
     ],
     "items": "Töte 75 Lohe"
+  },
+  {
+    "id": "1780012116140",
+    "task": "Job XP Sammeln",
+    "steps": [
+      "15.000 Jäger Xp Farmen"
+    ],
+    "shards": 475,
+    "boosterName": null,
+    "boosterHours": null,
+    "rewardType": "shards",
+    "type": "daily",
+    "date": "2026-05-28",
+    "weeklyEnd": null,
+    "location": null,
+    "haupttags": [],
+    "nebentags": [],
+    "tags": [],
+    "items": "15.000 Jäger Xp Farmen"
   }
 ]
