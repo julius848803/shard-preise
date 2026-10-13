@@ -10271,5 +10271,70 @@
         "exchangeRate": 0.9
       }
     ]
+  },
+  {
+    "time": "2026-10-13T06:00:47.671Z",
+    "data": [
+      {
+        "source": "diamond_block",
+        "target": "opshards",
+        "base": 7,
+        "exchangeRate": 7.35
+      },
+      {
+        "source": "netherite_ingot",
+        "target": "opshards",
+        "base": 75,
+        "exchangeRate": 78.7
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"gray\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Gräbergemisch\", underlined: 0b}], text: \"\"},custom_model_data={floats: [626.0f]},item_name={extra: [{bold: 1b, color: \"gray\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Gräbergemisch\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 21,
+        "exchangeRate": 19.73
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"#926428\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Holzbündel\", underlined: 0b}], text: \"\"},custom_model_data={floats: [625.0f]},item_name={extra: [{bold: 1b, color: \"#926428\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Holzbündel\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 20,
+        "exchangeRate": 22.91
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"white\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Steinplatten\", underlined: 0b}], text: \"\"},custom_model_data={floats: [635.0f]},item_name={extra: [{bold: 1b, color: \"white\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Steinplatten\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 15,
+        "exchangeRate": 14.26
+      },
+      {
+        "source": "bone_block",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 0.95
+      },
+      {
+        "source": "book",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 0.94
+      },
+      {
+        "source": "glistering_melon_slice",
+        "target": "redcoins",
+        "base": 0.5,
+        "exchangeRate": 0.44
+      },
+      {
+        "source": "ghast_tear",
+        "target": "redcoins",
+        "base": 2,
+        "exchangeRate": 2.2800000000000002
+      },
+      {
+        "source": "pumpkin_pie",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 1.13
+      }
+    ]
   }
 ]
