@@ -11217,5 +11217,76 @@
         "exchangeRate": 207.75
       }
     ]
+  },
+  {
+    "time": "2026-10-27T07:00:48.160Z",
+    "data": [
+      {
+        "source": "diamond_block",
+        "target": "opshards",
+        "base": 7,
+        "exchangeRate": 6.16
+      },
+      {
+        "source": "netherite_ingot",
+        "target": "opshards",
+        "base": 75,
+        "exchangeRate": 74.74
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"gray\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Gräbergemisch\", underlined: 0b}], text: \"\"},custom_model_data={floats: [626.0f]},item_name={extra: [{bold: 1b, color: \"gray\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Gräbergemisch\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 21,
+        "exchangeRate": 20.8
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"#926428\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Holzbündel\", underlined: 0b}], text: \"\"},custom_model_data={floats: [625.0f]},item_name={extra: [{bold: 1b, color: \"#926428\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Holzbündel\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 20,
+        "exchangeRate": 18.26
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"white\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Steinplatten\", underlined: 0b}], text: \"\"},custom_model_data={floats: [635.0f]},item_name={extra: [{bold: 1b, color: \"white\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Steinplatten\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 15,
+        "exchangeRate": 15.95
+      },
+      {
+        "source": "pumpkin_pie",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 0.88
+      },
+      {
+        "source": "glistering_melon_slice",
+        "target": "redcoins",
+        "base": 0.5,
+        "exchangeRate": 0.52
+      },
+      {
+        "source": "bone_block",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 0.92
+      },
+      {
+        "source": "ghast_tear",
+        "target": "redcoins",
+        "base": 2,
+        "exchangeRate": 1.87
+      },
+      {
+        "source": "book",
+        "target": "redcoins",
+        "base": 1,
+        "exchangeRate": 1
+      },
+      {
+        "source": "minecraft:paper[custom_name={extra: [{bold: 1b, color: \"red\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Jägerbeutel\", underlined: 0b}], text: \"\"},custom_model_data={floats: [755.0f]},item_name={extra: [{bold: 1b, color: \"red\", italic: 0b, obfuscated: 0b, strikethrough: 0b, text: \"Jägerbeutel\", underlined: 0b}], text: \"\"}]",
+        "target": "opshards",
+        "base": 200,
+        "exchangeRate": 206.72
+      }
+    ]
   }
 ]
